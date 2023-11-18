@@ -1,0 +1,62 @@
+{
+  "layer": "top",
+  "height": 24,
+  "margin-top": 8,
+  "margin-left": 11,
+  "margin-right": 11,
+  "margin-bottom": -2,
+
+  "modules-left": [
+    "custom/apps",
+    "group/places",
+    //"hyprland/window",
+    "hyprland/workspaces",
+    "tray"
+  ],
+
+  "modules-center": [
+    "wlr/taskbar" 
+  ],
+
+  "modules-right": [
+    "group/hardware",
+    "pulseaudio",
+    "network",
+    "battery",
+    //"group/controlcenter",
+    "clock", 
+    "custom/exit"
+  ],
+
+  "include": ["~/.config/waybar/modules.json"],
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory"
+    ]
+  },
+
+  "group/places": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/home",
+      "custom/downloads",
+      "custom/tsi",
+      "custom/tspp",
+      "custom/tspo",
+      "custom/tspob",
+      "custom/tspai",
+    ]
+  }
+
+  //"group/controlcenter": {
+  //  "orientation": "horizontal",
+  //  "modules": [
+  //    "pulseaudio",
+  //    "network",
+  //    "battery"
+  //  ]
+  //}
+}

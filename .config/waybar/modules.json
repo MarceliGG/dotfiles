@@ -1,0 +1,138 @@
+{
+  "memory": {
+    "format": "{}% ",
+    "on-click": "konsole -e top"
+  },
+
+  "cpu": {
+    "format": "{usage}% ",
+    "on-click": "konsole -e top"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "format-critical": "!{capacity}% {icon}",
+    "format-charging": " {capacity}% {icon}",
+    "states": {
+      "low": 20,
+      "critical": 10
+    }
+  },
+
+  "clock": {
+    "format": "{:%a, %d. %b  %H:%M}"
+  },
+
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+
+  "pulseaudio": { 
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+  
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+      "Firefox Web Browser": "Firefox",
+      "Foot Server": "Terminal"
+      }
+  },
+
+  "custom/exit": {
+    "format": "  ",
+    "on-click": "wlogout",
+    "tooltip": false
+  },
+
+  "hyprland/window":{
+    "seperate-outputs": true,
+    "format": "{title}",
+    "rewrite": {
+        "(.*) — Mozilla Firefox": "🌎 $1"
+    }
+  },
+
+  "custom/apps": {
+    "format": "󰀻 Apps",
+    "tooltip": false,
+    "on-click": "rofi -show drun"
+  },
+
+  "custom/home": {
+    "format": "",
+    "tooltip-format": "home",
+    "on-click": "thunar ~",
+    "on-click-right": "konsole"
+  },
+
+  "custom/tsi": {
+    "format": "",
+    "tooltip-format": "~/TS/i/",
+    "on-click": "thunar ~/TS/i",
+    "on-click-right": "konsole --workdir ~/TS/i"
+  },
+
+  "custom/tspo": {
+    "format": "",
+    "tooltip-format": "~/TS/po/",
+    "on-click": "thunar ~/TS/po",
+    "on-click-right": "konsole --workdir ~/TS/po"
+  },
+
+  "custom/tspob": {
+    "format": "",
+    "tooltip-format": "~/TS/pob/",
+    "on-click": "thunar ~/TS/pob",
+    "on-click-right": "konsole --workdir ~/TS/pob"
+  },
+
+  "custom/tspp": {
+    "format": "",
+    "tooltip-format": "~/TS/pp/",
+    "on-click": "thunar ~/TS/pp",
+    "on-click-right": "konsole --workdir ~/TS/pp"
+  },
+  
+  "custom/tspai": {
+    "format": "",
+    "tooltip-format": "~/TS/pai/",
+    "on-click": "thunar ~/TS/pai",
+    "on-click-right": "konsole --workdir ~/TS/pai"
+  },
+
+  "custom/downloads": {
+    "format": "",
+    "tooltip-format": "~/Pobrane/",
+    "on-click": "thunar ~/Pobrane",
+    "on-click-right": "konsole --workdir ~/Pobrane"
+  }
+}

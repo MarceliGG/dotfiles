@@ -1,0 +1,126 @@
+* {
+  font-family: "Fira Sans", FontAwesome, "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+#custom-apps,
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad {
+  padding: 0 10px;
+  color: #ffffff;
+  margin-right: 5px;
+  border-radius: 12px;
+}
+
+#pulseaudio {
+  background: rgba(207, 95, 95, 0.7);
+}
+
+#pulseaudio.muted {
+  color: #bbb;
+}
+
+#network {
+  background: rgba(49, 166, 224, 0.7);
+}
+
+#battery {
+  background: rgba(138, 138, 138, 0.7);
+}
+
+#battery.charging, #battery.plugged {
+  color: lime;
+}
+
+#battery.low:not(.charging) {
+  color: orangered;
+}
+
+#battery.critical:not(.charging) {
+  color: orangered;
+}
+
+/* group/hardware */
+.modules-right > :nth-child(1) {
+  margin-right: 5px;
+  padding: 0 10px;
+}
+
+#cpu {
+  margin-right: 5px;
+}
+
+#custom-apps {
+  background: rgba(49, 166, 224, 0.7);
+}
+
+#taskbar button {
+  border-radius: 0px;
+  padding: 0 3px;
+}
+
+#taskbar button.active {
+  box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.7);
+}
+
+#taskbar button.minimized {
+  opacity: 0.5;
+}
+
+#custom-exit {
+  background: rgba(207, 95, 95, 0.7);
+  border-radius: 12px;
+  min-width: 40px;
+}
+
+#workspaces {
+  margin-right: 5px;
+  background: rgba(138, 138, 138, 0.7);
+  padding: 0px 1px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+#workspaces button {
+  padding: 0px 5px;
+  border-radius: 12px;
+  border: 0px;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.4;
+}
+
+#workspaces button.active {
+  background: rgba(207, 95, 95, 0.3);
+  min-width: 40px;
+  opacity:1.0;
+}
+
+.modules-left > :nth-child(2) {
+  margin-right: 5px;
+  padding: 0 6px;
+}
+
+#custom-home,
+#custom-downloads,
+#custom-tsi,
+#custom-tspp,
+#custom-tspo,
+#custom-tspob,
+#custom-tspai {
+  padding: 4px;
+}

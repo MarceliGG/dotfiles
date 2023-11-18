@@ -1,0 +1,19 @@
+a
+a
+b
+cd .config/zsh
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting
+ls
+cd fast-syntax-highlighting
+ls
+cd ..
+git clone https://github.com/zsh-users/zsh-history-substring-search
+ls
+cat .config/fish/config.fish
+v
+ls
+mkdir dotfiles
+ls
+cat .hyprland
+ls .hyprland
+git init --bare ~/dotfiles

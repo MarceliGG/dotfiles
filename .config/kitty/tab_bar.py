@@ -1,6 +1,6 @@
 from kitty.fast_data_types import Screen, get_options
-from kitty.tab_bar import (DrawData, ExtraData, TabBarData, as_rgb,
-                           draw_tab_with_powerline, draw_title)
+from kitty.tab_bar import (DrawData, ExtraData, TabBarData, as_rgb, draw_title)
+from kitty.utils import color_as_int
 
 
 def draw_tab(
@@ -45,6 +45,24 @@ def draw_tab(
             screen.draw(separator_symbol)
         else:
             screen.draw('')
+            opts = get_options()
+            draw_spaces = screen.columns - screen.cursor.x - 7
+            if draw_spaces > 0:
+                screen.draw(" " * draw_spaces)
+            screen.cursor.fg = as_rgb(color_as_int(opts.color4))
+            screen.draw("")
+            screen.cursor.bg = as_rgb(color_as_int(opts.color4))
+            screen.cursor.fg = as_rgb(color_as_int(opts.color0))
+            screen.draw("󰄛 ")
+            screen.cursor.bg = as_rgb(color_as_int(opts.color4))
+            screen.cursor.fg = as_rgb(color_as_int(opts.color12))
+            screen.draw("")
+            screen.cursor.bg = as_rgb(color_as_int(opts.color12))
+            screen.cursor.fg = as_rgb(color_as_int(opts.color0))
+            screen.draw("  ")
+            # screen.cursor.bg = as_rgb(color_as_int(opts.color0))
+            # screen.cursor.fg = as_rgb(color_as_int(opts.color12))
+            # screen.draw("")
     else:
         prev_fg = screen.cursor.fg
         if tab_bg == tab_fg:
@@ -58,6 +76,6 @@ def draw_tab(
         screen.cursor.fg = prev_fg
 
     end = screen.cursor.x
-    if end < screen.columns:
-        screen.draw(' ')
+    # if end < screen.columns:
+    #     screen.draw(' ')
     return end

@@ -46,17 +46,12 @@ def draw_tab(
         else:
             screen.draw('')
             opts = get_options()
-            draw_spaces = screen.columns - screen.cursor.x - 7
+            draw_spaces = screen.columns - screen.cursor.x - 4
             if draw_spaces > 0:
                 screen.draw(" " * draw_spaces)
-            screen.cursor.fg = as_rgb(color_as_int(opts.color4))
-            screen.draw("")
-            screen.cursor.bg = as_rgb(color_as_int(opts.color4))
-            screen.cursor.fg = as_rgb(color_as_int(opts.color0))
-            screen.draw("󰄛 ")
-            screen.cursor.bg = as_rgb(color_as_int(opts.color4))
             screen.cursor.fg = as_rgb(color_as_int(opts.color12))
-            screen.draw("")
+            screen.cursor.bg = as_rgb(color_as_int(opts.color0))
+            screen.draw("")
             screen.cursor.bg = as_rgb(color_as_int(opts.color12))
             screen.cursor.fg = as_rgb(color_as_int(opts.color0))
             screen.draw("  ")

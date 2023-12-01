@@ -1,4 +1,11 @@
+-- Configs
+require("plugins.others")
+require("plugins.lsp")
+require("plugins.treesitter")
+require("plugins.telescope")
+require("plugins.lualine")
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
+
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
@@ -7,16 +14,23 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Telescope
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.4',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  use(
-    'nvim-treesitter/nvim-treesitter',
-    { run = ':TSUpdate' }
-  )
+  use "nvim-telescope/telescope-file-browser.nvim"
 
+  use 'nvim-tree/nvim-web-devicons' -- Icons for telescope
+
+  -- Treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
+  -- Autocompletion
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
@@ -33,23 +47,25 @@ return require('packer').startup(function(use)
       { 'L3MON4D3/LuaSnip' }
     }
   }
-  use { "folke/tokyonight.nvim" }
 
-  use({
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!:).
-    run = "make install_jsregexp",
-  })
+  use "hrsh7th/cmp-path"
 
-  use { "hrsh7th/cmp-path" }
+  use "rafamadriz/friendly-snippets"
 
-  use { "rafamadriz/friendly-snippets" }
+  use 'saadparwaiz1/cmp_luasnip'
 
-  use { 'saadparwaiz1/cmp_luasnip' }
-
-  use "nvim-telescope/telescope-file-browser.nvim"
-
+  -- Formating
   use "jose-elias-alvarez/null-ls.nvim"
+
+  -- Autoclose brackets, quotes, etc.
+  use 'm4xshen/autoclose.nvim'
+
+  -- Colorscheme
+  use "folke/tokyonight.nvim"
+
+  -- Status line
+  use 'nvim-lualine/lualine.nvim'
+
+  -- Togglable comments
+  use 'numToStr/Comment.nvim'
 end)

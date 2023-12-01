@@ -3,7 +3,7 @@ local bind = vim.keymap.set
 
 vim.g.mapleader = " "
 bind('n', '<leader>ff', telescope.find_files, {})
-bind('n', '<leader>ft', ':Telescope file_browser<Enter>', {})
+bind('n', '<leader>ft', ':Telescope file_browser path=%:p:h select_buffer=true<Enter><Esc>', {})
 bind('n', '<leader>fg', telescope.live_grep, {})
 bind('n', '<leader>fe', vim.cmd.Ex, {})
 

@@ -1,8 +1,5 @@
 require("plugins")
 require("keybinds")
-require("plugins.lsp")
-require("plugins.treesitter")
-require("plugins.telescope")
 require("colors")
 
 local opt = vim.opt

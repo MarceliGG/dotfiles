@@ -8,8 +8,7 @@
 
   "modules-left": [
     "custom/apps",
-    "group/places",
-    //"hyprland/window",
+    "group/hardware",
     "hyprland/workspaces",
     "tray"
   ],
@@ -19,11 +18,9 @@
   ],
 
   "modules-right": [
-    "group/hardware",
+    "battery",
     "pulseaudio",
     "network",
-    "battery",
-    //"group/controlcenter",
     "clock", 
     "custom/exit"
   ],
@@ -36,27 +33,5 @@
       "cpu",
       "memory"
     ]
-  },
-
-  "group/places": {
-    "orientation": "horizontal",
-    "modules": [
-      "custom/home",
-      "custom/downloads",
-      "custom/tsi",
-      "custom/tspp",
-      "custom/tspo",
-      "custom/tspob",
-      "custom/tspai",
-    ]
   }
-
-  //"group/controlcenter": {
-  //  "orientation": "horizontal",
-  //  "modules": [
-  //    "pulseaudio",
-  //    "network",
-  //    "battery"
-  //  ]
-  //}
 }

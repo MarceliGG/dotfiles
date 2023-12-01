@@ -4,6 +4,7 @@
   border: none;
   padding: 0;
   margin: 0;
+  color: #ffffff;
 }
 
 window#waybar {
@@ -13,24 +14,20 @@ window#waybar {
 }
 
 #custom-apps,
-#clock,
-#battery,
 #backlight,
 #network,
 #pulseaudio,
 #wireplumber,
 #tray,
-#mode,
 #idle_inhibitor,
 #scratchpad {
   padding: 0 10px;
-  color: #ffffff;
-  margin-right: 5px;
   border-radius: 12px;
 }
 
 #pulseaudio {
   background: rgba(207, 95, 95, 0.7);
+  margin: 10px;
 }
 
 #pulseaudio.muted {
@@ -39,10 +36,6 @@ window#waybar {
 
 #network {
   background: rgba(49, 166, 224, 0.7);
-}
-
-#battery {
-  background: rgba(138, 138, 138, 0.7);
 }
 
 #battery.charging, #battery.plugged {
@@ -58,9 +51,9 @@ window#waybar {
 }
 
 /* group/hardware */
-.modules-right > :nth-child(1) {
-  margin-right: 5px;
-  padding: 0 10px;
+.modules-left > :nth-child(2),
+#clock {
+  margin: 0 10px;
 }
 
 #cpu {
@@ -121,19 +114,4 @@ window#waybar {
   background: rgba(220, 90, 90, 0.5);
   min-width: 40px;
   opacity:1.0;
-}
-/* group/places */
-.modules-left > :nth-child(2) {
-  margin-right: 5px;
-  padding: 0 6px;
-}
-
-#custom-home,
-#custom-downloads,
-#custom-tsi,
-#custom-tspp,
-#custom-tspo,
-#custom-tspob,
-#custom-tspai {
-  padding: 4px;
 }

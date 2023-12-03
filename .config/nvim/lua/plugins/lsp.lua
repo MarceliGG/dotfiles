@@ -15,7 +15,7 @@ lsp_zero.on_attach(function(client, bufnr)
   bind("n", "<leader>c", function() vim.lsp.buf.format() end, opts)
 end)
 
-lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright' })
+lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls' })
 
 local cmp = require('cmp')
 cmp.setup({

@@ -1,10 +1,6 @@
 {
   "layer": "top",
-  "height": 28,
-  "margin-top": 6,
-  "margin-left": 10,
-  "margin-right": 10,
-  "margin-bottom": -4,
+  "height": 32,
 
   "modules-left": [
     "custom/apps",

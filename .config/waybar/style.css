@@ -1,6 +1,6 @@
 * {
   font-family: "Fira Sans", FontAwesome, "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   padding: 0;
   margin: 0;
@@ -8,9 +8,7 @@
 }
 
 window#waybar {
-  background: rgba(2, 2, 2, 0.3);
-  border-radius: 14px;
-  /* background: transparent; */
+  background: rgba(2, 2, 2, 0.6);
 }
 
 #custom-apps,
@@ -22,11 +20,11 @@ window#waybar {
 #idle_inhibitor,
 #scratchpad {
   padding: 0 10px;
-  border-radius: 12px;
+  border-radius: 9px;
 }
 
 #pulseaudio {
-  background: rgba(207, 95, 95, 0.7);
+  background: rgb(170, 100, 100);
   margin: 10px;
 }
 
@@ -35,7 +33,7 @@ window#waybar {
 }
 
 #network {
-  background: rgba(49, 166, 224, 0.7);
+  background: rgb(32, 168, 118);
 }
 
 #battery.charging, #battery.plugged {
@@ -61,8 +59,8 @@ window#waybar {
 }
 
 #custom-apps {
-  background: rgba(49, 166, 224, 0.7);
-  margin-left: 2px;
+  background: rgb(32, 168, 118);
+  margin-left: 4px;
 }
 #custom-apps,
 #workspaces, 
@@ -70,8 +68,8 @@ window#waybar {
 #network,
 #battery,
 #custom-exit {
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 #taskbar button {
@@ -88,9 +86,9 @@ window#waybar {
 }
 
 #custom-exit {
-  margin-right: 2px;
-  background: rgba(207, 95, 95, 0.7);
-  border-radius: 12px;
+  margin-right: 4px;
+  background: rgb(170, 100, 100);
+  border-radius: 9px;
   min-width: 40px;
 }
 
@@ -98,20 +96,20 @@ window#waybar {
   margin-right: 5px;
   background: rgba(138, 138, 138, 0.5);
   padding: 0px 1px;
-  border-radius: 12px;
+  border-radius: 9px;
   font-weight: bold;
 }
 
 #workspaces button {
   padding: 0px 5px;
-  border-radius: 12px;
+  border-radius: 9px;
   border: 0px;
   transition: all 0.3s ease-in-out;
   opacity: 0.4;
 }
 
 #workspaces button.active {
-  background: rgba(220, 90, 90, 0.5);
+  background: rgb(170, 100, 100);
   min-width: 40px;
   opacity:1.0;
 }

@@ -1,9 +1,9 @@
 -- Configs
-require("plugins.others")
-require("plugins.lsp")
-require("plugins.treesitter")
-require("plugins.telescope")
-require("plugins.lualine")
+require('plugins.others')
+require('plugins.lsp')
+require('plugins.treesitter')
+require('plugins.telescope')
+require('plugins.lualine')
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 
@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  use "nvim-telescope/telescope-file-browser.nvim"
+  use 'nvim-telescope/telescope-file-browser.nvim'
 
   use 'nvim-tree/nvim-web-devicons' -- Icons for telescope
 
@@ -48,20 +48,22 @@ return require('packer').startup(function(use)
     }
   }
 
-  use "hrsh7th/cmp-path"
+  use 'hrsh7th/cmp-path'
 
-  use "rafamadriz/friendly-snippets"
+  use 'rafamadriz/friendly-snippets'
 
   use 'saadparwaiz1/cmp_luasnip'
 
+  use 'hrsh7th/cmp-buffer'
+
   -- Formating
-  use "jose-elias-alvarez/null-ls.nvim"
+  use 'jose-elias-alvarez/null-ls.nvim'
 
   -- Autoclose brackets, quotes, etc.
   use 'm4xshen/autoclose.nvim'
 
   -- Colorscheme
-  use "folke/tokyonight.nvim"
+  use 'folke/tokyonight.nvim'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'

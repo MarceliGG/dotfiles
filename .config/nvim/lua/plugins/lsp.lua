@@ -4,7 +4,7 @@ require('mason').setup({
   ensure_installed = { 'autopep8' }
 })
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'rust_analyzer', 'pyright' },
+  ensure_installed = { 'lua_ls', 'rust_analyzer', 'pyright', 'eslint' },
 })
 
 lsp_zero.on_attach(function(client, bufnr)
@@ -15,7 +15,7 @@ lsp_zero.on_attach(function(client, bufnr)
   bind("n", "<leader>c", function() vim.lsp.buf.format() end, opts)
 end)
 
-lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls' })
+lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls', 'eslint' })
 
 local cmp = require('cmp')
 cmp.setup({

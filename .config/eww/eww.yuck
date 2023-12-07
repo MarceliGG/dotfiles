@@ -1,0 +1,124 @@
+(defwindow bar
+           :monitor 0
+           :exclusive true
+           :geometry (geometry :x "10px"
+                               :width "40px"
+                               :height "1060px"
+                               :anchor "left center")
+           ;; :stacking "fg"
+           ;; :wm-ignore false
+  (bar))
+
+(defwidget bar []
+  (box 
+    :class "eww_bar"
+    :orientation "vertical"
+    (top)
+    (middle)
+    (bottom)
+  )
+)
+
+(defwidget top []
+  (box
+    :class "top"
+    :orientation "vertical"
+    (workspaces)
+  )
+)
+
+(defwidget middle []
+  (box
+    :class "middle"
+    :orientation "vertical"
+  )
+)
+
+(defwidget bottom []
+  (box
+    :class "bottom"
+    :orientation "vertical"
+    :valign "end"
+    (time)
+    (battery)
+    (power)
+  )
+)
+
+(defpoll bat_icon :interval "10s" "bash scripts/battery.sh i")
+(defpoll bat_perc :interval "10s" "bash scripts/battery.sh p")
+(defwidget battery []
+  (box
+    :class "battery"
+    :orientation "vertical"
+    (label
+    :text bat_icon
+    :tooltip "Beteria: ${bat_perc}%"
+)
+  )
+)
+
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces"
+    (box :space-evenly true :orientation "vertical"
+      (for workspace in '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]'
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace}"
+          (box :class "workspace ${workspace == current_workspace ? "current" : ""}"
+            (label :text "${workspace}")
+))))))
+
+(defwidget power []
+    (eventbox	:onhover "eww update power=true"	
+        :onhoverlost "eww update power=false" 
+        (box		:orientation "v"					
+            :valign "end"
+            :space-evenly "false" 	 
+            :vexpand "false" 	
+            :class "powermenu"
+            (revealer	:transition "slideup"				
+                :reveal power			 
+                :duration "550ms"
+                (box		:orientation "v"					
+                    :space-evenly "false"
+
+                    (button		:class "reboot"					
+                        :tooltip "Uruchom ponownie"		 
+                        :onclick "reboot"	"")
+
+                    (button		:class "loguot" 				
+                        :tooltip "Wyloguj" 		 
+                        :onclick "loginctl terminate-user $USER" "")
+
+                    (button		:class "sleep"					
+                        :tooltip "Uśpij"		 
+                        :onclick "swaylock & systemctl suspend"	"")
+
+                    (button		:class "lock" 				
+                        :tooltip "Zablokuj"	 
+                        :onclick "swaylock"	"")
+                )
+            )
+
+            (button		:class "poweroff"					
+                :tooltip "Wyłącz"		 
+                :onclick "shutdown now"	"")
+        )
+    )
+)
+(defvar power false)
+
+(defpoll hour :interval "10s" "date +%H")
+(defpoll minute :interval "10s" "date +%M")
+(defwidget time []
+    (box
+        :orientation "vertical"
+        :class "time"
+        (label
+            :text hour
+        )
+        (label
+            :text minute
+        )
+    )
+)

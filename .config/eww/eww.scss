@@ -1,53 +1,93 @@
 $bar-back: #1a1b26;
 $col1: #12131d;
+$col2: cyan;
+$col3: yellow;
+$col4: red;
 
 $rounding-outer: 12px;
 $rounding-inner: 9px;
 
 window.bar {
-  background: unset;
+    background: unset;
 }
 .eww_bar {
-  background: $bar-back;
-  border-radius: $rounding-outer;
-  padding: 3px;
+    background: $bar-back;
+    border-radius: $rounding-outer;
+    padding: 3px;
 
-  .top{
-    background: $col1;
-    border-radius: $rounding-inner;
-    .workspaces {
-      .workspace {
-        &.current {
-          border-radius: $rounding-inner;
-          border: 2px solid #333;
-        }
-      }
-    }
-  }
-
-  .middle{
-  }
-
-  .bottom{
-
-    .battery {
-      font-size: 30px;
-    }
-
-    .powermenu {
-      button {
-        all: unset;
-        border-radius: $rounding-inner;
+    .top{
         background: $col1;
-        min-height: 34px;
-        // box-shadow: none;
-
-        &.poweroff,
-        &.sleep,
-        &.lock {
-          font-size: 20px;
+        border-radius: $rounding-inner;
+        .workspaces {
+            .workspace {
+                min-height: 34px;
+                &.current {
+                    border-radius: $rounding-inner;
+                    border: 1px solid $col2;
+                }
+            }
         }
-      }
     }
-  }
+
+    .bottom {
+        .wifi {
+            background: unset;
+            color: $col2;
+            font-size: 20px;
+            min-height: 34px;
+        }
+
+        .time {
+            background: $col1;
+            border-radius: $rounding-inner;
+            min-height: 45px;
+
+            .hour {
+                color: $col2;
+            }
+
+            .minute {
+                color: $col3;
+            }
+        }
+
+        .battery {
+            font-size: 30px;
+            color: $col2;
+        }
+
+        .powermenu {
+            button {
+                border-radius: $rounding-inner;
+                background: $col1;
+
+                &.poweroff,
+                &.lock {
+                    font-size: 20px;
+                }
+
+                &.poweroff {
+                    color: $col4;
+                }
+
+                &.sleep {
+                    font-weight: 900;
+                    font-size: 16px;
+                    color: $col2;
+                }
+
+                &.lock {
+                    color: $col3;
+                }
+
+                &.logout {
+                    color: $col3;
+                }
+
+                &.reboot {
+                    color: $col4;
+                }
+            }
+        }
+    }
 }

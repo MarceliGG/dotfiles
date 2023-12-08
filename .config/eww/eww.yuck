@@ -14,7 +14,7 @@
     :class "eww_bar"
     :orientation "vertical"
     (top)
-    (middle)
+    ;; (middle)
     (bottom)
   )
 )
@@ -23,22 +23,19 @@
   (box
     :class "top"
     :orientation "vertical"
+    :valign "start"
     (workspaces)
   )
 )
 
-(defwidget middle []
-  (box
-    :class "middle"
-    :orientation "vertical"
-  )
-)
 
 (defwidget bottom []
   (box
     :class "bottom"
     :orientation "vertical"
     :valign "end"
+    :space-evenly false
+    (wifi)
     (time)
     (battery)
     (power)
@@ -51,6 +48,7 @@
   (box
     :class "battery"
     :orientation "vertical"
+    :valign "end"
     (label
     :text bat_icon
     :tooltip "Beteria: ${bat_perc}%"
@@ -78,17 +76,17 @@
             :class "powermenu"
             (revealer	:transition "slideup"				
                 :reveal power			 
-                :duration "550ms"
+                :duration "150ms"
                 (box		:orientation "v"					
                     :space-evenly "false"
 
                     (button		:class "reboot"					
                         :tooltip "Uruchom ponownie"		 
-                        :onclick "reboot"	"")
+                        :onclick "zenity --question --default-cancel --text Uruchomić ponownie? && reboot"	"")
 
-                    (button		:class "loguot" 				
+                    (button		:class "logout" 				
                         :tooltip "Wyloguj" 		 
-                        :onclick "loginctl terminate-user $USER" "")
+                        :onclick "zenity --question --default-cancel --text Wylogować? && loginctl terminate-user $USER" "")
 
                     (button		:class "sleep"					
                         :tooltip "Uśpij"		 
@@ -102,7 +100,7 @@
 
             (button		:class "poweroff"					
                 :tooltip "Wyłącz"		 
-                :onclick "shutdown now"	"")
+                :onclick "zenity --question --default-cancel --text Wyłączyć? && shutdown now"	"")
         )
     )
 )
@@ -115,10 +113,19 @@
         :orientation "vertical"
         :class "time"
         (label
+            :class "hour"
             :text hour
         )
         (label
+            :class "minute"
             :text minute
         )
     )
 )
+
+(defwidget wifi []
+	(box		:orientation "v"  
+				:tooltip wifi-name
+				:class "wifi" wifi-icon))
+(defpoll wifi-icon :interval "10s" "bash scripts/wifi.sh icon")
+(defpoll wifi-name :interval "10s" "bash scripts/wifi.sh name")

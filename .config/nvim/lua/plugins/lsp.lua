@@ -16,6 +16,12 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls', 'eslint' })
+require'lspconfig'.html.setup{
+    filetypes = {
+        "html",
+        "javascriptreact"
+    }
+}
 
 local cmp = require('cmp')
 cmp.setup({
@@ -42,5 +48,6 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.autopep8,
-  },
+    null_ls.builtins.formatting.prettier,
+},
 })

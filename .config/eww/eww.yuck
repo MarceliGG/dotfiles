@@ -42,28 +42,28 @@
   )
 )
 
-(defpoll bat_icon :interval "10s" "bash scripts/battery.sh i")
-(defpoll bat_perc :interval "10s" "bash scripts/battery.sh p")
+(defpoll bat :interval "10s" "bash scripts/battery.sh")
 (defwidget battery []
   (box
-    :class "battery"
+    :class "battery ${bat.charging ? "charging" : ""}"
     :orientation "vertical"
     :valign "end"
     (label
-    :text bat_icon
-    :tooltip "Beteria: ${bat_perc}%"
+    :text "${bat.icon}"
+    :tooltip "Beteria: ${bat.prec}%"
 )
   )
 )
 
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+(deflisten workspaces_list :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
 (defwidget workspaces []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces"
     (box :space-evenly true :orientation "vertical"
-      (for workspace in '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]'
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace}"
-          (box :class "workspace ${workspace == current_workspace ? "current" : ""}"
-            (label :text "${workspace}")
+      (for workspace in workspaces_list
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "used" : ""}"
+            (label :text "${workspace.id}")
 ))))))
 
 (defwidget power []
@@ -124,8 +124,8 @@
 )
 
 (defwidget wifi []
-	(box		:orientation "v"  
-				:tooltip wifi-name
-				:class "wifi" wifi-icon))
-(defpoll wifi-icon :interval "10s" "bash scripts/wifi.sh icon")
-(defpoll wifi-name :interval "10s" "bash scripts/wifi.sh name")
+	(box	:orientation "v"  
+				:tooltip "${net.net}"
+				:class "wifi ${net.down ? "down" : ""}" 
+        "${net.icon}"))
+(defpoll net :interval "10s" "bash scripts/wifi.sh")

@@ -1,13 +1,18 @@
 #!/bin/sh
 
-symbol() {
-[ $(cat /sys/class/net/w*/operstate) = down ] && echo  && exit
-echo 
-}
+down=false
+icon=""
+if [ $(cat /sys/class/net/w*/operstate) = down ]
+then
+  if [ $(cat /sys/class/net/enp*/operstate) = down ]
+  then
+    icon=""
+    down=true
+  else
+    icon=""
+  fi
+fi
 
-name() {
-nmcli | grep "połączono" | sed 's/\ połączono\ do\ /Połączono do /g' | cut -d ':' -f2
-}
+net=$(nmcli | grep "połączono" | sed 's/\ połączono\ do\ /Połączono do /g' | cut -d ':' -f2)
 
-[ "$1" = "icon" ] && symbol && exit
-[ "$1" = "name" ] && name && exit
+echo "{-net-: -$net-, -icon-: -$icon-, -down-: $down}" | sed 's/-/"/g' | jq

@@ -3,12 +3,11 @@
 bat=/sys/class/power_supply/BAT0/
 per="$(cat "$bat/capacity")"
 
-icon() {
 
-charging=""
+charging="false"
 
 if [ $(cat "$bat/status") = Charging ]; then
-  charging=""
+  charging="true"
 fi
 
 if [ "$per" -gt "80" ]; then
@@ -21,17 +20,10 @@ elif [ "$per" -gt "20" ]; then
 	icon=""
 elif [ "$per" -gt "0" ]; then
 	icon=""
-	notify-send -u critical "Battery Low" "Connect Charger"
 else
         echo  && exit
 fi
-echo "$charging$icon"
-}
 
-percent() {
-echo $per
-}
+echo "{-icon-: -$icon-, -prec-: -$per-, -charging-: $charging}" | sed 's/-/"/g' | jq
 
-[ "$1" = "i" ] && icon && exit
-[ "$1" = "p" ] && percent && exit
 exit

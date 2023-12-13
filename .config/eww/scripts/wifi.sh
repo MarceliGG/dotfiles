@@ -15,4 +15,4 @@ fi
 
 net=$(nmcli | grep "połączono" | sed 's/\ połączono\ do\ /Połączono do /g' | cut -d ':' -f2)
 
-echo "{-net-: -$net-, -icon-: -$icon-, -down-: $down}" | sed 's/-/"/g' | jq
+echo "{"\""net"\"": "\""$net"\"", "\""icon"\"": "\""$icon"\"", "\""down"\"": $down}" | jq

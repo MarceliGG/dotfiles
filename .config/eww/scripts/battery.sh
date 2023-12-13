@@ -24,6 +24,6 @@ else
         echo  && exit
 fi
 
-echo "{-icon-: -$icon-, -prec-: -$per-, -charging-: $charging}" | sed 's/-/"/g' | jq
+echo "{"\""icon"\"": "\""$icon"\"", "\""prec"\"": "\""$per"\"", "\""charging"\"": $charging}" | sed 's/-/"/g' | jq
 
 exit

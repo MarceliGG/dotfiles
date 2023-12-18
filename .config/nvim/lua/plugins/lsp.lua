@@ -4,7 +4,7 @@ require('mason').setup({
   ensure_installed = { 'autopep8' }
 })
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'rust_analyzer', 'pyright', 'eslint' },
+  ensure_installed = { 'lua_ls', 'rust_analyzer', 'pyright', 'eslint', 'emmet_language_server' },
 })
 
 lsp_zero.on_attach(function(client, bufnr)
@@ -15,7 +15,7 @@ lsp_zero.on_attach(function(client, bufnr)
   bind("n", "<leader>c", function() vim.lsp.buf.format() end, opts)
 end)
 
-lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls', 'eslint' })
+lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls', 'eslint', 'emmet_language_server' })
 require'lspconfig'.html.setup{
     filetypes = {
         "html",
@@ -48,6 +48,6 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.autopep8,
-    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.stylelint,
 },
 })

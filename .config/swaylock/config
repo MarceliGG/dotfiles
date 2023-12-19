@@ -1,3 +1,4 @@
+#
 
 ignore-empty-password
 font="CaskaydiaCove Nerd Font"
@@ -7,17 +8,17 @@ timestr=%R
 datestr=%a, %e %B
 
 
-# image=~/Obrazy/wallpapers/endeavouros-wallpaper.png
+image=~/Obrazy/wallpapers/ascii.webp
 
 # Fade in time
-fade-in=1
+# fade-in=1
 
 # Effect for background
-effect-blur=10x6
+# effect-blur=10x6
 # effect-greyscale
 # effect-pixelate=5
-effect-scale=0.3
-screenshots
+# effect-scale=0.3
+# screenshots
 # Show/Hide indicator circle
 indicator
 

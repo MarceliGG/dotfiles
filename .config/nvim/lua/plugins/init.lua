@@ -31,36 +31,22 @@ return require('packer').startup(function(use)
   }
 
   -- Autocompletion
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    requires = {
-      --- Uncomment these if you want to manage LSP servers from neovim
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'L3MON4D3/LuaSnip' }
-    }
-  }
-
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-cmdline'
+  use 'williamboman/mason.nvim'
+  use 'L3MON4D3/LuaSnip'
+  use 'hrsh7th/nvim-cmp'
+  use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-path'
-
   use 'rafamadriz/friendly-snippets'
-
   use 'saadparwaiz1/cmp_luasnip'
-
   use 'hrsh7th/cmp-buffer'
 
   -- Formating
   use 'jose-elias-alvarez/null-ls.nvim'
 
   -- Autoclose brackets, quotes, etc.
-  use 'm4xshen/autoclose.nvim'
+  use 'windwp/nvim-autopairs'
 
   -- Colorscheme
   use 'folke/tokyonight.nvim'

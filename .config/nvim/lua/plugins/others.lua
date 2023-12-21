@@ -1,4 +1,5 @@
-require("autoclose").setup()
+-- Autoclose brackets, quotes, etc.
+require('nvim-autopairs').setup()
 
 -- Togglable comments
 require("Comment").setup {

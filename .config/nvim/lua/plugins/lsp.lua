@@ -1,26 +1,45 @@
-local lsp_zero = require('lsp-zero')
-
 require('mason').setup({
-  ensure_installed = { 'autopep8' }
-})
-require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'rust_analyzer', 'pyright', 'eslint', 'emmet_language_server' },
+  ensure_installed = { 'autopep8','lua_ls', 'rust_analyzer', 'pyright', 'eslint', 'emmet_language_server' }
 })
 
-lsp_zero.on_attach(function(client, bufnr)
-  local opts = { buffer = bufnr }
+
+local on_attach = function(client, buffer)
+  local opts = { buffer = buffer }
   local bind = vim.keymap.set
   bind("n", "gd", function() vim.lsp.buf.definition() end, opts)
   bind("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
   bind("n", "<leader>c", function() vim.lsp.buf.format() end, opts)
-end)
+end
 
-lsp_zero.setup_servers({ 'lua_ls', 'rust_analyzer', 'biome', 'pyright', 'bashls', 'eslint', 'emmet_language_server' })
-require'lspconfig'.html.setup{
+local lspconfig = require'lspconfig'
+
+lspconfig.html.setup{
     filetypes = {
         "html",
         "javascriptreact"
-    }
+    },
+    on_attach = on_attach,
+}
+lspconfig.lua_ls.setup{
+  on_attach = on_attach,
+}
+lspconfig.rust_analyzer.setup{
+  on_attach = on_attach,
+}
+lspconfig.biome.setup{
+  on_attach = on_attach,
+}
+lspconfig.pyright.setup{
+  on_attach = on_attach,
+}
+lspconfig.bashls.setup{
+  on_attach = on_attach,
+}
+lspconfig.eslint.setup{
+  on_attach = on_attach,
+}
+lspconfig.emmet_language_server.setup{
+  on_attach = on_attach,
 }
 
 local cmp = require('cmp')
@@ -37,6 +56,29 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip' },
+    { name = 'cmdline' },
+  })
+})
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
   })
 })
 
@@ -49,5 +91,5 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.autopep8,
     null_ls.builtins.formatting.stylelint,
-},
+  },
 })

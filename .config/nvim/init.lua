@@ -20,3 +20,4 @@ opt.swapfile = false
 opt.scrolloff = 8
 
 opt.signcolumn = "no"
+

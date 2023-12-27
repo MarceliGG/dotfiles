@@ -14,11 +14,11 @@ end
 local lspconfig = require'lspconfig'
 
 lspconfig.html.setup{
-    filetypes = {
-        "html",
-        "javascriptreact"
-    },
-    on_attach = on_attach,
+  filetypes = {
+    "html",
+    "javascriptreact"
+  },
+  on_attach = on_attach,
 }
 lspconfig.lua_ls.setup{
   on_attach = on_attach,
@@ -44,6 +44,15 @@ lspconfig.emmet_language_server.setup{
 
 local cmp = require('cmp')
 cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    end,
+  },
   mapping = {
     ['<C-Enter>'] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -56,7 +65,6 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip' },
-    { name = 'cmdline' },
   })
 })
 

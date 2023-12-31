@@ -36,6 +36,7 @@ alias rm='trash'
 alias remove='rm'
 alias d='ranger'
 alias git-dotfiles="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias gits="git status"
 
 # Prompt
 eval "$(starship init zsh)"

@@ -1,5 +1,6 @@
-$bar-back: #1a1b26;
-$col1: #12131d;
+$bar-back: rgb(0, 0, 0, 0.8);
+$col1: rgb(0, 38, 87, 0.3);
+$selected: rgb(0, 99, 75, 0.5);
 $col2: cyan;
 $col3: yellow;
 $col4: red;
@@ -8,96 +9,98 @@ $rounding-outer: 12px;
 $rounding-inner: 9px;
 
 window.bar {
-    background: unset;
+  background: unset;
 }
 .eww_bar {
-    background: $bar-back;
-    border-radius: $rounding-outer;
-    padding: 3px;
+  background: $bar-back;
+  border-radius: $rounding-outer;
+  padding: 3px;
 
-    .top{
-        background: $col1;
+  .top{
+    background: $col1;
+    border-radius: $rounding-inner;
+    .workspaces {
+      .workspace {
+        min-height: 34px;
+        color: #aaa;
         border-radius: $rounding-inner;
-        .workspaces {
-            .workspace {
-                min-height: 34px;
-                color: #aaa;
-                &.current {
-                    border-radius: $rounding-inner;
-                    border: 1px solid $col2;
-                }
-                &.used {
-                  color: white;
-                }
-            }
+        &.current {
+          background: $selected;
         }
+        &.used {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    .wifi {
+      background: unset;
+      color: $col2;
+      font-size: 30px;
+      min-height: 34px;
+      &.down {
+        color: red;
+      }
     }
 
-    .bottom {
-        .wifi {
-            background: unset;
-            color: $col2;
-            font-size: 30px;
-            min-height: 34px;
-            &.down {
-              color: red;
-            }
-        }
+    .time {
+      background: $col1;
+      border-radius: $rounding-inner;
+      min-height: 45px;
 
-        .time {
-            background: $col1;
-            border-radius: $rounding-inner;
-            min-height: 45px;
+      .hour {
+        color: $col2;
+      }
 
-            .hour {
-                color: $col2;
-            }
-
-            .minute {
-                color: $col3;
-            }
-        }
-
-        .battery {
-            font-size: 30px;
-            color: $col2;
-            &.charging {
-              color: lime;
-            }
-        }
-
-        .powermenu {
-            button {
-                border-radius: $rounding-inner;
-                background: $col1;
-
-                &.poweroff,
-                &.lock {
-                    font-size: 20px;
-                }
-
-                &.poweroff {
-                    color: $col4;
-                }
-
-                &.sleep {
-                    font-weight: 900;
-                    font-size: 16px;
-                    color: $col2;
-                }
-
-                &.lock {
-                    color: $col3;
-                }
-
-                &.logout {
-                    color: $col3;
-                }
-
-                &.reboot {
-                    color: $col4;
-                }
-            }
-        }
+      .minute {
+        color: $col3;
+      }
     }
+
+    .battery {
+      font-size: 30px;
+      color: $col2;
+      &.charging {
+        color: lime;
+      }
+    }
+
+    .powermenu {
+      button {
+        border: unset;
+        box-shadow: unset;
+        border-radius: $rounding-inner;
+        background: $col1;
+
+        &.poweroff,
+        &.lock {
+          font-size: 20px;
+        }
+
+        &.poweroff {
+          color: $col4;
+        }
+
+        &.sleep {
+          font-weight: 900;
+          font-size: 16px;
+          color: $col2;
+        }
+
+        &.lock {
+          color: $col3;
+        }
+
+        &.logout {
+          color: $col3;
+        }
+
+        &.reboot {
+          color: $col4;
+        }
+      }
+    }
+  }
 }

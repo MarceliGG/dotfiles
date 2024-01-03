@@ -22,14 +22,14 @@ window.bar {
     .workspaces {
       .workspace {
         min-height: 34px;
-        color: #aaa;
+        // color: #aaa;
         border-radius: $rounding-inner;
         &.current {
           background: $selected;
         }
-        &.used {
+        // &.used {
           color: white;
-        }
+        // }
       }
     }
   }

@@ -56,14 +56,14 @@
 )
 
 (deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
-(deflisten workspaces_list :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+;; (deflisten workspaces_list :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
 (defwidget workspaces []
   (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces"
     (box :space-evenly true :orientation "vertical"
-      (for workspace in workspaces_list
-        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-          (box :class "workspace ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "used" : ""}"
-            (label :text "${workspace.id}")
+      (for workspace in '[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]'
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace}"
+          (box :class "workspace ${workspace == current_workspace ? "current" : ""}" ;; ${workspace.windows > 0 ? "used" : ""}
+            (label :text "${workspace}")
 ))))))
 
 (defwidget power []

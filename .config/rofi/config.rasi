@@ -3,25 +3,30 @@ configuration {
   display-drun: "";
 	drun-display-format: "{name}";
 }
-@import "shared/colors.rasi"
-@import "shared/fonts.rasi"
+@import "shared.rasi"
 
 window {
   transparency: "real";
   border-radius: 10px;
   border: 1px;
   border-color: #999;
-  height: 1060px;
-  width: 450px;
-  location: west;
+  height: 500px;
+  width: 600px;
+  location: center;
   x-offset: 60px;
 }
 mainbox {
   border: 0px;
+  //children: [ entry, listview ];
 }
 textbox-prompt-colon {
     str: " ";
     background-color: transparent;
+}
+listview {
+  border: 1px 0px 0px 0px;
+  border-color: @selected;
+  scrollbar: false;
 }
 entry {
     placeholder: "Wpisz aby wyszukać";

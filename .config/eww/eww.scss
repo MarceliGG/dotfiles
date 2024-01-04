@@ -67,6 +67,15 @@ window.bar {
       }
     }
 
+    .power {
+      border: unset;
+      box-shadow: unset;
+      border-radius: $rounding-inner;
+      background: $col1;
+      font-size: 18px;
+      color: $col4;
+    }
+
     .powermenu {
       button {
         border: unset;

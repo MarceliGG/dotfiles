@@ -1,5 +1,5 @@
 @define-color accent1 rgb(170, 100, 100);
-@define-color accent2 rgb(32, 168, 118);
+@define-color accent2 rgb(32, 118, 168);
 
 * {
   font-family: "Fira Sans", FontAwesome, "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
@@ -41,7 +41,7 @@ window#waybar {
 }
 
 #pulseaudio.muted {
-  color: #bbb;
+  color: #cbcbcb;
 }
 
 #network {

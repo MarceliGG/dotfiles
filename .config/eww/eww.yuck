@@ -66,45 +66,49 @@
             (label :text "${workspace}")
 ))))))
 
+;; (defwidget power []
+;;     (eventbox	:onhover "eww update power=true"	
+;;         :onhoverlost "eww update power=false" 
+;;         (box		:orientation "v"					
+;;             :valign "end"
+;;             :space-evenly "false" 	 
+;;             :vexpand "false" 	
+;;             :class "powermenu"
+;;             (revealer	:transition "slideup"				
+;;                 :reveal power			 
+;;                 :duration "150ms"
+;;                 (box		:orientation "v"					
+;;                     :space-evenly "false"
+;;
+;;                     (button		:class "reboot"					
+;;                         :tooltip "Uruchom ponownie"		 
+;;                         :onclick "zenity --question --default-cancel --text 'Uruchomić ponownie?' && reboot"	"")
+;;
+;;                     (button		:class "logout" 				
+;;                         :tooltip "Wyloguj" 		 
+;;                         :onclick "zenity --question --default-cancel --text Wylogować? && loginctl terminate-user $USER" "")
+;;
+;;                     (button		:class "sleep"					
+;;                         :tooltip "Uśpij"		 
+;;                         :onclick "swaylock & systemctl suspend"	"")
+;;
+;;                     (button		:class "lock" 				
+;;                         :tooltip "Zablokuj"	 
+;;                         :onclick "swaylock"	"")
+;;                 )
+;;             )
+;;
+;;             (button		:class "poweroff"					
+;;                 :tooltip "Wyłącz"		 
+;;                 :onclick "zenity --question --default-cancel --text Wyłączyć? && shutdown now"	"")
+;;         )
+;;     )
+;; )
+;; (defvar power false)
 (defwidget power []
-    (eventbox	:onhover "eww update power=true"	
-        :onhoverlost "eww update power=false" 
-        (box		:orientation "v"					
-            :valign "end"
-            :space-evenly "false" 	 
-            :vexpand "false" 	
-            :class "powermenu"
-            (revealer	:transition "slideup"				
-                :reveal power			 
-                :duration "150ms"
-                (box		:orientation "v"					
-                    :space-evenly "false"
-
-                    (button		:class "reboot"					
-                        :tooltip "Uruchom ponownie"		 
-                        :onclick "zenity --question --default-cancel --text Uruchomić ponownie? && reboot"	"")
-
-                    (button		:class "logout" 				
-                        :tooltip "Wyloguj" 		 
-                        :onclick "zenity --question --default-cancel --text Wylogować? && loginctl terminate-user $USER" "")
-
-                    (button		:class "sleep"					
-                        :tooltip "Uśpij"		 
-                        :onclick "swaylock & systemctl suspend"	"")
-
-                    (button		:class "lock" 				
-                        :tooltip "Zablokuj"	 
-                        :onclick "swaylock"	"")
-                )
-            )
-
-            (button		:class "poweroff"					
-                :tooltip "Wyłącz"		 
-                :onclick "zenity --question --default-cancel --text Wyłączyć? && shutdown now"	"")
-        )
-    )
+  (button		:class "power" 				
+    :onclick "wlogout"	"")
 )
-(defvar power false)
 
 (defpoll hour :interval "10s" "date +%H")
 (defpoll minute :interval "10s" "date +%M")

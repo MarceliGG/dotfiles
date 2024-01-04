@@ -5,6 +5,7 @@
   "margin-right": 8,
   "margin-bottom": -2,
   "height": 28,
+  //"position": "left",
 
   "modules-left": [
     "custom/apps",

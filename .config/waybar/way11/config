@@ -1,0 +1,39 @@
+{
+  "layer": "top",
+  "height": 38,
+  "position": "bottom",
+
+  "modules-left": [
+    "custom/exit",
+    "group/hardware"
+  ],
+
+  "modules-center": [
+    "custom/apps",
+    "wlr/taskbar" 
+  ],
+
+  "modules-right": [
+    "tray",
+    "battery",
+    "pulseaudio",
+    "network",
+    "clock"
+  ],
+
+  "include": ["~/.config/waybar/shared.json"],
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory"
+    ]
+  },
+   
+  "custom/apps": {
+    "format": "󰣇",
+    "tooltip": false,
+    "on-click": "rofi -show drun"
+  },
+}

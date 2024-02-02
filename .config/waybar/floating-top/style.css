@@ -106,12 +106,12 @@ window#waybar {
 #workspaces {
   margin-right: 5px;
   background: rgba(138, 138, 138, 0.5);
-  padding: 0px 1px;
+  padding: 0;
   font-weight: bold;
 }
 
 #workspaces button {
-  padding: 0px 5px;
+  padding: 0px 10px;
   border: 0px;
   transition: all 0.3s ease-in-out;
   opacity: 0.4;
@@ -119,6 +119,6 @@ window#waybar {
 
 #workspaces button.active {
   background: @accent1;
-  min-width: 40px;
+  /* min-width: 40px; */
   opacity:1.0;
 }

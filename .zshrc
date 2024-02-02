@@ -34,7 +34,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias rm='trash'
 alias remove='rm'
-alias d='ranger'
+alias d='yazi'
 alias git-dotfiles="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gits="git status"
 

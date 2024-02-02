@@ -10,10 +10,10 @@ window {
   border-radius: 10px;
   border: 1px;
   border-color: #999;
-  height: 500px;
+  height: 700px;
   width: 600px;
-  location: center;
-  x-offset: 60px;
+  location: south;
+  y-offset: -50px;
 }
 mainbox {
   border: 0px;

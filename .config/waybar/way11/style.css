@@ -1,6 +1,9 @@
+@define-color accent1 rgb(170, 100, 100);
+@define-color accent2 rgb(32, 118, 168);
+
 * {
   font-family: "Fira Sans", FontAwesome, "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   padding: 0;
   margin: 0;
@@ -8,12 +11,17 @@
 }
 
 window#waybar {
-  background: rgba(2, 2, 2, 0.3);
-  border-radius: 14px;
-  /* background: transparent; */
+  background: rgba(2, 2, 2, 0.8);
 }
 
-#custom-apps,
+#custom-exit,
+#pulseaudio,
+#network,
+#workspaces,
+#workspaces button {
+  border-radius: 12px;
+}
+
 #backlight,
 #network,
 #pulseaudio,
@@ -22,20 +30,19 @@ window#waybar {
 #idle_inhibitor,
 #scratchpad {
   padding: 0 10px;
-  border-radius: 12px;
 }
 
 #pulseaudio {
-  background: rgba(207, 95, 95, 0.7);
-  margin: 10px;
+  background: @accent1;
+  margin: 0 10px;
 }
 
 #pulseaudio.muted {
-  color: #bbb;
+  color: #cbcbcb;
 }
 
 #network {
-  background: rgba(49, 166, 224, 0.7);
+  background: @accent2;
 }
 
 #battery.charging, #battery.plugged {
@@ -50,6 +57,7 @@ window#waybar {
   color: orangered;
 }
 
+
 /* group/hardware */
 .modules-left > :nth-child(2),
 #clock {
@@ -61,22 +69,28 @@ window#waybar {
 }
 
 #custom-apps {
-  background: rgba(49, 166, 224, 0.7);
-  margin-left: 2px;
+  font-size: 32px;
+  margin-right: 3px;
+  color: cyan;
 }
-#custom-apps,
+
 #workspaces, 
 #pulseaudio,
 #network,
 #battery,
 #custom-exit {
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+#taskbar{
+  margin-left: 5px;
 }
 
 #taskbar button {
   border-radius: 0px;
-  padding: 0 5px;
+  padding: 0 8px;
+  margin: 0 2px;
 }
 
 #taskbar button.active {
@@ -88,30 +102,7 @@ window#waybar {
 }
 
 #custom-exit {
-  margin-right: 2px;
-  background: rgba(207, 95, 95, 0.7);
-  border-radius: 12px;
+  margin-left: 3px;
+  background: @accent1;
   min-width: 40px;
-}
-
-#workspaces {
-  margin-right: 5px;
-  background: rgba(138, 138, 138, 0.5);
-  padding: 0px 1px;
-  border-radius: 12px;
-  font-weight: bold;
-}
-
-#workspaces button {
-  padding: 0px 5px;
-  border-radius: 12px;
-  border: 0px;
-  transition: all 0.3s ease-in-out;
-  opacity: 0.4;
-}
-
-#workspaces button.active {
-  background: rgba(220, 90, 90, 0.5);
-  min-width: 40px;
-  opacity:1.0;
 }

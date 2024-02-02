@@ -1,12 +1,12 @@
 {
   "memory": {
     "format": "{}% ",
-    "on-click": "konsole -e top"
+    "on-click": "kitty btop"
   },
 
   "cpu": {
     "format": "{usage}% ",
-    "on-click": "konsole -e top"
+    "on-click": "kitty btop"
   },
 
   "battery": {
@@ -30,7 +30,8 @@
     "tooltip-format": "{ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    //"format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "on-click": "kitty -c ~/.config/kitty/nmtui-applet.conf --class nmtui nmtui"
   },
 
   "pulseaudio": { 
@@ -80,10 +81,12 @@
         "(.*) — Mozilla Firefox": "🌎 $1"
     }
   },
-
-  "custom/apps": {
-    "format": "󰀻 Apps",
-    "tooltip": false,
-    "on-click": "rofi -show drun"
+  
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": 5
+    } 
   }
 }

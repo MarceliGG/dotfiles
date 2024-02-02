@@ -8,7 +8,7 @@ timestr=%R
 datestr=%a, %e %B
 
 
-image=~/Obrazy/wallpapers/ascii.webp
+image=~/Obrazy/wallpapers/ascii.png
 
 # Fade in time
 # fade-in=1

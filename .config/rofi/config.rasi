@@ -10,7 +10,7 @@ window {
   border-radius: 10px;
   border: 1px;
   border-color: #999;
-  height: 700px;
+  height: 686px;
   width: 600px;
   location: south;
   y-offset: -50px;

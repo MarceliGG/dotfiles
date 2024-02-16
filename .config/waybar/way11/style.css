@@ -70,8 +70,14 @@ window#waybar {
 
 #custom-apps {
   font-size: 32px;
-  margin-right: 3px;
+  margin-right: 12px;
   color: cyan;
+}
+
+#custom-launcher-filebrowser {
+  font-size: 16px;
+  /* margin-right: 3px; */
+  color: blue;
 }
 
 #workspaces, 
@@ -89,7 +95,7 @@ window#waybar {
 
 #taskbar button {
   border-radius: 0px;
-  padding: 0 8px;
+  padding: 0 5px;
   margin: 0 2px;
 }
 

@@ -1,5 +1,8 @@
 zsh_conf_dir=~/.config/zsh
 
+# Enviroment varibles
+export EDITOR=nvim
+
 # Autocomlition
 source $zsh_conf_dir/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 autoload -Uz compinit

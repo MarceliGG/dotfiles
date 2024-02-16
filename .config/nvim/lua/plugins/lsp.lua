@@ -16,7 +16,9 @@ local lspconfig = require'lspconfig'
 lspconfig.html.setup{
   filetypes = {
     "html",
-    "javascriptreact"
+    "javascriptreact",
+    "javascript",
+    "vue"
   },
   on_attach = on_attach,
 }
@@ -39,6 +41,9 @@ lspconfig.eslint.setup{
   on_attach = on_attach,
 }
 lspconfig.emmet_language_server.setup{
+  on_attach = on_attach,
+}
+lspconfig.tailwindcss.setup{
   on_attach = on_attach,
 }
 

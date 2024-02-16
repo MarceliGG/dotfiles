@@ -15,6 +15,8 @@ bind('n', '<leader>im', ':Mason<Enter>', {})
 bind('n', '<leader>ip', ':PackerStatus<Enter>', {})
 bind('n', '<leader>ic', ':CmpStatus<Enter>', {})
 
+bind('n', 'Q', vim.cmd.q, {})
+
 -- Save on ctrl+s
 bind('n', '<C-s>', vim.cmd.w)
 bind('i', '<C-s>', vim.cmd.w)

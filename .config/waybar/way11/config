@@ -10,6 +10,7 @@
 
   "modules-center": [
     "custom/apps",
+    "custom/launcher-filebrowser",
     "wlr/taskbar" 
   ],
 

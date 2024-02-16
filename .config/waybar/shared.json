@@ -12,7 +12,7 @@
   "battery": {
     "format": "{capacity}% {icon}",
     "format-icons": ["", "", "", "", ""],
-    "format-critical": "!{capacity}% {icon}",
+    "format-critical": "! {capacity}% {icon}",
     "format-charging": " {capacity}% {icon}",
     "states": {
       "low": 20,
@@ -30,7 +30,6 @@
     "tooltip-format": "{ifname} via {gwaddr}",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ",
-    //"format-alt": "{ifname}: {ipaddr}/{cidr}"
     "on-click": "kitty -c ~/.config/kitty/nmtui-applet.conf --class nmtui nmtui"
   },
 
@@ -38,7 +37,7 @@
     "format": "{volume}% {icon} {format_source}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
+    "format-muted": "{volume}%  {format_source}",
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
@@ -57,8 +56,7 @@
     "format": "{icon}",
     "icon-size": 18,
     "tooltip-format": "{title}",
-    "on-click": "activate",
-    "on-click-middle": "close",
+    "on-click": "minimize-raise",
     "app_ids-mapping": {
       "firefoxdeveloperedition": "firefox-developer-edition"
     },
@@ -88,5 +86,9 @@
     "persistent-workspaces": {
       "*": 5
     } 
+  },
+  "custom/launcher-filebrowser": {
+    "format": "",
+    "on-click": "thunar ~"
   }
 }

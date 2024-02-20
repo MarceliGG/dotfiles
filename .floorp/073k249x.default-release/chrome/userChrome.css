@@ -1,0 +1,81 @@
+
+/*************************************************************************************************************************************************************************************************************************************************************
+
+"userChrome.css" is a custom CSS file that can be used to specify CSS style rules for Floorp's interface (NOT internal site) using "chrome" privileges.
+For instance, if you want to hide the tab bar, you can use the following CSS rule:
+
+**************************************
+#TabsToolbar {                       *
+    display: none !important;        *
+}                                    *
+**************************************
+
+NOTE: You can use the userChrome.css file without change preferences (about:config)
+
+Quote: https://userChrome.org | https://github.com/topics/userchrome 
+
+************************************************************************************************************************************************************************************************************************************************************/
+
+@charset "UTF-8";
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+/* Please write your custom CSS under this line*/
+
+  /*disable window control buttons*/
+  #floorp-tabbar-window-manage-container {
+    display: none;
+  }
+
+  #tabbrowser-arrowscrollbox {
+    padding-top: 2px;
+    padding-left: 3px;
+  }
+
+  /* tabs */
+  tab.tabbrowser-tab {
+    max-width: 180px !important;
+  }
+  
+  /* tab backgrounds */
+  tab.tabbrowser-tab vbox.tab-background {
+    border-radius: 8px !important;
+  }
+
+  /*selected tab*/
+  /* tab.tabbrowser-tab:is([selected]) { */
+    /* background: rgb(200, 200, 200, 0.2) !important; */
+  /* } */
+
+  /* top bar thing */
+  #navigator-toolbox {
+    border: none !important;
+  }
+
+  /* sidebar */
+  #sidebar-select-box {
+    border: none !important;
+  }
+
+  /*fix thin bar near sidebar*/
+  #sidebar2-box{
+    border: none !important;
+  }
+  
+  #sidebar2-header {
+    min-height: 1.3rem !important;
+  }
+  
+  #sidebar2-header > .sidebar2-icon {
+    scale: 0.9;
+    margin: 1px !important;
+  }
+
+  /* adressbar background */
+  #urlbar-background {
+    border-radius: 10px !important;
+  }
+
+  /* adressbar icon box thing */
+  #identity-icon-box {
+    border-radius: 8px !important;
+  }
+}

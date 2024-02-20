@@ -32,7 +32,7 @@ bindkey '^[[B' history-substring-search-down
 alias ls='ls -A --color=auto'
 alias lsl='ls -Al --color=auto'
 alias v='nvim'
-alias py='python'
+alias py='python3.12'
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='trash'
@@ -43,3 +43,6 @@ alias gits="git status"
 
 # Prompt
 eval "$(starship init zsh)"
+
+# PATH
+PATH="$HOME/.cargo/bin:$PATH"

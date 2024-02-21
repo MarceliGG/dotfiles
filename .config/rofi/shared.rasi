@@ -1,9 +1,0 @@
-* {
-  background:     #11111188;
-  background-alt: #11112288;
-  foreground:     #FFFFFFFF;
-  selected:       #367ab1DD;
-  active:         #98C379FF;
-  urgent:         #E06C75FF;
-  font: "CaskaydiaCove Nerd Font 10";
-}

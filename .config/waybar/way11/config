@@ -35,6 +35,6 @@
   "custom/apps": {
     "format": "󰣇",
     "tooltip": false,
-    "on-click": "rofi -show drun"
+    "on-click": "rofi -show drun -config ~/.config/rofi/hypr.rasi"
   },
 }

@@ -13,6 +13,9 @@ end
 
 local lspconfig = require'lspconfig'
 
+lspconfig.cssls.setup{
+  on_attach = on_attach,
+}
 lspconfig.html.setup{
   filetypes = {
     "html",

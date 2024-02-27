@@ -4,8 +4,8 @@ configuration {
 	drun-display-format: "{name}";
 }
 * {
-  background:     #11111188;
-  background-alt: #21213388;
+  background:     #111111bb;
+  background-alt: #212133bb;
   foreground:     #FFFFFFFF;
   selected:       #ffffff4D;
   active:         #98C379FF;
@@ -14,10 +14,10 @@ configuration {
 }
 window {
   transparency: "real";
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px;
   border-color: #333;
-  height: 286px;
+  height: 282px;
   width: 500px;
   location: center;
   //y-offset: -50px;

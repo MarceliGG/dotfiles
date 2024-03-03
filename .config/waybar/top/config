@@ -1,0 +1,39 @@
+{
+  "layer": "bottom",
+  "height": 28,
+
+  "modules-left": [
+    "custom/apps",
+    "group/hardware",
+    "hyprland/workspaces",
+    "tray"
+  ],
+
+  "modules-center": [
+    "wlr/taskbar" 
+  ],
+
+  "modules-right": [
+    "battery",
+    "pulseaudio",
+    "network",
+    "clock", 
+    "custom/exit"
+  ],
+
+  "include": ["~/.config/waybar/shared.json"],
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory"
+    ]
+  },
+
+  "custom/apps": {
+    "format": " Hypr",
+    "tooltip": false,
+    "on-click": "rofi -show drun -config ~/.config/rofi/hyrp-d.rasi"
+  },
+}

@@ -2,12 +2,19 @@
 @define-color accent2 rgb(32, 118, 168);
 
 * {
-  font-family: "Fira Sans", FontAwesome, "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Fira Sans", "Symbols Nerd Font", "Font Awesome 6 Free";
   font-size: 14px;
   border: none;
   padding: 0;
   margin: 0;
   color: #ffffff;
+}
+
+/* FontAwesome for some things */
+#cpu,
+#battery,
+#network {
+  font-family: "Fira Sans", "Font Awesome 6 Free";
 }
 
 window#waybar {
@@ -29,7 +36,6 @@ window#waybar {
 #network,
 #pulseaudio,
 #wireplumber,
-#tray,
 #idle_inhibitor,
 #scratchpad {
   padding: 0 10px;

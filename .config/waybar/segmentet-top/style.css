@@ -1,0 +1,148 @@
+* {
+  font-family: "Fira Sans", "Symbols Nerd Font", "Font Awesome 6 Free";
+  font-size: 14px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* FontAwesome for some things */
+#cpu,
+#battery,
+#pulseaudio,
+#network {
+  font-family: "Fira Sans", "Font Awesome 6 Free";
+}
+
+window#waybar {
+  background: none;
+}
+
+.modules-left,
+.modules-right {
+  background: rgba(2, 2, 2, 0.6);
+}
+
+.modules-left {
+  padding-right: 14px;
+  border-bottom-right-radius: 10px;
+}
+
+.modules-right {
+  padding-left: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+#pulseaudio {
+  color: #26A69A;
+  box-shadow: inset 0px -2px 0px 0px #26A69A;
+}
+
+#pulseaudio.muted {
+  color: #EF9A9A;
+  box-shadow: inset 0px -2px 0px 0px #EF9A9A;
+}
+
+#network {
+  color: #0277BD;
+  box-shadow: inset 0px -2px 0px 0px #0277BD;
+}
+
+/* group/hardware */
+.modules-left> :nth-child(2) {
+  color: #EEEEEE;
+  box-shadow: inset 0px -2px 0px 0px #EEEEEE;
+}
+
+#battery {
+  box-shadow: inset 0px -2px 0px 0px white;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: lime;
+  box-shadow: inset 0px -2px 0px 0px lime;
+}
+
+#battery.low:not(.charging) {
+  color: orangered;
+  box-shadow: inset 0px -2px 0px 0px orangered;
+}
+
+#battery.critical:not(.charging) {
+  color: orangered;
+  box-shadow: inset 0px -2px 0px 0px orangered;
+}
+
+#clock {
+  color: #B2DFDB;
+  box-shadow: inset 0px -2px 0px 0px #B2DFDB;
+}
+
+#custom-apps,
+#custom-exit {
+  background: #0277BD;
+  border-radius: 6px;
+  margin: 4px;
+  padding: 2px 10px;
+}
+
+#tray {
+  margin-left: 5px;
+}
+
+/* Bar spacings */
+/* group/hardware */
+.modules-left> :nth-child(2),
+#battery,
+#pulseaudio,
+#network,
+#clock {
+  padding: 0 4px;
+  margin: 0 4px;
+}
+
+#cpu {
+  margin-right: 6px;
+}
+
+#taskbar:not(.empty){
+  background: rgba(2, 2, 2, 0.6);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 0 10px;
+}
+
+#taskbar button {
+  padding: 0 5px;
+  border-radius: 0;
+}
+
+#taskbar button.active {
+  box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.7);
+}
+
+#taskbar button.minimized {
+  opacity: 0.5;
+}
+
+#workspaces {
+  background: rgba(138, 138, 138, 0.5);
+  padding: 0;
+  font-weight: bold;
+  margin: 4px;
+  border-radius: 6px;
+}
+
+#workspaces button {
+  padding: 0px 10px;
+  border: 0px;
+  border-radius: 6px;
+  opacity: 0.4;
+}
+
+#workspaces button.active {
+  opacity: 1.0;
+  background: #0277BD;
+}

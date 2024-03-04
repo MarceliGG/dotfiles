@@ -36,14 +36,14 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   }
   
   /* tab backgrounds */
-  tab.tabbrowser-tab vbox.tab-background {
+  /* tab.tabbrowser-tab vbox.tab-background {
     border-radius: 8px !important;
-  }
+  } */
 
   /*selected tab*/
-  /* tab.tabbrowser-tab:is([selected]) { */
-    /* background: rgb(200, 200, 200, 0.2) !important; */
-  /* } */
+  tab.tabbrowser-tab:is([selected]) {
+    background: rgb(200, 200, 200, 0.2) !important;
+  }
 
   /* top bar thing */
   #navigator-toolbox {
@@ -70,12 +70,12 @@ Quote: https://userChrome.org | https://github.com/topics/userchrome
   }
 
   /* adressbar background */
-  #urlbar-background {
+  /* #urlbar-background {
     border-radius: 10px !important;
-  }
+  } */
 
   /* adressbar icon box thing */
-  #identity-icon-box {
+  /* #identity-icon-box {
     border-radius: 8px !important;
-  }
+  } */
 }

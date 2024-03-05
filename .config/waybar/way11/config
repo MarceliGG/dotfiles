@@ -22,8 +22,6 @@
     "clock"
   ],
 
-  "include": ["~/.config/waybar/shared.json"],
-
   "group/hardware": {
     "orientation": "horizontal",
     "modules": [

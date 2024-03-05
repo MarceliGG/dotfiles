@@ -1,0 +1,44 @@
+#
+cmd open $$EDITOR "$f"
+
+cmd trash %{{
+  echo "Put $(echo $fx | wc -w) file(s) in trash [y/N]? "
+  read ans
+  if [ "$ans" == "y" ]
+  then
+    for file in $fx
+    do
+      trash-put "$(basename "$file")"
+    done
+  else
+    echo "File(s) not trashed"
+  fi
+}}
+
+cmd create %{{
+  echo "Create file: "
+  read ans
+  if [[ "$ans" == *"/" ]]
+  then
+    echo "end /"
+    mkdir -p "$ans"
+    echo "Created dir ./$ans"
+  elif [[ "$ans" == *"/"* ]]
+  then
+    mkdir -p "$(dirname "$ans")"
+    touch "$ans"
+    echo "Created dir and file $ans"
+  else
+    touch "$ans"
+    echo "Created file $ans"
+  fi
+}}
+
+
+map D trash
+map o &$OPENER "$f"
+map a create
+map gc cd ~/.config
+map gt cd ~/TS
+map gi cd ~/Obrazy
+map <c-w> &swww img "$f"

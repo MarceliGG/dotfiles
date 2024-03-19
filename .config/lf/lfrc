@@ -4,11 +4,11 @@ cmd open $$EDITOR "$f"
 cmd trash %{{
   echo "Put $(echo $fx | wc -w) file(s) in trash [y/N]? "
   read ans
-  if [ "$ans" == "y" ]
+  if [ "$ans" = "y" ]
   then
     for file in $fx
     do
-      trash-put "$(basename "$file")"
+      trash "$(basename "$file")"
     done
   else
     echo "File(s) not trashed"
@@ -16,29 +16,36 @@ cmd trash %{{
 }}
 
 cmd create %{{
-  echo "Create file: "
+  echo "create: "
   read ans
-  if [[ "$ans" == *"/" ]]
-  then
-    echo "end /"
-    mkdir -p "$ans"
-    echo "Created dir ./$ans"
-  elif [[ "$ans" == *"/"* ]]
-  then
-    mkdir -p "$(dirname "$ans")"
-    touch "$ans"
-    echo "Created dir and file $ans"
-  else
-    touch "$ans"
-    echo "Created file $ans"
-  fi
+  case "$ans" in
+    */) mkdir -p "$ans" && echo "Created dir ./$ans";;
+    */*) mkdir -p "$(dirname "$ans")" && touch "$ans" && echo "Created dir and file $ans";;
+    *) touch "$ans" && echo "Created file $ans";;
+  esac
+}}
+
+cmd cdto %{{
+  echo "cd: "
+  read ans
+  lf -remote "send cd \"$ans\""
 }}
 
 
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
+
+set hidden
+
+
 map D trash
-map o &$OPENER "$f"
+map o $xdg-open "$f"
 map a create
 map gc cd ~/.config
 map gt cd ~/TS
-map gi cd ~/Obrazy
+map gp cd ~/Obrazy
+map gi cdto
 map <c-w> &swww img "$f"

@@ -5,3 +5,5 @@ echo "@import \"~/.config/rofi/hypr-d.rasi\"" > $HOME/.config/rofi/config.rasi
 
 killall waybar
 waybar & disown
+killall mako
+mako -c ~/.config/mako/square-top & disown

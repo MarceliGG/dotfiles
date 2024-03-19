@@ -6,18 +6,18 @@
     "custom/apps",
     "group/hardware",
     "hyprland/workspaces",
-    "tray"
-  ],
-
-  "modules-center": [
     "wlr/taskbar" 
   ],
 
+  "modules-center": [
+    "clock"
+  ],
+
   "modules-right": [
+    "tray",
     "battery",
     "pulseaudio",
     "network",
-    "clock", 
     "custom/exit"
   ],
 
@@ -33,5 +33,5 @@
     "format": " Hypr",
     "tooltip": false,
     "on-click": "rofi -show drun -config ~/.config/rofi/hypr.rasi"
-  },
+  }
 }

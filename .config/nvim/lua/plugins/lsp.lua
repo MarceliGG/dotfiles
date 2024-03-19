@@ -1,22 +1,23 @@
 require('mason').setup({
-  ensure_installed = { 'autopep8','lua_ls', 'rust_analyzer', 'pyright', 'eslint', 'emmet_language_server' }
+  ensure_installed = { 'autopep8', 'lua_ls', 'rust_analyzer', 'pyright', 'eslint', 'emmet_language_server' }
 })
 
 
 local on_attach = function(client, buffer)
   local opts = { buffer = buffer }
   local bind = vim.keymap.set
-  bind("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  bind("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
-  bind("n", "<leader>c", function() vim.lsp.buf.format() end, opts)
+  bind("n", "gd", vim.lsp.buf.definition, opts)
+  bind("n", "<leader>r", vim.lsp.buf.rename, opts)
+  bind("n", "<leader>c", vim.lsp.buf.format, opts)
+  bind("n", "<leader> ", vim.lsp.buf.hover, opts)
 end
 
-local lspconfig = require'lspconfig'
+local lspconfig = require 'lspconfig'
 
-lspconfig.cssls.setup{
+lspconfig.cssls.setup {
   on_attach = on_attach,
 }
-lspconfig.html.setup{
+--[[ lspconfig.html.setup{
   filetypes = {
     "html",
     "javascriptreact",
@@ -24,29 +25,29 @@ lspconfig.html.setup{
     "vue"
   },
   on_attach = on_attach,
-}
-lspconfig.lua_ls.setup{
+} ]]
+lspconfig.lua_ls.setup {
   on_attach = on_attach,
 }
-lspconfig.rust_analyzer.setup{
+lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
 }
-lspconfig.biome.setup{
+--[[ lspconfig.biome.setup {
+  on_attach = on_attach,
+} ]]
+lspconfig.pyright.setup {
   on_attach = on_attach,
 }
-lspconfig.pyright.setup{
+lspconfig.bashls.setup {
   on_attach = on_attach,
 }
-lspconfig.bashls.setup{
+--[[ lspconfig.eslint.setup {
+  on_attach = on_attach,
+} ]]
+lspconfig.emmet_language_server.setup {
   on_attach = on_attach,
 }
-lspconfig.eslint.setup{
-  on_attach = on_attach,
-}
-lspconfig.emmet_language_server.setup{
-  on_attach = on_attach,
-}
-lspconfig.tailwindcss.setup{
+lspconfig.tailwindcss.setup {
   on_attach = on_attach,
 }
 
@@ -102,10 +103,37 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 
 local null_ls = require("null-ls")
+local helpers = require("null-ls.helpers")
+local FORMATTING = require("null-ls.methods").internal.FORMATTING
+require("null-ls").register({
+  --your custom sources go here
+  helpers.make_builtin({
+    name = "autopep8",
+    method = FORMATTING,
+    filetypes = { "python" },
+    generator_opts = {
+      command = "/home/marcel/.local/share/nvim/mason/bin/autopep8",
+      args = {'--max-line-length', '120', '-'},       -- put any required arguments in this table
+      to_stdin = true, -- instructs the command to ingest the file from STDIN (i.e. run the currently open buffer through the linter/formatter)
+    },
+    factory = helpers.formatter_factory,
+  }),
+  helpers.make_builtin({
+    name = "biome",
+    method = FORMATTING,
+    filetypes = { "javascript", "javascriptreact" },
+    generator_opts = {
+      command = '/home/marcel/.local/share/nvim/mason/bin/biome',
+      args = {'format', '--stdin-file-path', '$FILENAME'},       -- put any required arguments in this table
+      to_stdin = true, -- instructs the command to ingest the file from STDIN (i.e. run the currently open buffer through the linter/formatter)
+    },
+    factory = helpers.formatter_factory,
+  })
+})
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.formatting.autopep8,
     null_ls.builtins.formatting.stylelint,
   },
+  debug = true,
 })

@@ -1,5 +1,4 @@
-
-/*************************************************************************************************************************************************************************************************************************************************************
+/**********************************************
 
 "userChrome.css" is a custom CSS file that can be used to specify CSS style rules for Floorp's interface (NOT internal site) using "chrome" privileges.
 For instance, if you want to hide the tab bar, you can use the following CSS rule:
@@ -14,68 +13,68 @@ NOTE: You can use the userChrome.css file without change preferences (about:conf
 
 Quote: https://userChrome.org | https://github.com/topics/userchrome 
 
-************************************************************************************************************************************************************************************************************************************************************/
+**********************************************/
 
 @charset "UTF-8";
-@-moz-document url(chrome://browser/content/browser.xhtml) {
+
+@-moz-document url(chrome://browser/content/browser.xhtml){
 /* Please write your custom CSS under this line*/
 
-  /*disable window control buttons*/
-  #floorp-tabbar-window-manage-container {
-    display: none;
-  }
+/* @import url("./assets/vertical.css"); */
 
-  #tabbrowser-arrowscrollbox {
-    padding-top: 2px;
-    padding-left: 3px;
-  }
+/* right click menu */
+.menupopup-arrowscrollbox[orient="vertical"] {
+  background-image: url("../../../Obrazy/wallpapers/kali_dark.png") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: auto 100% !important;
+  background-color: #000000 !important;
+}
 
-  /* tabs */
-  tab.tabbrowser-tab {
-    max-width: 180px !important;
-  }
-  
-  /* tab backgrounds */
-  /* tab.tabbrowser-tab vbox.tab-background {
-    border-radius: 8px !important;
-  } */
+/*disable window control buttons*/
+#floorp-tabbar-window-manage-container {
+  display: none;
+}
 
-  /*selected tab*/
-  tab.tabbrowser-tab:is([selected]) {
-    background: rgb(200, 200, 200, 0.2) !important;
-  }
+/* #tabbrowser-arrowscrollbox {
+  padding-top: 2px;
+  padding-left: 3px;
+} */
 
-  /* top bar thing */
-  #navigator-toolbox {
-    border: none !important;
-  }
+/* tabs */
+/* tab.tabbrowser-tab {
+  max-width: 180px !important;
+} */
 
-  /* sidebar */
-  #sidebar-select-box {
-    border: none !important;
-  }
+/* top bar thing */
+#navigator-toolbox {
+  border: none !important;
+}
 
-  /*fix thin bar near sidebar*/
-  #sidebar2-box{
-    border: none !important;
-  }
-  
-  #sidebar2-header {
-    min-height: 1.3rem !important;
-  }
-  
-  #sidebar2-header > .sidebar2-icon {
-    scale: 0.9;
-    margin: 1px !important;
-  }
+/* sidebar */
+#sidebar-select-box {
+  border: none !important;
+}
 
-  /* adressbar background */
-  /* #urlbar-background {
-    border-radius: 10px !important;
-  } */
+/*fix thin bar near sidebar*/
+#sidebar2-box {
+  border: none !important;
+}
 
-  /* adressbar icon box thing */
-  /* #identity-icon-box {
-    border-radius: 8px !important;
-  } */
+#sidebar2-header {
+  min-height: 1.3rem !important;
+}
+
+#sidebar2-header>.sidebar2-icon {
+  scale: 0.9;
+  margin: 1px !important;
+}
+
+#titlebar {
+  display: none !important;
+}
+
+.tab-icon-image {
+  margin-left: 2px !important;
+}
 }

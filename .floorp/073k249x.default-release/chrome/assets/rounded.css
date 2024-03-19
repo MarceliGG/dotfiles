@@ -1,0 +1,14 @@
+/* tab backgrounds */
+tab.tabbrowser-tab vbox.tab-background {
+  border-radius: 8px !important;
+}
+
+/* adressbar background */
+#urlbar-background {
+  border-radius: 10px !important;
+}
+
+/* adressbar icon box thing */
+#identity-icon-box {
+  border-radius: 8px !important;
+}

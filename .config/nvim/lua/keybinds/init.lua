@@ -14,7 +14,7 @@ bind('n', '<leader>fb', telescope.buffers, {})
 bind('n', '<leader>il', ':LspInfo<Enter>', {})
 bind('n', '<leader>in', ':NullLsInfo<Enter>', {})
 bind('n', '<leader>im', ':Mason<Enter>', {})
-bind('n', '<leader>ip', ':PackerStatus<Enter>', {})
+bind('n', '<leader>ip', ':Lazy<Enter>', {})
 bind('n', '<leader>ic', ':CmpStatus<Enter>', {})
 
 -- Quit

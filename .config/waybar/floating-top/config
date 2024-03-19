@@ -35,7 +35,7 @@
   },
 
   "custom/apps": {
-    "format": "󰀻 Apps",
+    "format": " Hypr",
     "tooltip": false,
     "on-click": "rofi -show drun"
   },

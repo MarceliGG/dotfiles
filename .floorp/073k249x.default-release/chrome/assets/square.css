@@ -1,0 +1,4 @@
+/*selected tab*/
+tab.tabbrowser-tab:is([selected]) {
+  background: rgb(200, 200, 200, 0.2) !important;
+}

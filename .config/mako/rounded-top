@@ -1,0 +1,22 @@
+width=300
+height=200
+font=Cascadia Cove Nerd Font 11
+default-timeout=10000
+max-icon-size=64
+max-visible=10
+background-color=#111111cc
+
+margin=2
+border-size=2
+border-radius=10
+outer-margin=10
+
+[urgency=low]
+border-color=#6f8bba
+
+[urgency=normal]
+border-color=#eeeeee
+
+[urgency=high]
+border-color=#bf616a
+default-timeout=0

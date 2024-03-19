@@ -21,7 +21,7 @@ window#waybar {
 
 .modules-left,
 .modules-right {
-  background: rgba(2, 2, 2, 0.6);
+  background: rgba(2, 2, 2, 0.7);
 }
 
 .modules-left {
@@ -75,9 +75,15 @@ window#waybar {
   box-shadow: inset 0px -2px 0px 0px orangered;
 }
 
+.modules-center {
+  padding: 2px;
+}
+
 #clock {
-  color: #B2DFDB;
-  box-shadow: inset 0px -2px 0px 0px #B2DFDB;
+  color: #FFFFFF;
+  border-radius: 6px;
+  background: rgba(50, 50, 50, 0.7);
+  padding: 10px 4px;
 }
 
 #custom-apps,
@@ -89,7 +95,7 @@ window#waybar {
 }
 
 #tray {
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* Bar spacings */
@@ -105,13 +111,6 @@ window#waybar {
 
 #cpu {
   margin-right: 6px;
-}
-
-#taskbar:not(.empty){
-  background: rgba(2, 2, 2, 0.6);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 0 10px;
 }
 
 #taskbar button {

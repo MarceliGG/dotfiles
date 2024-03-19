@@ -13,6 +13,7 @@
 /* FontAwesome for some things */
 #cpu,
 #battery,
+#pulseaudio,
 #network {
   font-family: "Fira Sans", "Font Awesome 6 Free";
 }
@@ -75,7 +76,7 @@ window#waybar {
 }
 
 #custom-apps {
-  font-size: 32px;
+  font-size: 24px;
   margin-right: 12px;
   color: cyan;
 }

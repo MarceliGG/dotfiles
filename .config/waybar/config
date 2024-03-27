@@ -52,7 +52,14 @@
     },
     "on-click": "pavucontrol"
   },
-  
+
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": "",
+    "on-click": "helvum",
+    "format-icons": ["", "", ""]
+  },
+
   "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 18,

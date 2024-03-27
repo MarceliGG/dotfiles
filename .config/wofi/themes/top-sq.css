@@ -1,0 +1,19 @@
+* {
+  background: none;
+}
+
+window {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#input {
+  border: none;
+}
+
+#entry {
+  padding: 6px;
+}
+
+#entry:selected {
+  background: rgba(200, 200, 200, 0.3);
+}

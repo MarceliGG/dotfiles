@@ -46,6 +46,6 @@ map o $xdg-open "$f"
 map a create
 map gc cd ~/.config
 map gt cd ~/TS
-map gp cd ~/Obrazy
+map gp cd ~/Pictures
 map gi cdto
 map <c-w> &swww img "$f"

@@ -13,8 +13,15 @@
 /* FontAwesome for some things */
 #cpu,
 #battery,
+#pulseaudio,
 #network {
   font-family: "Fira Sans", "Font Awesome 6 Free";
+}
+
+#pulseaudio-slider{
+  min-width: 100px;
+  margin-left: 4px;
+  margin-right: 8px;
 }
 
 window#waybar {

@@ -21,6 +21,7 @@
   "modules-right": [
     "battery",
     "pulseaudio",
+ //   "pulseaudio/slider",
     "network",
     "clock", 
     "custom/exit"

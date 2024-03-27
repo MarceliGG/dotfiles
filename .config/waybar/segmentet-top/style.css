@@ -11,6 +11,7 @@
 #cpu,
 #battery,
 #pulseaudio,
+#wireplumber,
 #network {
   font-family: "Fira Sans", "Font Awesome 6 Free";
 }
@@ -34,11 +35,13 @@ window#waybar {
   border-bottom-left-radius: 10px;
 }
 
+#wireplumber,
 #pulseaudio {
   color: #26A69A;
   box-shadow: inset 0px -2px 0px 0px #26A69A;
 }
 
+#wireplumber.muted,
 #pulseaudio.muted {
   color: #EF9A9A;
   box-shadow: inset 0px -2px 0px 0px #EF9A9A;
@@ -102,6 +105,7 @@ window#waybar {
 /* group/hardware */
 .modules-left> :nth-child(2),
 #battery,
+#wireplumber,
 #pulseaudio,
 #network,
 #clock {

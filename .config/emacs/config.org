@@ -12,6 +12,7 @@
   - [[#line-numbers][Line Numbers]]
   - [[#icons][Icons]]
   - [[#theme][Theme]]
+  - [[#transparency][Transparency]]
   - [[#rainbow-mode][Rainbow Mode]]
 - [[#org-mode][ORG MODE]]
   - [[#table-of-contents][Table of Contents]]
@@ -29,6 +30,9 @@
   - [[#company-mode][Company Mode]]
   - [[#javascript][Javascript]]
   - [[#treesit-auto][Treesit-Auto]]
+- [[#dired][DIRED]]
+  - [[#keybinds][Keybinds]]
+  - [[#peep][Peep]]
 - [[#test][TEST]]
 
 * LOAD FIRST
@@ -135,7 +139,7 @@ Setup Elpaca Package Manager
     :global-prefix "M-SPC" ;; set leader in insert
   )
   (mg/leader
-    "t" '(term :wk "Terminal")
+    "t" '(vterm :wk "Terminal")
 
     "b" '(:ignore t :wk "buffer")
       "bs" '(switch-to-buffer :wk "Switch buffer")
@@ -222,6 +226,11 @@ Setup Elpaca Package Manager
 #+begin_src emacs-lisp
 (add-to-list 'custom-theme-load-path "/home/marcel/.config/emacs/themes/")
 (load-theme 't1 t)
+#+end_src
+
+** Transparency
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 
 ** Rainbow Mode
@@ -465,6 +474,26 @@ Setup Elpaca Package Manager
   (global-treesit-auto-mode))
 #+end_src
 
+* DIRED
+** Keybinds 
+#+begin_src emacs-lisp
+(use-package dired
+:after evil
+:config
+(evil-define-key 'normal dired-mode-map 
+  "h" 'dired-up-directory
+  "l" 'dired-find-file)
+)
+#+end_src
+** Peep
+#+begin_src -emacs-lisp
+(use-package peep-dired
+:after dired
+:ensure t
+:hook (dired . peep-dired-hook)
+:config
+)
+#+end_src
 
 * TEST
 #+begin_src -emacs-lisp

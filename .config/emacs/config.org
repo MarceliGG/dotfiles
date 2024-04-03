@@ -14,11 +14,13 @@
   - [[#theme][Theme]]
   - [[#transparency][Transparency]]
   - [[#rainbow-mode][Rainbow Mode]]
+  - [[#status-line][Status Line]]
 - [[#org-mode][ORG MODE]]
   - [[#table-of-contents][Table of Contents]]
   - [[#bullets][Bullets]]
   - [[#fix-indent][Fix Indent]]
   - [[#quick-source-code-blocks][Quick Source Code Blocks]]
+- [[#backup-files][BACKUP FILES]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#ivy--counsel][IVY & COUNSEL]]
 - [[#vterm][VTERM]]
@@ -29,6 +31,7 @@
   - [[#rust][Rust]]
   - [[#company-mode][Company Mode]]
   - [[#javascript][Javascript]]
+  - [[#java][JAVA]]
   - [[#treesit-auto][Treesit-Auto]]
 - [[#dired][DIRED]]
   - [[#keybinds][Keybinds]]
@@ -158,6 +161,10 @@ Setup Elpaca Package Manager
 
     "c" '(mg-format-by-extension :wk "Format code")
     "l" '(lsp :wk "Start lsp")
+    "R" '((lambda () (interactive)
+                (load-file "~/.config/emacs/init.el")
+                (ignore (elpaca-process-queues)))
+              :wk "Reload emacs config")
    )
    (global-set-key (kbd "C-s")' save-buffer)
    ;;(global-set-key (kbd "C-V")' )
@@ -240,6 +247,15 @@ Setup Elpaca Package Manager
     :hook org-mode prog-mode)
 #+end_src
 
+** Status Line
+#+begin_src emacs-lisp
+(use-package mood-line
+:ensure t
+:config
+(setq mood-line-format mood-line-format-default)
+(mood-line-mode))
+#+end_src
+
 * ORG MODE
 ** Table of Contents
 #+BEGIN_SRC emacs-lisp
@@ -266,6 +282,11 @@ Setup Elpaca Package Manager
 #+BEGIN_SRC emacs-lisp
   (require 'org-tempo)
 #+END_SRC
+
+* BACKUP FILES
+#+begin_src emacs-lisp
+(setq make-backup-files nil) ; stop creating ~ files
+#+end_src
 
 * SUDO EDIT
 #+begin_src emacs-lisp
@@ -325,7 +346,7 @@ Setup Elpaca Package Manager
 #+end_src
 
 * DASHBOARD
-#+begin_src emacs-lisp
+#+begin_src -emacs-lisp
 (use-package dashboard
   :ensure t 
   :init
@@ -340,6 +361,11 @@ Setup Elpaca Package Manager
 
   :config
   (dashboard-setup-startup-hook))
+#+end_src
+
+Scratch buffer
+#+begin_src emacs-lisp
+(setq initial-scratch-message ";; '<leader> f f' to find files \n;; '<leader> f r' for recent files\n")
 #+end_src
 
 * LSP
@@ -464,6 +490,13 @@ Setup Elpaca Package Manager
    "*Biome Error Buffer*"
    ;; show error buffer?
    t))
+#+end_src
+
+** JAVA
+#+begin_src emacs-lisp
+(use-package lsp-java
+:ensure t)
+(add-to-list 'auto-mode-alist '("\\.java?$" . lsp)) ;; auto-enable for .js/.jsx files
 #+end_src
 
 ** Treesit-Auto

@@ -1,6 +1,7 @@
 * {
   font-family: "Fira Sans", "Symbols Nerd Font", "Font Awesome 6 Free";
   font-size: 14px;
+  font-weight: 500;
   border: none;
   padding: 0;
   margin: 0;
@@ -75,7 +76,7 @@ window#waybar {
 
 
 #tray {
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 /* Bar spacings */

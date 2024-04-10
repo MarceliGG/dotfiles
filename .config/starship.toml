@@ -1,12 +1,22 @@
 format = """
-$os$directory$python$c$java$nodejs$rust$git_branch$cmd_duration$time
-$character 
+$character\
+$directory\
+$git_branch\
+$cmd_duration\
+$time
+​
 """
 
 # add_newline = false
 
 [character]
-format = " $symbol"
+format = "$symbol "
+success_symbol = "[ ](fg:blue)"
+error_symbol = "[ ](fg:red)"
+vimcmd_symbol = "[ ](fg:yellow)"
+vimcmd_replace_one_symbol = "[ ](fg:yellow)"
+vimcmd_replace_symbol = "[ ](fg:yellow)"
+vimcmd_visual_symbol = "[ ](fg:yellow)"
 
 [aws]
 symbol = "  "
@@ -24,8 +34,8 @@ symbol = " "
 symbol = " "
 
 [directory]
-read_only = " 󰌾"
-format = 'in [$path]($style)[$read_only]($read_only_style) '
+read_only = "  "
+format = '[](fg:#337575)[$path](fg:black bold bg:#337575)[$read_only](fg:#880000 bg:#337575)[](fg:#337575)  '
 
 [docker_context]
 symbol = " "
@@ -40,6 +50,7 @@ symbol = " "
 symbol = " "
 
 [git_branch]
+format = '[](fg:#335575)[$symbol$branch(:$remote_branch)](fg:#ff5858 bold bg:#335575)[](fg:#335575)  '
 symbol = " "
 
 [golang]
@@ -151,7 +162,9 @@ symbol = " "
 symbol = " "
 
 [cmd_duration]
+format = '[](fg:#735555)[󱎫 $duration](fg:yellow bold bg:#735555)[](fg:#735555)  '
 min_time = 1
 
 [time]
+format = '[](fg:#353575)[ $time](fg:cyan bold bg:#353575)[](fg:#353575)  '
 disabled = false

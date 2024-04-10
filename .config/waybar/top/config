@@ -1,19 +1,19 @@
 {
-  "layer": "bottom",
+  "layer": "top",
   "height": 30,
 
   "modules-left": [
     "custom/apps",
     "group/hardware",
     "hyprland/workspaces",
-    "tray"
-  ],
-
-  "modules-center": [
     "wlr/taskbar" 
   ],
 
+  "modules-center": [
+  ],
+
   "modules-right": [
+    "tray",
     "battery",
     "pulseaudio",
     "network",

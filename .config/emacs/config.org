@@ -32,10 +32,12 @@
   - [[#company-mode][Company Mode]]
   - [[#javascript][Javascript]]
   - [[#java][JAVA]]
+  - [[#tailwind][Tailwind]]
   - [[#treesit-auto][Treesit-Auto]]
 - [[#dired][DIRED]]
   - [[#keybinds][Keybinds]]
   - [[#peep][Peep]]
+- [[#other][OTHER]]
 - [[#test][TEST]]
 
 * LOAD FIRST
@@ -165,6 +167,7 @@ Setup Elpaca Package Manager
                 (load-file "~/.config/emacs/init.el")
                 (ignore (elpaca-process-queues)))
               :wk "Reload emacs config")
+    "/" '(comment-line :wk "Toggle comment for line or region")
    )
    (global-set-key (kbd "C-s")' save-buffer)
    ;;(global-set-key (kbd "C-V")' )
@@ -449,11 +452,11 @@ Scratch buffer
 
 ** Javascript
 #+begin_src emacs-lisp
-(use-package js2-mode
+(use-package web-mode
 :ensure t
 :hook
-(js2-mode . lsp))
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . js2-mode)) ;; auto-enable for .js/.jsx files
+(web-mode . lsp))
+;;(add-to-list 'auto-mode-alist '("\\.jsx?$" . js2-mode)) ;; auto-enable for .js/.jsx files
 
 (defun mg-format-biome-jsx ()
   "Tidies the HTML content in the buffer using `tidy'"
@@ -463,7 +466,7 @@ Scratch buffer
    (point-min)
    (point-max)
    ;; command and parameters
-   "biome format --stdin-file-path a.jsx"
+   "biome format --indent-style space  --stdin-file-path a.jsx"
    ;; output buffer
    (current-buffer)
    ;; replace?
@@ -481,7 +484,7 @@ Scratch buffer
    (point-min)
    (point-max)
    ;; command and parameters
-   "biome format --stdin-file-path a.js"
+   "biome format --indent-style space --stdin-file-path a.js"
    ;; output buffer
    (current-buffer)
    ;; replace?
@@ -497,6 +500,14 @@ Scratch buffer
 (use-package lsp-java
 :ensure t)
 (add-to-list 'auto-mode-alist '("\\.java?$" . lsp)) ;; auto-enable for .js/.jsx files
+#+end_src
+
+** Tailwind
+#+begin_src emacs-lisp
+;;(use-package lsp-tailwindcss :ensure t
+;;:config
+;;  (setq lsp-tailwindcss-major-modes '(web-mode js2-mode html-mode sgml-mode css-mode rjsx-mode))
+;;)
 #+end_src
 
 ** Treesit-Auto
@@ -524,8 +535,13 @@ Scratch buffer
 :after dired
 :ensure t
 :hook (dired . peep-dired-hook)
-:config
 )
+#+end_src
+
+* OTHER
+#+begin_src emacs-lisp
+(setq scroll-step 1
+  scroll-margin 16)
 #+end_src
 
 * TEST

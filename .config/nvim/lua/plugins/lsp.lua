@@ -41,9 +41,9 @@ lspconfig.pyright.setup {
 lspconfig.bashls.setup {
   on_attach = on_attach,
 }
---[[ lspconfig.eslint.setup {
+lspconfig.eslint.setup {
   on_attach = on_attach,
-} ]]
+}
 lspconfig.emmet_language_server.setup {
   on_attach = on_attach,
 }

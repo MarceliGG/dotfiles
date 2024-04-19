@@ -76,7 +76,7 @@
 
   "custom/exit": {
     "format": "  ",
-    "on-click": "wlogout",
+    "on-click": "sh $HOME/.config/wofi/scripts/power_menu/start.sh",
     "tooltip": false
   },
 

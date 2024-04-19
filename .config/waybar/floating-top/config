@@ -38,6 +38,6 @@
   "custom/apps": {
     "format": " Hypr",
     "tooltip": false,
-    "on-click": "rofi -show drun"
+    "on-click": "wofi --show drun --conf ~/.config/wofi/theme/floating-mid.conf"
   },
 }

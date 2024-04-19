@@ -32,6 +32,6 @@
   "custom/apps": {
     "format": " Hypr",
     "tooltip": false,
-    "on-click": "rofi -show drun -config ~/.config/rofi/hyrp-d.rasi"
+    "on-click": "wofi --show drun --conf ~/.config/wofi/theme/top-sq.conf"
   },
 }

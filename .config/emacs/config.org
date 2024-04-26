@@ -125,7 +125,7 @@ Setup Elpaca Package Manager
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
 
 ;; Don't install anything. Defer execution of BODY
-(elpaca nil (message "deferred"))
+;; (elpaca nil (message "deferred"))
 
 ;; Evil use system clipboard
 (setq select-enable-clipboard t)
@@ -215,8 +215,9 @@ Setup Elpaca Package Manager
 (global-visual-line-mode t)
 (global-hl-line-mode 1)
 
-;; Status bar clumn number
 (setq column-number-mode t)
+(custom-set-variables
+ '(display-line-numbers-width 3))
 #+END_SRC
 
 ** Icons
@@ -345,7 +346,7 @@ Setup Elpaca Package Manager
   (use-package vterm :ensure t)
   (add-hook 'vterm-mode-hook
     (lambda ()
-      (set (make-local-variable 'buffer-face-mode-face) '(:family "Fira Code Nerd Font Mono"))
+      (set (make-local-variable 'buffer-face-mode-face) '(:family "FiraCode Nerd Font Reg"))
       (buffer-face-mode t)))
 #+end_src
 
@@ -422,7 +423,7 @@ Scratch buffer
    (point-min)
    (point-max)
    ;; command and parameters
-   "autopep8 -"
+   "autopep8 --max-line-length 140 -"
    ;; output buffer
    (current-buffer)
    ;; replace?
@@ -464,7 +465,8 @@ Scratch buffer
 :ensure t
 :hook
 (web-mode . lsp))
-;;(add-to-list 'auto-mode-alist '("\\.jsx?$" . js2-mode)) ;; auto-enable for .js/.jsx files
+;(add-to-list 'auto-mode-alist '("\\.jsx?$" . js2-mode)) ;; auto-enable for .js/.jsx files
+(add-to-list 'auto-mode-alist '("\\.tsx" . jsx-mode))
 
 (defun mg-format-biome-jsx ()
   "Tidies the HTML content in the buffer using `tidy'"
@@ -534,6 +536,7 @@ Scratch buffer
 :config
 (evil-define-key 'normal dired-mode-map 
   "h" 'dired-up-directory
+  "a" 'dired-create-empty-file
   "l" 'dired-find-file)
 )
 #+end_src
@@ -551,4 +554,6 @@ Scratch buffer
 (setq scroll-step 1
   scroll-margin 16)
 (electric-pair-mode t)
+(setq load-prefer-newer t)
+(setq tab-width 2)
 #+end_src

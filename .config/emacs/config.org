@@ -394,11 +394,15 @@ Scratch buffer
 (setq lsp-ui-sideline-delay 0)
 ;;(setq lsp-ui-sideline-show-diagnostics t)
 
+(setq lsp-log-io nil) ;; Don't log everything = speed
+
 (defun mg-format-by-extension ()
 (interactive)
 (pcase (file-name-extension buffer-file-name)
 ("jsx" (mg-format-biome-jsx))
+("tsx" (mg-format-biome-tsx))
 ("js" (mg-format-biome-jsx))
+("ts" (mg-format-biome-ts))
 ("py" (mg-format-autopep8))
 ("rs" (lsp-format-buffer))
 )
@@ -461,47 +465,52 @@ Scratch buffer
 
 ** Javascript
 #+begin_src emacs-lisp
-(use-package web-mode
-:ensure t
-:hook
-(web-mode . lsp))
-;(add-to-list 'auto-mode-alist '("\\.jsx?$" . js2-mode)) ;; auto-enable for .js/.jsx files
-(add-to-list 'auto-mode-alist '("\\.tsx" . jsx-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jsx?$" . js2-mode)) ;; auto-enable for .js/.jsx files
+(add-to-list 'auto-mode-alist '("\\.tsx?$" . js-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?$" . lsp))
 
 (defun mg-format-biome-jsx ()
-  "Tidies the HTML content in the buffer using `tidy'"
   (interactive)
   (shell-command-on-region
-   ;; beginning and end of buffer
    (point-min)
    (point-max)
-   ;; command and parameters
    "biome format --indent-style space  --stdin-file-path a.jsx"
-   ;; output buffer
    (current-buffer)
-   ;; replace?
    t
-   ;; name of the error buffer
    "*Biome Error Buffer*"
-   ;; show error buffer?
    t))
 
 (defun mg-format-biome-js ()
-  "Tidies the HTML content in the buffer using `tidy'"
   (interactive)
   (shell-command-on-region
-   ;; beginning and end of buffer
    (point-min)
    (point-max)
-   ;; command and parameters
    "biome format --indent-style space --stdin-file-path a.js"
-   ;; output buffer
    (current-buffer)
-   ;; replace?
    t
-   ;; name of the error buffer
    "*Biome Error Buffer*"
-   ;; show error buffer?
+   t))
+
+(defun mg-format-biome-ts ()
+  (interactive)
+  (shell-command-on-region
+   (point-min)
+   (point-max)
+   "biome format --indent-style space --stdin-file-path a.ts"
+   (current-buffer)
+   t
+   "*Biome Error Buffer*"
+   t))
+
+(defun mg-format-biome-tsx ()
+  (interactive)
+  (shell-command-on-region
+   (point-min)
+   (point-max)
+   "biome format --indent-style space --stdin-file-path a.tsx"
+   (current-buffer)
+   t
+   "*Biome Error Buffer*"
    t))
 #+end_src
 
@@ -537,6 +546,7 @@ Scratch buffer
 (evil-define-key 'normal dired-mode-map 
   "h" 'dired-up-directory
   "a" 'dired-create-empty-file
+  "-" 'dired-create-empty-file
   "l" 'dired-find-file)
 )
 #+end_src

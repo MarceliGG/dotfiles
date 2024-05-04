@@ -42,3 +42,5 @@ alias gits="git status"
 
 # Prompt
 eval "$(starship init zsh)"
+
+fastfetch

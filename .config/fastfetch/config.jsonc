@@ -1,0 +1,27 @@
+//
+
+{
+    "logo": {
+        "type": "small",
+        "padding": {
+            "right": 4
+        }
+    },
+    "display": {
+        "binaryPrefix": "si",
+        "color": "blue",
+        "separator": "  "
+    },
+    "modules": [
+	"kernel",
+	"wm",
+	"terminal",
+	"shell",
+	"cpu",
+	"gpu",
+	{
+	    "type": "memory",
+	    "format": "{2}"
+	},
+    ]
+}

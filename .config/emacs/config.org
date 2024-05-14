@@ -111,11 +111,11 @@ Setup Elpaca Package Manager
   ;; (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (evil-mode))
-(use-package evil-collection :ensure t
-  :after evil
-  :config
-  (setq evil-collection-mode-list '(dashboard dired ibuffer))
-  (evil-collection-init))
+;; (use-package evil-collection :ensure t
+;;   :after evil
+;;   :config
+;;   (setq evil-collection-mode-list '(dashboard dired ibuffer))
+;;   (evil-collection-init))
 
 (setq evil-undo-system 'undo-redo)
 
@@ -172,7 +172,7 @@ Setup Elpaca Package Manager
     "r" '(lsp-rename :wk "Rename varible")
    )
    (global-set-key (kbd "C-s")' save-buffer)
-   ;;(global-set-key (kbd "C-V")' )
+   	;;(global-set-key (kbd "C-V")' )
  ) 
 
     (use-package which-key :ensure t
@@ -546,10 +546,10 @@ Scratch buffer
 (evil-define-key 'normal dired-mode-map 
   "h" 'dired-up-directory
   "a" 'dired-create-empty-file
-  "-" 'dired-create-empty-file
   "l" 'dired-find-file)
 )
 #+end_src
+
 ** Peep
 #+begin_src -emacs-lisp
 (use-package peep-dired

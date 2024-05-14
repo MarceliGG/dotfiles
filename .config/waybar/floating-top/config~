@@ -1,0 +1,42 @@
+{
+  "layer": "top",
+  "margin-top": 6,
+  "margin-left": 12,
+  "margin-right": 12,
+  "margin-bottom": -4,
+  "height": 28,
+
+  "modules-left": [
+    "custom/apps",
+    "group/hardware",
+    "hyprland/workspaces",
+    "tray"
+  ],
+
+  "modules-center": [
+    "wlr/taskbar" 
+  ],
+
+  "modules-right": [
+    "battery",
+    "pulseaudio",
+ //   "pulseaudio/slider",
+    "network",
+    "clock", 
+    "custom/exit"
+  ],
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory"
+    ]
+  },
+
+  "custom/apps": {
+    "format": " Hypr",
+    "tooltip": false,
+    "on-click": "wofi --show drun --conf ~/.config/wofi/theme/floating-mid.conf"
+  },
+}

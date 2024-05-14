@@ -29,8 +29,8 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # Aliases
-alias ls='ls -A --color=auto'
-alias lsl='ls -Al --color=auto'
+alias ls='eza -a --icons=auto'
+alias lsl='eza -ahlF --icons=auto'
 alias v='nvim'
 alias py='python3.12'
 alias mv='mv -i'
@@ -43,4 +43,4 @@ alias gits="git status"
 # Prompt
 eval "$(starship init zsh)"
 
-fastfetch
+sh ~/.config/scripts/welcome_shell/run.sh

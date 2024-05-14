@@ -17,7 +17,6 @@
     "format-charging": " {capacity}% {icon}",
     "states": {
       "low": 20,
-      "critical": 10
     }
   },
 
@@ -50,7 +49,7 @@
       "car": "",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol"
+    "on-click": "helvum"
   },
 
   "wireplumber": {
@@ -98,5 +97,8 @@
   "custom/launcher-filebrowser": {
     "format": "",
     "on-click": "thunar ~"
+  },
+  "tray": {
+    "spacing": 5
   }
 }

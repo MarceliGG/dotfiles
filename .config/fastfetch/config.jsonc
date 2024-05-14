@@ -4,7 +4,8 @@
     "logo": {
         "type": "small",
         "padding": {
-            "right": 4
+            "left": 2,
+            "right": 2
         }
     },
     "display": {

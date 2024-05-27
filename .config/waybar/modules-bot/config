@@ -38,6 +38,6 @@
   "custom/apps": {
     "format": " Hypr",
     "tooltip": false,
-    "on-click": "wofi --show drun --conf ~/.config/wofi/themes/floating-mid.conf"
+    "on-click": "~/.cargo/bin/anyrun"
   },
 }

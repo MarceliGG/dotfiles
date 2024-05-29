@@ -358,11 +358,12 @@ Setup Elpaca Package Manager
 
 * VTERM
 #+begin_src emacs-lisp
-  (use-package vterm :ensure t)
-  (add-hook 'vterm-mode-hook
-    (lambda ()
-      (set (make-local-variable 'buffer-face-mode-face) '(:family "FiraCode Nerd Font Reg"))
-      (buffer-face-mode t)))
+(use-package vterm :ensure t)
+(add-hook 'vterm-mode-hook
+  (lambda ()
+    (set (make-local-variable 'buffer-face-mode-face) '(:family "FiraCode Nerd Font Reg"))
+    (buffer-face-mode t)))
+  (set-variable 'vterm-environment '("EDITOR=/home/marcel/.config/scripts/reuseemacs"))
 #+end_src
 
 * DASHBOARD

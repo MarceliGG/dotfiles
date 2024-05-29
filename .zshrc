@@ -1,6 +1,3 @@
-# Enviroment varibles
-export EDITOR=nvim
-
 # Autocomlition
 source $HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 autoload -U compinit
@@ -29,7 +26,7 @@ setopt EXTENDED_HISTORY
 alias ls='eza -a --icons=auto'
 alias lsl='eza -ahlF --icons=auto'
 alias remove='/bin/rm'
-alias v='nvim'
+alias e='$EDITOR'
 alias py='python3.12'
 alias mv='mv -i'
 alias cp='cp -i'

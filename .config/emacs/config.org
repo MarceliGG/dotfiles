@@ -489,7 +489,7 @@ Scratch buffer
   (shell-command-on-region
    (point-min)
    (point-max)
-   "biome format --indent-style space  --stdin-file-path a.jsx"
+   "biome format --config-path $HOME/.config/biome_js.json --indent-style space  --stdin-file-path a.jsx"
    (current-buffer)
    t
    "*Biome Error Buffer*"
@@ -500,7 +500,7 @@ Scratch buffer
   (shell-command-on-region
    (point-min)
    (point-max)
-   "biome format --indent-style space --stdin-file-path a.js"
+   "biome format --config-path $HOME/.config/biome_js.json --indent-style space --stdin-file-path a.js"
    (current-buffer)
    t
    "*Biome Error Buffer*"
@@ -511,7 +511,7 @@ Scratch buffer
   (shell-command-on-region
    (point-min)
    (point-max)
-   "biome format --indent-style space --stdin-file-path a.ts"
+   "biome format --config-path $HOME/.config/biome_js.json --indent-style space --stdin-file-path a.ts"
    (current-buffer)
    t
    "*Biome Error Buffer*"
@@ -522,7 +522,7 @@ Scratch buffer
   (shell-command-on-region
    (point-min)
    (point-max)
-   "biome format --indent-style space --stdin-file-path a.tsx"
+   "biome format --config-path $HOME/.config/biome_js.json --indent-style space --stdin-file-path a.tsx"
    (current-buffer)
    t
    "*Biome Error Buffer*"

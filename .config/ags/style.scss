@@ -1,8 +1,13 @@
+@define-color mybg rgba(0, 0, 0, 0.8);
+
 .bar {
-  font-size: 16px;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.8);
+  background: @mybg;
   /*background: @theme_bg_color;*/
+}
+
+window {
+  font-size: 16px;
 }
 
 #battery {
@@ -54,25 +59,37 @@ menu * {
   color: @theme_selected_bg_color;
 }
 
-/*
-trough { 
-    border: 2px solid white;
-    background: none;
-    margin: 2px 0;
-    padding: 0;
-    margin-right: 5px;
-    border-radius: 10px;
-    background-color: blue;
+.notifications .popup > box {
+  padding: 6px;
+  background: @mybg;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  border: 2px @theme_selected_bg_color solid;
 }
 
-trough > block {
-    background: none;
-    min-width: 0px;
+.notifications .popup > box > image {
+  color: cyan; 
+  font-size: 3em;
+  border-radius: 10px;
 }
 
-trough > block.filled {
-    background-color: rgb(20, 200, 40);
-    border: none;
-    border-radius: 0px;
+.notifications .popup > box > box {
+  min-width: 100px;
+  margin-left: 4px;
 }
-*/
+
+.notifications .popup > box .title {
+  font-weight: bold;
+}
+
+.osd .popup {
+  background: @mybg;
+  border-radius: 15px;
+  padding: 10px;
+  border: 2px @theme_selected_bg_color solid;
+}
+
+.osd .popup image {
+  font-size: 1.6em;
+  margin-right: 4px;
+}

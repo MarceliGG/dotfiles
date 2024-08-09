@@ -87,6 +87,7 @@ menu * {
   border-radius: 15px;
   padding: 10px;
   border: 2px @theme_selected_bg_color solid;
+  margin: 2px;
 }
 
 .osd .popup image {

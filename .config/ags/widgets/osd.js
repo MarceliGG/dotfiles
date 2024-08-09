@@ -1,4 +1,5 @@
 import { root } from "../options.js";
+import brightness from "../services/brightness.js";
 
 const DELAY = 2500;
 const audio = await Service.import("audio");
@@ -35,6 +36,8 @@ export default () => {
         audio.speaker.volume,
         `${root}/assets/vol/${audio.speaker.is_muted}.svg`,
       ),
-    "notify::volume"
+    "notify::volume",
+  ).hook(brightness, () =>
+    show(brightness.screen_value, `${root}/assets/brightness.png`),
   );
 };

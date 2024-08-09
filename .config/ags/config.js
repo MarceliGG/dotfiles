@@ -68,6 +68,6 @@ const Osd = (monitor = 0) =>
 // END TESTING
 
 App.config({
-  style: "./style.scss",
+  style: "./style.css",
   windows: [Bar(), Notifications(), Osd()],
 });

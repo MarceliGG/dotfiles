@@ -1,9 +1,9 @@
 @define-color mybg rgba(0, 0, 0, 0.8);
 
 .bar {
-  font-weight: bold;
-  background: @mybg;
-  /*background: @theme_bg_color;*/
+  font-weight: 600;
+  font-family: Inter;
+  background: @theme_bg_color;
 }
 
 window {
@@ -55,8 +55,14 @@ menu * {
   margin-left: 4px;
 }
 
+#workspaces > button {
+  padding: 0 8px;
+}
+
 #workspaces > .active {
-  color: @theme_selected_bg_color;
+  background: @theme_selected_bg_color;
+  color: black;
+  /* font-weight: bold; */
 }
 
 .notifications .popup > box {
@@ -83,7 +89,7 @@ menu * {
 }
 
 .osd .popup {
-  background: @mybg;
+  background: @theme_bg_color;
   border-radius: 15px;
   padding: 10px;
   border: 2px @theme_selected_bg_color solid;

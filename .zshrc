@@ -33,6 +33,7 @@ alias cp='cp -i'
 alias rm='trash'
 alias dotfiles="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gits="git status"
+alias doas='doas --'
 
 
 function git_branch_name()

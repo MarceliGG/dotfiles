@@ -1,0 +1,5 @@
+[language.pyright]
+filetypes = ["python"]
+roots = ["venv", "main.py", ".git"]
+command = "pyright-langserver"
+args = ["--stdio"]

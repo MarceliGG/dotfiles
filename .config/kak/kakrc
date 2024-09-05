@@ -1,0 +1,55 @@
+# HIGHLIGHTERS
+# enable line numbers
+add-highlighter global/ number-lines
+# wrapping lines
+add-highlighter global/ wrap
+
+
+# STYLING
+# set colorscheme
+colorscheme palenight
+
+# style some stuff
+#set-face global Default default
+declare-option str cursorPrimary rgb:008800
+declare-option str cursorPrimaryEnd rgb:00aa77
+declare-option str cursorPrimaryText rgb:89ddff
+declare-option str cursorPrimaryInsert rgb:aa0077
+declare-option str cursorPrimaryInsertEnd rgb:880000
+
+set-face global PrimaryCursor "%opt{cursorPrimaryText},%opt{cursorPrimary}"
+set-face global PrimaryCursorEol "default,%opt{cursorPrimaryEnd}"
+set-face global LineNumberCursor rgb:884444,default
+set-face global MenuBackground default,rgb:393d4e
+
+hook global ModeChange (push|pop):insert:.* %{
+    set-face global PrimaryCursor "%opt{cursorPrimaryText},%opt{cursorPrimary}"
+    set-face global PrimaryCursorEol "default,%opt{cursorPrimaryEnd}"
+}
+
+hook global ModeChange (push|pop):.*:insert %{
+    set-face global PrimaryCursor "%opt{cursorPrimaryText},%opt{cursorPrimaryInsert}" 
+    set-face global PrimaryCursorEol "default,%opt{cursorPrimaryInsertEnd}"
+}
+
+
+# KEYBINDS
+map global user / :comment-line<ret> -docstring "comment line"
+map global user ? :comment-block<ret> -docstring "comment block"
+map global user q :q<ret> -docstring "quit"
+map global user d ":buffer *debug*<ret>" -docstring "open debug buffer"
+map global user * ":edit ~/.config/kak/kakrc<ret>" -docstring "edit config"
+map global normal <c-s> :w<ret>:echo<space>Saved<ret>
+map global insert <c-s> '<a-;>:w<ret>'
+
+# LSP
+eval %sh{kak-lsp --kakoune --session $kak_session}
+hook global WinSetOption filetype=(python) %{
+    lsp-enable-window
+
+    # show errors in code
+    lsp-inlay-diagnostics-enable global
+
+    # keybinds for lsp
+    map global user <space> :lsp-hover<ret> -docstring "LSP hover info"
+}

@@ -9,7 +9,9 @@
         }
     },
     "display": {
+      "size": {
         "binaryPrefix": "si",
+      },
         "color": "blue",
         "separator": "  "
     },

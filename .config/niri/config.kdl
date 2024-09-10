@@ -13,7 +13,8 @@ input {
             // For more information, see xkeyboard-config(7).
 
             // For example:
-            // layout "us,ru"
+            layout "pl"
+            options "caps:escape"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
     }
@@ -45,7 +46,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="10%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -191,13 +192,15 @@ layout {
     }
 }
 
+// AUTOSTART
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
-spawn-at-startup "ags" "-c" "~/.config/ags/config-no-hyprland.conf"
+spawn-at-startup "ags" "-c" "./.config/ags/config-no-hyprland.conf"
 spawn-at-startup "swww" "init"
+spawn-at-startup "swayidle" "before-sleep" "pidof hyprlock || hyprlock"
 spawn-at-startup "walker" "--gapplication-service"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

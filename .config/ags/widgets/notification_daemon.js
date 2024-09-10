@@ -1,5 +1,5 @@
 const notifications = await Service.import("notifications");
-notifications.popupTimeout = 3000;
+notifications.popupTimeout = 5000;
 notifications.forceTimeout = false;
 notifications.cacheActions = false;
 notifications.clearDelay = 100;
@@ -21,29 +21,55 @@ const Notification = (notif) =>
     },
     on_secondary_click: notif.dismiss,
     child: Widget.Box({
+      vertical:true,
       children: [
-        NotificationIcon(notif),
         Widget.Box({
-          vertical: true,
+          class_name: "data",
           children: [
-            Widget.Label({
-              class_name: "title",
-              label: notif.summary,
-            }),
-            Widget.Label({
-              class_name: "content",
-              label: notif.body,
+            NotificationIcon(notif),
+            Widget.Box({
+              vertical: true,
+              children: [
+                Widget.Label({
+                  class_name: "title",
+                  label: notif.summary,
+                }),
+                Widget.Label({
+                  class_name: "content",
+                  label: notif.body,
+                }),
+              ],
             }),
           ],
         }),
+        Widget.Box({
+          class_name: "actions",
+          children: notif.actions.map(({ id, label }) => Widget.Button({
+            class_name: "action-button",
+            on_clicked: () => {
+              notif.invoke(id)
+              notif.dismiss()
+            },
+            hexpand: true,
+            child: Widget.Label(label),
+          }))
+        })
       ],
     }),
   });
 
-export default Widget.Box({
+export default (monitor=0) => {
+  return Widget.Window({
+  monitor,
+  layer: "overlay",
+  class_name: "notifications",
+  name: `notifications${monitor}`,
+  margins: [4, 0, 0, 0],
+  anchor: ["top"],
+  child: Widget.Box({
   vertical: true,
   css: "min-width: 2px; min-height: 2px;",
   children: notifications
     .bind("popups")
     .as((n) => n.map((no) => Notification(no))),
-});
+})})};

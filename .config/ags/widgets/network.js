@@ -1,7 +1,7 @@
 import { root } from "../options.js"
 const network = await Service.import("network")
 
-const WifiLabel = Widget.Label({label: network["wifi"].bind("ssid")})
+const WifiLabel = Widget.Label({label: network["wifi"].bind("ssid").as(ssid => ssid || 'Unknown')})
 const WifiIcon = Widget.Icon({icon: network["wifi"].bind("icon-name")})
 const EthIcon = Widget.Icon({icon: network["wired"].bind("icon-name")})
 

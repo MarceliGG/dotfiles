@@ -17,16 +17,16 @@ initializeANSI()
 initializeANSI
 
 cat << EOF
-${bg}████████████████████████████████████
-${bg}██████${blackf}██████${bg}████████████${blackf}██████${bg}██████
-${bg}████${blackf}██${reset}██${reset}${bluef}██${reset}${blackf}██${reset}${bluef}██${reset}${bg}████████${blackf}██${reset}██${reset}${bluef}██${reset}${blackf}██${reset}${bluef}██${bg}████
-${bg}████${blackf}██${reset}██${bluef}██${reset}${blackf}██${reset}${bluef}██${bg}████████${blackf}██${reset}██${bluef}██${reset}${blackf}██${reset}${bluef}██${bg}████
-${bg}████${blackf}██████${reset}${yellowf}██████${reset}${bg}██████${blackf}██████${reset}${purplef}██████${bg}██
-${bg}████${blackf}████${reset}████${blackf}██${reset}${bg}████████${blackf}████${reset}████${blackf}██${bg}████
-${bg}██${blackf}████${reset}████████${blackf}██${reset}${bg}████${blackf}████${reset}████████${blackf}██${bg}██
-${bg}██${blackf}████${reset}████████${blackf}██${reset}${bg}████${blackf}████${reset}████████${blackf}██${bg}██
-${bg}██${blackf}████${reset}████████${blackf}██${reset}${bg}████${blackf}████${reset}████████${blackf}██${bg}██
-${bg}████${blackf}████${reset}████${blackf}██${reset}${bg}████████${blackf}████${reset}████${blackf}██${bg}████
-${bg}███${blackf}███${reset}${yellowf}███${bg}███${yellowf}████${reset}${bg}█████${blackf}███${reset}${purplef}███${bg}███${purplef}████${bg}██
-${bg}████████████████████████████████████
+
+      ${blackf}██████            ${blackf}██████
+    ${blackf}██${reset}██${reset}${bluef}██${reset}${blackf}██${reset}${bluef}██${reset}        ${blackf}██${reset}██${reset}${bluef}██${reset}${blackf}██${reset}${bluef}██
+    ${blackf}██${reset}██${bluef}██${reset}${blackf}██${reset}${bluef}██        ${blackf}██${reset}██${bluef}██${reset}${blackf}██${reset}${bluef}██
+    ${blackf}██████${reset}${yellowf}██████${reset}      ${blackf}██████${reset}${purplef}██████
+    ${blackf}████${reset}████${blackf}██${reset}        ${blackf}████${reset}████${blackf}██
+  ${blackf}████${reset}████████${blackf}██${reset}    ${blackf}████${reset}████████${blackf}██
+  ${blackf}████${reset}████████${blackf}██${reset}    ${blackf}████${reset}████████${blackf}██
+  ${blackf}████${reset}████████${blackf}██${reset}    ${blackf}████${reset}████████${blackf}██
+    ${blackf}████${reset}████${blackf}██${reset}        ${blackf}████${reset}████${blackf}██
+   ${blackf}███${reset}${yellowf}███   ${yellowf}████${reset}     ${blackf}███${reset}${purplef}███   ${purplef}████
+                                  
 EOF

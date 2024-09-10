@@ -42,7 +42,11 @@ label {
 }
 
 button {
+  border-radius: 10px;
   padding: 0;
+}
+
+.bar button {
   background: none;
   border: none;
 }
@@ -67,21 +71,21 @@ menu * {
 
 .notifications .popup > box {
   padding: 6px;
-  background: @mybg;
+  background: @theme_bg_color;
   border-radius: 15px;
   margin-bottom: 10px;
   border: 2px @theme_selected_bg_color solid;
 }
 
-.notifications .popup > box > image {
+.notifications .popup image {
   color: cyan; 
   font-size: 3em;
   border-radius: 10px;
+  margin-right: 4px;
 }
 
-.notifications .popup > box > box {
-  min-width: 100px;
-  margin-left: 4px;
+.notifications .actions button {
+  margin: 0 2px;
 }
 
 .notifications .popup > box .title {
@@ -90,8 +94,8 @@ menu * {
 
 .osd .popup {
   background: @theme_bg_color;
-  border-radius: 15px;
-  padding: 10px;
+  border-radius: 28px;
+  padding: 5px 10px;
   border: 2px @theme_selected_bg_color solid;
   margin: 2px;
 }
@@ -99,4 +103,8 @@ menu * {
 .osd .popup image {
   font-size: 1.6em;
   margin-right: 4px;
+}
+
+.osd .popup label {
+  margin-top: 2px;
 }

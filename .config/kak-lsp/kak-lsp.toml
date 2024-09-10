@@ -3,3 +3,8 @@ filetypes = ["python"]
 roots = ["venv", "main.py", ".git"]
 command = "pyright-langserver"
 args = ["--stdio"]
+
+[language.ccls]
+filetypes = ["c", "cpp"]
+roots = ["main.c", "main.cpp", ".git"]
+command = "ccls"

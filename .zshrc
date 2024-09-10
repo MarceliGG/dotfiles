@@ -69,7 +69,7 @@ zle -N del-prompt-accept-line
 bindkey "^M" del-prompt-accept-line
 
 setopt prompt_subst
-PROMPT='
+PROMPT='%F{red}returned %F{yellow}%? %F{red}at %F{yellow}%D{%L:%M:%S}
 %F{blue} %d  $(git_branch_name)
 %F{yellow}→%f '
 

@@ -1,6 +1,6 @@
 # OPTIONS
 # enable line numbers
-add-highlighter global/ number-lines
+add-highlighter global/ number-lines -hlcursor
 # wrapping lines
 add-highlighter global/ wrap
 
@@ -9,7 +9,9 @@ add-highlighter global/ wrap
 colorscheme palenight
 
 # style some stuff
-#set-face global Default default
+set-face global Default default
+set-face global BufferPadding default
+set-face global StatusLine default
 declare-option str cursorPrimary rgb:008800
 declare-option str cursorPrimaryEnd rgb:00aa77
 declare-option str cursorPrimaryText rgb:89ddff
@@ -18,7 +20,8 @@ declare-option str cursorPrimaryInsertEnd rgb:880000
 
 set-face global PrimaryCursor "%opt{cursorPrimaryText},%opt{cursorPrimary}"
 set-face global PrimaryCursorEol "default,%opt{cursorPrimaryEnd}"
-set-face global LineNumberCursor rgb:884444,default
+set-face global LineNumbers rgb:576a83
+set-face global LineNumbersWrapped rgb:474a63
 set-face global MenuBackground default,rgb:393d4e
 
 hook global ModeChange (push|pop):insert:.* %{
@@ -46,11 +49,10 @@ map global insert <c-s> '<a-;>:w<ret><a-;>:echo<space>Saved<ret>'
 map global insert <tab> '  '
 
 # LSP
-
 define-command do-format-buffer %{
   evaluate-commands %sh{
     case "${kak_opt_filetype}" in
-      python) printf "execute-keys \"<percent>|autopep8 -\"<ret>l";;
+      python) printf "set buffer formatcmd \"autopep8 -\";format-buffer";;
       *) printf "lsp-formatting";;
     esac
   }
@@ -66,5 +68,5 @@ hook global WinSetOption filetype=(python|c|cpp) %{
   # keybinds for lsp
   map global user <space> :lsp-hover<ret> -docstring "LSP hover info"
   map global user r :lsp-rename<space> -docstring "rename thing"
-  map global user f :do-format-buffer<space> -docstring "format buffer"
 }
+map global user f :do-format-buffer<space> -docstring "format buffer"

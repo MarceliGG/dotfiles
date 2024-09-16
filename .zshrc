@@ -9,6 +9,7 @@ bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
 
+
 # History
 HISTFILE=~/.zshhist
 HISTSIZE=5000
@@ -34,6 +35,7 @@ alias rm='trash'
 alias dotfiles="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gits="git status"
 alias doas='doas --'
+alias mime="xdg-mime query filetype"
 
 
 function git_branch_name()
@@ -69,7 +71,7 @@ zle -N del-prompt-accept-line
 bindkey "^M" del-prompt-accept-line
 
 setopt prompt_subst
-PROMPT='%F{red}returned %F{yellow}%? %F{red}at %F{yellow}%D{%L:%M:%S}
+PROMPT='%F{red}returned %F{yellow}%? %F{red}at %F{yellow}%D{%H:%M:%S}
 %F{blue} %d  $(git_branch_name)
 %F{yellow}→%f '
 

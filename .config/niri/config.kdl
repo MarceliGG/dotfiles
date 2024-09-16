@@ -46,7 +46,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    focus-follows-mouse max-scroll-amount="10%"
+    focus-follows-mouse max-scroll-amount="30%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -205,7 +205,7 @@ hotkey-overlay {
 spawn-at-startup "ags" "-c" "./.config/ags/config-no-hyprland.conf"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "swayidle" "before-sleep" "pidof hyprlock || hyprlock"
-spawn-at-startup "walker" "--gapplication-service"
+// spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
 
@@ -262,6 +262,7 @@ animations {
 environment {
     EDITOR "kak"
     DISPLAY ":0"
+    _JAVA_AWT_WM_NONREPARENTING "1"
 }
 
 binds {
@@ -282,7 +283,8 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+X { spawn "alacritty"; }
     Mod+B { spawn "firefox"; }
-    Mod+R { spawn "walker"; }
+    Mod+R { spawn "wofi" "--show" "drun"; }
+    Mod+Shift+R { spawn "wofi" "--show" "run"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -290,8 +292,8 @@ binds {
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
     XF86AudioMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute      allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
@@ -351,12 +353,12 @@ binds {
 
     // Mod+Page_Down      { focus-workspace-down; }
     // Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
+    Mod+I              { focus-workspace-down; }
+    Mod+U              { focus-workspace-up; }
     // Mod+Shift+Page_Down { move-column-to-workspace-down; }
     // Mod+Shift+Page_Up   { move-column-to-workspace-up; }
-    Mod+Shift+U         { move-column-to-workspace-down; }
-    Mod+Shift+I         { move-column-to-workspace-up; }
+    Mod+Shift+I         { move-column-to-workspace-down; }
+    Mod+Shift+U         { move-column-to-workspace-up; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
@@ -364,8 +366,8 @@ binds {
 
     // Mod+Ctrl+Page_Down { move-workspace-down; }
     // Mod+Ctrl+Page_Up   { move-workspace-up; }
-    Mod+Ctrl+U         { move-workspace-down; }
-    Mod+Ctrl+I         { move-workspace-up; }
+    Mod+Ctrl+I         { move-workspace-down; }
+    Mod+Ctrl+U         { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.

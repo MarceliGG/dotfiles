@@ -31,10 +31,11 @@ cmd cdto %{{
 }}
 
 
-set previewer ctpv
-set cleaner ctpvclear
-&ctpv -s $id
-&ctpvquit $id
+# set previewer ctpv
+set previewer ~/.config/scripts/lf-preview.sh
+# set cleaner ctpvclear
+# &ctpv -s $id
+# &ctpvquit $id
 
 
 set hidden

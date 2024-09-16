@@ -4,6 +4,9 @@ add-highlighter global/ number-lines -hlcursor
 # wrapping lines
 add-highlighter global/ wrap
 
+# disable markdown trim
+# remove-hooks global markdown-trim-indent
+
 # STYLING
 # set colorscheme
 colorscheme palenight
@@ -43,10 +46,12 @@ map global user q :q<ret> -docstring "quit"
 map global user ^ ":buffer *debug*<ret>" -docstring "open debug buffer"
 map global user * ":edit ~/.config/kak/kakrc<ret>" -docstring "edit config"
 # saving
-map global normal <c-s> :w<ret>:echo<space>Saved<ret>
-map global insert <c-s> '<a-;>:w<ret><a-;>:echo<space>Saved<ret>'
+map global normal <c-s> :w<ret>
+map global insert <c-s> '<a-;>:w<ret>'
 # make tab insert two spaces
 map global insert <tab> '  '
+# notes
+map global user n "!~/.config/scripts/noter.sh<ret>"
 
 # LSP
 define-command do-format-buffer %{

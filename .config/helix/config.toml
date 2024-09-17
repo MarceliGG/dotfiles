@@ -1,0 +1,30 @@
+theme = "custom-theme"
+
+[keys.normal]
+"C-s" = ":write"
+"C-h" = "jump_view_left"
+"C-j" = "jump_view_down"
+"C-k" = "jump_view_up"
+"C-l" = "jump_view_right"
+
+[keys.insert]
+"C-s" = ":write"
+
+[keys.select]
+"C-s" = ":write"
+
+[keys.normal.space]
+space = "hover"
+w = "no_op"
+k = "no_op"
+"'" = "no_op"
+"S" = "no_op"
+"G" = "no_op"
+"q" = ":q"
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true

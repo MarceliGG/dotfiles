@@ -1,0 +1,5 @@
+@-moz-document domain("synergia.librus.pl") { 
+  .librusPro_grades-table > tbody > tr:hover {
+    background: #ddd !important;
+  }
+}                                                                     

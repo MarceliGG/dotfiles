@@ -21,6 +21,7 @@ k = "no_op"
 "S" = "no_op"
 "G" = "no_op"
 "q" = ":q"
+e = ":format"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -28,3 +29,9 @@ select = "underline"
 
 [editor.soft-wrap]
 enable = true
+
+[editor]
+gutters = ["line-numbers", "diagnostics"]
+
+# [editor.gutters.line-numbers]
+# min-width = 0

@@ -1,13 +1,16 @@
 [window]
 opacity = 0.95
+
 [font]
 normal = { family = "FiraCode Nerd Font", style = "Medium" }
 bold = { family = "FiraCode Nerd Font", style = "Bold" }
 italic = { family = "Liberation Mono", style = "Italic" }
 bold_italic = { family = "Liberation Mono", style = "Bold Italic" }
 size = 11
+
 [colors.primary]
 background = "#292d3e"
+
 [colors.normal]
 yellow = "#ffcb6b"
 magenta = "#c792ea"
@@ -15,13 +18,19 @@ cyan = "#89ddff"
 white = "#d0d0d0"
 blue = "#0D73CC"
 green = "#239C2B"
+
 [colors.bright]
 yellow = "#ffe585"
 magenta = "#e1acff"
 cyan = "#a3f7ff"
 white = "#fefefe"
 green = "#23bC3B"
+
 [keyboard]
 bindings = [
   { key="X",  mods="Control | Shift", action="SpawnNewInstance" }
 ]
+
+[cursor]
+style = {shape = "Beam"}
+thickness = 0.20

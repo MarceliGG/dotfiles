@@ -1,8 +1,8 @@
-[language.pyright]
+[language.python]
 filetypes = ["python"]
 roots = ["venv", "main.py", ".git"]
-command = "pyright-langserver"
-args = ["--stdio"]
+command = "pylsp"
+# args = ["--stdio"]
 
 [language.ccls]
 filetypes = ["c", "cpp"]

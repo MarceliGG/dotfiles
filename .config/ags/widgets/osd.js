@@ -32,9 +32,13 @@ export default () => {
     return Popup.hook(
         audio.speaker,
         () => show(audio.speaker.volume, `${root}/assets/vol/${audio.speaker.is_muted}.svg`),
-        "notify::volume|notify:is_muted",
+        "notify::volume",
     ).hook(
         brightness, 
         () =>show(brightness.screen_value, `${root}/assets/brightness.png`),
+    ).hook(
+        audio.speaker,
+        () => show(audio.speaker.volume, `${root}/assets/vol/${audio.speaker.is_muted}.svg`),
+        "notify::is-muted",
     )
 };

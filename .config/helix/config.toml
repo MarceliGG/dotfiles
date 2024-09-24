@@ -6,6 +6,7 @@ theme = "custom-theme"
 "C-j" = "jump_view_down"
 "C-k" = "jump_view_up"
 "C-l" = "jump_view_right"
+"x" = ["goto_line_start", "select_mode", "goto_line_end_newline"]
 
 [keys.insert]
 "C-s" = ":write"
@@ -14,14 +15,17 @@ theme = "custom-theme"
 "C-s" = ":write"
 
 [keys.normal.space]
-space = "hover"
-w = "no_op"
-k = "no_op"
+"space" = "hover"
+"w" = "no_op"
+"k" = "no_op"
 "'" = "no_op"
 "S" = "no_op"
 "G" = "no_op"
 "q" = ":q"
-e = ":format"
+"f" = ":format"
+"F" = "no_op"
+"e" = "file_picker"
+"E" = "file_picker_in_current_directory"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -32,6 +36,3 @@ enable = true
 
 [editor]
 gutters = ["line-numbers", "diagnostics"]
-
-# [editor.gutters.line-numbers]
-# min-width = 0

@@ -7,3 +7,7 @@ documentFormatting = false
 name = "python"
 language-servers = ["pyright"]
 formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
+
+[[language]]
+name = "markdown"
+formatter = { command = "prettier", args = ["--stdin-filepath", "md.md"] }

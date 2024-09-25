@@ -3,14 +3,14 @@ import Clock from "./widgets/clock.js";
 import Volume from "./widgets/volume.js";
 import Network from "./widgets/network.js";
 import Tray from "./widgets/systray.js";
-import Workspaces from "./widgets/workspaces.js";
 import Notifications from "./widgets/notification_daemon.js";
 import PopupOsd from "./widgets/osd.js";
+import HyprlandWorkspaces from "./widgets/hyprland-workspaces.js";
 
 const Start = Widget.Box({
   name: "start",
   hexpand: true,
-  children: [Workspaces],
+  children: [HyprlandWorkspaces()],
 });
 
 const Center = Widget.Box({
@@ -40,17 +40,6 @@ const Bar = (monitor = 0) =>
     }),
   });
 
-// const Notifications = (monitor = 0) =>
-//   Widget.Window({
-//     monitor,
-//     layer: "overlay",
-//     class_name: "notifications",
-//     name: `notifications${monitor}`,
-//     margins: [4, 0, 0, 0],
-//     anchor: ["top"],
-//     child: NotificationD,
-//   });
-
 const Osd = (monitor = 0) =>
   Widget.Window({
     monitor,
@@ -64,8 +53,6 @@ const Osd = (monitor = 0) =>
       child: PopupOsd(),
     }),
   });
-
-// END TESTING
 
 App.config({
   style: "./style.css",

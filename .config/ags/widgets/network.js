@@ -1,4 +1,4 @@
-const network = await Service.import("network")
+const network = await Service.import("network");
 
 // const WifiLabel = Widget.Label().hook(network, self =>{
 //     print(`wifi: ${network[network.primary]}`)
@@ -18,41 +18,27 @@ const network = await Service.import("network")
 //     children: [Widget.Label("[Disconnected]")]
 // })
 
-export default Widget.Box({
+export default Widget.EventBox({
+          on_primary_click_release: () => App.toggleWindow("network-applet"),
+  child: Widget.Box({
     name: "network",
     children: [
-        Widget.Label().hook(network, self => {
-
-            // // START: Get list of wireless access points and find connected one
-            // const aps = Object.values(network.wifi.access_points.reduce((acc, ap) => {
-            //     if(!acc[ap.ssid]) acc[ap.ssid] = ap;
-            //     if(ap.active) acc[ap.ssid].active = true;
-            //     return acc;
-            // }, {}));
-            // let connected;
-            // if (network.primary === "wifi") {
-            //     const connected_idx = aps.findIndex(ap => ap.active)
-            //     connected = aps[connected_idx]
-            //     aps.splice(connected_idx, 1)
-            // } else connected = {name: "Not Connected To Wifi", iconName: "network-wireless-offline-symbolic"}; 
-            // // END: Get list of wireless access points and find connected one
-            // // DEBUG: print aps
-            // aps.forEach(ap => {
-            //       print(ap.ssid)
-            //       print(ap.active)                               
-            // });           
-
-            const label = network.primary === "wifi" ? 
-                network[network.primary].ssid || "Unknown" : 
-                network.primary ? "[Wired]" : "[Disconnected]"; 
-            self.label = label
-        }),
-         Widget.Icon().hook(network, self => {
-            const icon = network[network.primary || "wifi"]?.icon_name; 
-            self.icon = icon || ""
-        }),
-  ]
-})
+      Widget.Label().hook(network, (self) => {
+        const label =
+          network.primary === "wifi"
+            ? network[network.primary].ssid || "Unknown"
+            : network.primary
+              ? "[Wired]"
+              : "[Disconnected]";
+        self.label = label;
+      }),
+      Widget.Icon().hook(network, (self) => {
+        const icon = network[network.primary || "wifi"]?.icon_name;
+        self.icon = icon || "";
+      }),
+    ],
+  }),
+});
 // Widget.Stack({
 //     name: "network",
 //     children: {

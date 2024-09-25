@@ -16,9 +16,6 @@ function NotificationIcon({ app_entry, app_icon, image }) {
 const Notification = (notif) =>
   Widget.EventBox({
     class_name: "popup",
-    on_primary_click: () => {
-      notif.invoke("View");
-    },
     on_secondary_click: notif.dismiss,
     child: Widget.Box({
       vertical:true,

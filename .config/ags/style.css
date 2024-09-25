@@ -1,6 +1,6 @@
 @define-color mybg rgba(0, 0, 0, 0.8);
 
-.bar {
+#bar {
   font-weight: 600;
   font-family: Inter;
   background: @theme_bg_color;
@@ -46,7 +46,7 @@ button {
   padding: 0;
 }
 
-.bar button {
+#bar button {
   background: none;
   border: none;
 }
@@ -107,4 +107,15 @@ menu * {
 
 .osd .popup label {
   margin-top: 2px;
+}
+
+#network-applet scrolledwindow {
+  min-width: 200px;
+  min-height: 200px;
+}
+#network-applet button {
+  padding: 4px;
+}
+#network-applet button image {
+  margin-right: 4px;
 }

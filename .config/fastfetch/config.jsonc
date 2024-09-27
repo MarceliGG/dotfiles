@@ -1,30 +1,43 @@
-//
-
 {
-    "logo": {
-        "type": "small",
-        "padding": {
-            "left": 2,
-            "right": 2
-        }
+  "logo": {
+    "padding": {
+      "top": 2,
+      "left": 2,
+      "right": 2
+    }
+  },
+  "display": {
+    "size": {
+      "binaryPrefix": "si"
     },
-    "display": {
-      "size": {
-        "binaryPrefix": "si",
-      },
-        "color": "blue",
-        "separator": "  "
-    },
-    "modules": [
-	"kernel",
-	"wm",
-	"terminal",
-	"shell",
-	"cpu",
-	"gpu",
-	{
-	    "type": "memory",
-	    "format": "{2}"
-	},
-    ]
+    "color": "blue",
+    "separator": ": "
+  },
+  "modules": [
+    "title",
+    { "type": "separator", "string": "=" },
+    "host",
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "version",
+    { "type": "separator", "string": "-" },
+    "de",
+    "wm",
+    "theme",
+    "cursor",
+    "terminal",
+    "shell",
+    { "type": "separator", "string": "-" },
+    "display",
+    "cpu",
+    "gpu",
+    "disk",
+    "swap",
+    {
+      "type": "memory",
+      "format": "{2}"
+    }
+  ]
 }

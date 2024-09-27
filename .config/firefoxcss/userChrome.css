@@ -4,41 +4,6 @@
   --toolbar-bgcolor: rgb(50, 50, 70) !important;
 }
 
-/*disable window control buttons*/
-#floorp-tabbar-window-manage-container {
-  display: none;
-}
-
-/* tabs */
-tab.tabbrowser-tab {
-  max-width: 180px !important;
-}
-
-#urlbar-background {
-  /* background: none !important; */
-}
-.tab-background {
-  border-radius: 8px !important;
-}
-
-tabs {
-  padding: 2px 3px !important;
-}
-
-/*fix thin bar near sidebar*/
-#sidebar2-box {
-  border: none !important;
-}
-
-#sidebar2-header {
-  min-height: 1.3rem !important;
-}
-
-#sidebar2-header>.sidebar2-icon {
-  scale: 0.9;
-  margin: 1px !important;
-}
-
 #urlbar-background {
   border-radius: 16px !important;
   background: rgb(40, 40, 60) !important;
@@ -48,22 +13,17 @@ tabs {
   border-radius: 16px !important;
 }
 
-#sidebar-box {
-  background: var(--toolbar-bgcolor) !important;
-}
-
-#navigator-toolbox {
-  border-bottom: none !important;
-}
-
+/* hide siede bar title and top buttons */
 #sidebar-header {
   display: none;
 }
 
+/* hide bar allowing to resize sidebar */
 #sidebar-splitter {
   display: none;
 }
 
+/* disable tab bar */
 #TabsToolbar {
   display: none;
 }

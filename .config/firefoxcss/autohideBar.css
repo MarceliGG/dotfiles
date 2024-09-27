@@ -36,8 +36,9 @@ See the above repository for updates as well as full license text. */
   pointer-events: none;
 }
 
-#navigator-toolbox:hover,
-#navigator-toolbox:focus-within{
+/* I disabled automatic show bar when hovered */
+/* #navigator-toolbox:hover, */
+#navigator-toolbox:focus-within {
   transition-delay: 33ms !important;
   transform: rotateX(0);
   opacity: 1;

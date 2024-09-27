@@ -11,3 +11,15 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 [[language]]
 name = "markdown"
 formatter = { command = "prettier", args = ["--stdin-filepath", "md.md"] }
+
+[[language]]
+name = "javascript"
+formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "js.js"] }
+
+[[language]]
+name = "jsonc"
+formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
+
+[[language]]
+name = "json"
+formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }

@@ -14,8 +14,23 @@ export default (monitor = 0) =>
         vertical: true,
         children: [
           Widget.Button({
+            onClicked: (btn) => {
+              btn.child.children[1].active = !btn.child.children[1].active;
+            },
             child: Widget.Box({
-              children: [],
+              children: [
+                Widget.Label({
+                  label: "Wifi State",
+                  hexpand: true,
+                  hpack: "start",
+                }),
+                Widget.Switch({
+                  onActivate: ({ active }) => (network.wifi.enabled = active),
+                  setup: (self) => {
+                    self.active = network.wifi.enabled;
+                  },
+                }),
+              ],
             }),
           }),
           Widget.Box({
@@ -32,24 +47,25 @@ export default (monitor = 0) =>
             return acc;
           }, {}),
         );
-        let connected;
+        // let connected;
         if (network.primary === "wifi") {
           const con_idx = aps.findIndex((ap) => ap.active);
-          connected = aps[con_idx] || {
-            ssid: "Not connected to wifi",
-            iconName: "network-wireless-offline-symbolic",
-          };
+          // connected = aps[con_idx] || {
+          //   ssid: "Not connected to wifi",
+          //   iconName: "network-wireless-offline-symbolic",
+          // };
           aps.splice(con_idx, 1);
-        } else
-          connected = {
-            ssid: "Not connected to wifi",
-            iconName: "network-wireless-offline-symbolic",
-          };
+        }
+        // connected = {
+        //   ssid: "Not connected to wifi",
+        //   iconName: "network-wireless-offline-symbolic",
+        // };
         // END: Get list of wireless access points and find connected one
-        self.children[0].child.children = [
-          Widget.Icon(connected["iconName"]),
-          Widget.Label(connected["ssid"]),
-        ];
+        // self.children[0].child.children = [
+        //   Widget.Icon(connected["iconName"]),
+        //   Widget.Label(connected["ssid"]),
+        // ];
+        else self.children[0].child;
         self.children[1].children = aps.map((ap) =>
           Widget.Button({
             on_clicked: () =>

@@ -10,7 +10,7 @@ import HyprlandWorkspaces from "./widgets/hyprland-workspaces.js";
 const Start = Widget.Box({
   name: "start",
   hexpand: true,
-  children: [HyprlandWorkspaces()],
+  children: [HyprlandWorkspaces],
 });
 
 const Center = Widget.Box({

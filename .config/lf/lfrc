@@ -30,6 +30,7 @@ cmd cdto %{{
   lf -remote "send cd \"$ans\""
 }}
 
+set dirpreviews
 
 # set previewer ctpv
 set previewer ~/.config/scripts/lf-preview.sh

@@ -2,4 +2,15 @@
   .librusPro_grades-table > tbody > tr:hover {
     background: #ddd !important;
   }
-}                                                                     
+}
+
+@-moz-document url("https://synergia.librus.pl/przegladaj_plan_lekcji") { 
+  #page {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+  }
+  .plan-lekcji .line0 {
+    display: none;
+  }
+}

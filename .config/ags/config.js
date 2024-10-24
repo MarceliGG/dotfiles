@@ -6,23 +6,25 @@ import Tray from "./widgets/systray.js";
 import Notifications from "./widgets/notification_daemon.js";
 import PopupOsd from "./widgets/osd.js";
 import HyprlandWorkspaces from "./widgets/hyprland-workspaces.js";
+import NetworkApplet from "./widgets/network-applet.js";
 
 const Start = Widget.Box({
   name: "start",
-  hexpand: true,
+  vexpand: true,
   children: [HyprlandWorkspaces],
 });
 
 const Center = Widget.Box({
   name: "center",
-  hpack: "center",
+  vpack: "center",
   children: [Clock],
 });
 
 const End = Widget.Box({
+  vertical: true,
   name: "end",
-  hpack: "end",
-  hexpand: true,
+  vpack: "end",
+  vexpand: true,
   children: [Tray, Battery, Volume, Network],
 });
 
@@ -30,10 +32,10 @@ const Bar = (monitor = 0) =>
   Widget.Window({
     exclusivity: "exclusive",
     monitor,
-    class_name: "bar",
-    name: `bar${monitor}`,
-    anchor: ["top", "left", "right"],
+    name: "bar",
+    anchor: ["top", "right", "bottom"],
     child: Widget.CenterBox({
+      vertical: true,
       startWidget: Start,
       centerWidget: Center,
       endWidget: End,
@@ -56,5 +58,5 @@ const Osd = (monitor = 0) =>
 
 App.config({
   style: "./style.css",
-  windows: [Bar(), Notifications(), Osd()],
+  windows: [Bar(), Notifications(), Osd(), NetworkApplet()],
 });

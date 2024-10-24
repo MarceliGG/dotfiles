@@ -4,15 +4,18 @@ import { execAsync, notify } from "resource:///com/github/Aylur/ags/utils.js";
 export default (monitor = 0) =>
   Widget.Window({
     monitor,
-    name: `network-applet`,
-    // className: "network-applet",
+    name: "network-applet",
     visible: false,
-    anchor: ["top", "right"],
+    anchor: ["bottom", "right"],
     child: Widget.Scrollable({
       hscroll: "never",
       child: Widget.Box({
         vertical: true,
         children: [
+            Widget.Box({
+              className: "current",
+              children: [],
+            }),
           Widget.Button({
             onClicked: (btn) => {
               btn.child.children[1].active = !btn.child.children[1].active;
@@ -47,26 +50,25 @@ export default (monitor = 0) =>
             return acc;
           }, {}),
         );
-        // let connected;
+        let connected;
         if (network.primary === "wifi") {
           const con_idx = aps.findIndex((ap) => ap.active);
-          // connected = aps[con_idx] || {
-          //   ssid: "Not connected to wifi",
-          //   iconName: "network-wireless-offline-symbolic",
-          // };
+          connected = aps[con_idx] || {
+            ssid: " [Disconnected]",
+            iconName: "network-wireless-offline-symbolic",
+          };
           aps.splice(con_idx, 1);
-        }
-        // connected = {
-        //   ssid: "Not connected to wifi",
-        //   iconName: "network-wireless-offline-symbolic",
-        // };
+        } else
+          connected = {
+            ssid: " [Not Using WiFi]",
+            iconName: "network-wireless-offline-symbolic",
+          };
         // END: Get list of wireless access points and find connected one
-        // self.children[0].child.children = [
-        //   Widget.Icon(connected["iconName"]),
-        //   Widget.Label(connected["ssid"]),
-        // ];
-        else self.children[0].child;
-        self.children[1].children = aps.map((ap) =>
+        self.children[0].children = [
+          Widget.Icon(connected["iconName"]),
+          Widget.Label(" " + connected["ssid"]),
+        ];
+        self.children[2].children = aps.map((ap) =>
           Widget.Button({
             on_clicked: () =>
               execAsync(`nmcli device wifi connect ${ap.ssid}`)

@@ -13,4 +13,10 @@
   .plan-lekcji .line0 {
     display: none;
   }
+  div.text {
+    text-wrap: wrap;
+  }
+  div.text > b {
+    text-wrap: nowrap;
+  }
 }

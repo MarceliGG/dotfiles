@@ -1,7 +1,7 @@
 @import url("autohideBar.css");
 
 :root {
-  --toolbar-bgcolor: rgb(50, 50, 70) !important;
+  --toolbar-bgcolor: #292D3E !important;
 }
 
 #urlbar-background {

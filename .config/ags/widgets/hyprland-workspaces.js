@@ -10,6 +10,9 @@ const Workspace = (ws) =>
   });
 
 export default Widget.Box({
+  vertical: true,
+  hexpand: true,
+  hpack: "center",
   name: "workspaces",
   children: [
     Workspace(1),

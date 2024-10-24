@@ -7,11 +7,6 @@ zstyle ':autocomplete:' add-space ''
 
 setopt globdots
 
-bindkey -v '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
-
-
 # History
 HISTFILE=~/.zshhist
 HISTSIZE=5000
@@ -40,34 +35,49 @@ alias mime="xdg-mime query filetype"
 
 
 # BINDS
-bindkey -v
-KEYTIMEOUT=1
+source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
 
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
-# Make vi mode closer to kakoune/helix binds
-bindkey -a 'x' visual-line-mode
-bindkey -a 'd' vi-delete-char
-bindkey -M visual 'x' visual-line-mode
-bindkey -M visual 'd' vi-delete
+# ctrl + h,j,k,l zsh autocomplete binds
+bindkey '^[l' menu-select
+bindkey '^[h' menu-select
+bindkey '^[j' menu-select
+bindkey '^[k' menu-select
+bindkey -M menuselect '^[l' forward-char
+bindkey -M menuselect '^[h' backward-char
+bindkey -M menuselect '^[j' down-history
+bindkey -M menuselect '^[k' up-history
 
-# Make cursor change style
-function zle-keymap-select () {
-    case $KEYMAP in
-        vicmd) echo -ne '\e[2 q';;      # block
-        viins|main) echo -ne '\e[6 q';; # beam
-    esac
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[6 q"
-}
-zle -N zle-line-init
+# bindkey -v
+# KEYTIMEOUT=1
+
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -v '^?' backward-delete-char
+
+# # Make vi mode closer to kakoune/helix binds
+# bindkey -a 'x' visual-line-mode
+# bindkey -a 'd' vi-delete-char
+# bindkey -M visual 'x' visual-line-mode
+# bindkey -M visual 'd' vi-delete
+
+# # Make cursor change style
+# function zle-keymap-select () {
+#     case $KEYMAP in
+#         vicmd) echo -ne '\e[2 q';;      # block
+#         viins|main) echo -ne '\e[6 q';; # beam
+#     esac
+# }
+# zle -N zle-keymap-select
+# zle-line-init() {
+#     # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#     echo -ne "\e[6 q"
+# }
+# zle -N zle-line-init
 
 
 # PROMPT
@@ -92,8 +102,12 @@ del-prompt-accept-line() {
 zle -N del-prompt-accept-line
 bindkey "^M" del-prompt-accept-line
 
+title-change() {
+  echo "\033]0;$PWD"
+}
+
 setopt prompt_subst
-PROMPT='%F{red}returned %F{yellow}%? %F{red}at %F{yellow}%D{%H:%M:%S}
+PROMPT='$(title-change)%F{red}returned %F{yellow}%? %F{red}at %F{yellow}%D{%H:%M:%S}
 %F{blue} %d $(git_branch_name)
 %F{yellow}→%f '
 

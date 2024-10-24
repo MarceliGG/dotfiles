@@ -37,7 +37,12 @@ const SysTrayItem = (item) =>
       ),
   });
 
-export default Widget.Box({ name: "tray" }).bind(
+export default Widget.Box({
+  name: "tray",
+  hexpand: true,
+  hpack: "center",
+  vertical: true,
+}).bind(
   "children",
   systemtray,
   "items",

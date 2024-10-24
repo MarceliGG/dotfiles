@@ -21,17 +21,19 @@ const network = await Service.import("network");
 export default Widget.EventBox({
           on_primary_click_release: () => App.toggleWindow("network-applet"),
   child: Widget.Box({
+  hexpand: true,
+  hpack: "center",
     name: "network",
     children: [
-      Widget.Label().hook(network, (self) => {
-        const label =
-          network.primary === "wifi"
-            ? network[network.primary].ssid || "Unknown"
-            : network.primary
-              ? "[Wired]"
-              : "[Disconnected]";
-        self.label = label;
-      }),
+      // Widget.Label().hook(network, (self) => {
+      //   const label =
+      //     network.primary === "wifi"
+      //       ? network[network.primary].ssid || "Unknown"
+      //       : network.primary
+      //         ? "[Wired]"
+      //         : "[Disconnected]";
+      //   self.label = label;
+      // }),
       Widget.Icon().hook(network, (self) => {
         const icon = network[network.primary || "wifi"]?.icon_name;
         self.icon = icon || "";

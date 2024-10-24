@@ -61,8 +61,8 @@ export default (monitor=0) => {
   layer: "overlay",
   class_name: "notifications",
   name: `notifications${monitor}`,
-  margins: [4, 0, 0, 0],
-  anchor: ["top"],
+  margins: [4, 4, 0, 0],
+  anchor: ["top", "right"],
   child: Widget.Box({
   vertical: true,
   css: "min-width: 2px; min-height: 2px;",

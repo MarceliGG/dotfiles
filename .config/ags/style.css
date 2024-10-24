@@ -20,17 +20,14 @@ window {
 
 #battery > image {
   font-size: 2em;
-  margin-left: 4px;
 }
 
 #network image {
   font-size: 1.8em;
-  margin-left: 4px;
 }
 
 #volume > image {
   font-size: 1.6em;
-  margin-left: 4px;
 }
 
 label {
@@ -53,7 +50,7 @@ menu * {
 }
 
 #tray > button {
-  margin-left: 4px;
+  margin-top: 4px;
 }
 
 #workspaces > button {

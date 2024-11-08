@@ -1,21 +1,67 @@
 @define-color mybg rgba(0, 0, 0, 0.8);
 
-#bar {
-  font-weight: 600;
-  font-family: Inter;
-  background: @theme_bg_color;
-  color: @theme_fg_color;
-  border-radius: 0;
-}
-
 window {
   font-size: 16px;
 }
 
+#calendar,
+#network-applet,
+#daemon-controller-window {
+  border-radius: 14px;
+  border: 2px @theme_selected_bg_color solid;
+  min-width: 150px;
+  min-height: 10px;
+}
+
+
+#network-applet scrolledwindow {
+  min-width: 200px;
+  min-height: 200px;
+  margin: 5px;  
+}
+
+#network-applet button,
+#network-applet .current {
+  padding: 4px;
+}
+
+#network-applet button image {
+  margin-right: 4px;
+}
+
+#calendar box,
+#daemon-controller-window box {
+  margin: 5px;  
+}
+
+#calendar calendar {
+  border-radius: 10px;  
+}
+
+#daemon-controller-window button {
+  padding: 2px;
+  margin: 1px 0;
+}
+
+#bar {
+  font-weight: 600;
+  font-family: Inter;
+  /* background: @theme_bg_color; */
+  /* color: @theme_fg_color; */
+  border-radius: 0;
+  border: none;
+}
+
+
+#daemon-controller {
+  font-size: 1.2em;
+}
+
+
 #network,
 #battery,
 #volume {
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
 #battery > image {
@@ -23,7 +69,7 @@ window {
 }
 
 #network image {
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 
 #volume > image {
@@ -51,6 +97,7 @@ menu * {
 
 #tray > button {
   margin-top: 4px;
+  font-size: 1.2em;
 }
 
 #workspaces > button {
@@ -105,14 +152,3 @@ menu * {
   margin-top: 2px;
 }
 
-#network-applet scrolledwindow {
-  min-width: 200px;
-  min-height: 200px;
-}
-#network-applet button,
-#network-applet .current {
-  padding: 4px;
-}
-#network-applet button image {
-  margin-right: 4px;
-}

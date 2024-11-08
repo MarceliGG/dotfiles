@@ -1,0 +1,184 @@
+#compdef ydotool
+# _ydotool_logging() {
+
+#     local params additional second
+#     second=$words[2]
+
+#     if [ ! -z $second ]; then
+#         return
+#     fi
+
+#     params=(
+#       "on"
+#       "off"
+#     )
+
+#     additional=(
+#       "low"
+#       "medium"
+#       "high"
+#       "full"
+#     )
+
+#     _describe -t params 'on/off' params
+#     _describe -t additional 'level' additional
+# }
+
+_ydotool_click() {
+	local buttons
+	buttons=(
+		"0x00:chose left(do nothing)"
+		"0x01:chose right(do nothing)"
+		"0x02:chose middle(do nothing)"
+		"0x03:chose side(do nothing)"
+		"0x04:chose extr(do nothing)"
+		"0x05:chose forward(do nothing)"
+		"0x06:chose back(do nothing)"
+		"0x07:chose task(do nothing)"
+		"0x40:left down"
+		"0x41:right down"
+		"0x42:middle down"
+		"0x43:side down"
+		"0x44:extr down"
+		"0x45:forward down"
+		"0x46:back down"
+		"0x47:task down"
+		"0x80:left up"
+		"0x81:right up"
+		"0x82:middle up"
+		"0x83:side up"
+		"0x84:extr up"
+		"0x85:forward up"
+		"0x86:back up"
+		"0x87:task up"
+		"0xC0:left click"
+		"0xC1:right click"
+		"0xC2:middle click"
+		"0xC3:side click"
+		"0xC4:extr click"
+		"0xC5:forward click"
+		"0xC6:back click"
+		"0xC7:task click"
+		"00:chose left(do nothing)"
+		"01:chose right(do nothing)"
+		"02:chose middle(do nothing)"
+		"03:chose side(do nothing)"
+		"04:chose extr(do nothing)"
+		"05:chose forward(do nothing)"
+		"06:chose back(do nothing)"
+		"07:chose task(do nothing)"
+		"40:left down"
+		"41:right down"
+		"42:middle down"
+		"43:side down"
+		"44:extr down"
+		"45:forward down"
+		"46:back down"
+		"47:task down"
+		"80:left up"
+		"81:right up"
+		"82:middle up"
+		"83:side up"
+		"84:extr up"
+		"85:forward up"
+		"86:back up"
+		"87:task up"
+		"C0:left click"
+		"C1:right click"
+		"C2:middle click"
+		"C3:side click"
+		"C4:extr click"
+		"C5:forward click"
+		"C6:back click"
+		"C7:task click"
+	)
+
+    _describe -t buttons 'Mouse Buttons' buttons
+}
+
+_ydotool_type() {
+	local -a opts
+
+	opts=(
+ 		'(-d --key-delay)'{-d,--key-delay=}'[Delay N milliseconds between keys]:number'
+ 		'(-H --key-hold)'{-H,--key-hold=}'[Hold each key for N milliseconds]:number'
+ 		'(-D --next-delay)'{-D,--next-delay=}'[Delay N milliseconds between command line strings]:number'
+ 		'(-f --file)'{-f,--file=}'[Specify a file, the contents of which will be be typed as if passed as an argument]:filename'
+ 		'(-e --escape)'{-e,--escape=}'[Escape enable (1) or disable (0)]:bool'
+	)
+	
+	_arguments "$opts[@]"
+}
+
+_ydotool_mousemove() {
+	local -a opts
+
+	opts=(
+ 		'(-w --wheel)'{-w,--wheel}'[Move mouse wheel relatively]'
+ 		'(-a --absolute)'{-a,--absolute}'[Use absolute position, not applicable to wheel]'
+ 		'(-x --xpos)'{-x,--xpos}'[X position]:number'
+ 		'(-y --ypos)'{-y,--ypos}'[Y position]:number'
+	)
+	
+	_arguments "$opts[@]"
+}
+
+_ydotool_key() {
+	local -a opts
+
+	opts=(
+ 		'(-d --key-delay)'{-d,--key-delay=}'[Delay N milliseconds between key events]:number'
+	)
+	
+	_arguments "$opts[@]"
+}
+
+_ydotool() {
+    local curcontext="$curcontext" ret=1
+    local -a state line commands
+
+    commands=(
+      	"click:click mouse buttons"
+		"mousemove:move mouse pointer or wheel"
+      	"type:type string"
+		"key:emit key events"
+		"debug:display debug info"
+    )
+
+    _arguments -C -s -S -n \
+        '1:cmd:->cmds' \
+        '*:: :->args' && ret=0
+
+    case "$state" in
+      (cmds)
+          _describe -t commands 'commands' commands
+      ;;
+      (args)
+         local cmd
+         cmd=$words[1]
+         case "$cmd" in
+             (click)
+                 _ydotool_click && ret=0
+             ;;
+             (type)
+                 _ydotool_type && ret=0
+             ;;
+             (mousemove)
+                 _ydotool_mousemove && ret=0
+             ;;
+             (key)
+                 _ydotool_key && ret=0
+             ;;
+             (*)
+                 _default && ret=0
+             ;;
+         esac
+      ;;
+      (*)
+      ;;
+    esac
+
+    return ret
+}
+
+_ydotool

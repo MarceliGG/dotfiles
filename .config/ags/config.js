@@ -7,6 +7,9 @@ import Notifications from "./widgets/notification_daemon.js";
 import PopupOsd from "./widgets/osd.js";
 import HyprlandWorkspaces from "./widgets/hyprland-workspaces.js";
 import NetworkApplet from "./widgets/network-applet.js";
+import Calendar from "./widgets/calendar.js";
+import Controller from "./widgets/daemon_controller.js";
+import ControllerWindow from "./widgets/daemon_controller_window.js";
 
 const Start = Widget.Box({
   name: "start",
@@ -25,7 +28,7 @@ const End = Widget.Box({
   name: "end",
   vpack: "end",
   vexpand: true,
-  children: [Tray, Battery, Volume, Network],
+  children: [Tray, Controller, Battery, Volume, Network],
 });
 
 const Bar = (monitor = 0) =>
@@ -58,5 +61,5 @@ const Osd = (monitor = 0) =>
 
 App.config({
   style: "./style.css",
-  windows: [Bar(), Notifications(), Osd(), NetworkApplet()],
+  windows: [Bar(), Notifications(), Osd(), NetworkApplet(), Calendar(), ControllerWindow()],
 });

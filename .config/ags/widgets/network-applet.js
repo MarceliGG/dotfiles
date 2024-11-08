@@ -7,6 +7,7 @@ export default (monitor = 0) =>
     name: "network-applet",
     visible: false,
     anchor: ["bottom", "right"],
+    margins: [0, 2, 2, 0],
     child: Widget.Scrollable({
       hscroll: "never",
       child: Widget.Box({
@@ -71,7 +72,7 @@ export default (monitor = 0) =>
         self.children[2].children = aps.map((ap) =>
           Widget.Button({
             on_clicked: () =>
-              execAsync(`nmcli device wifi connect ${ap.ssid}`)
+              execAsync(`nmcli device wifi connect "${ap.ssid}"`)
                 .catch((e) => {
                   notify({
                     summary: "Network",
@@ -79,7 +80,7 @@ export default (monitor = 0) =>
                     actions: {
                       "Connect using nmtui": () =>
                         execAsync(
-                          `alacritty -e nmtui connect ${ap.ssid}`,
+                          `alacritty -e nmtui connect "${ap.ssid}"`,
                         ).catch(print),
                     },
                   });

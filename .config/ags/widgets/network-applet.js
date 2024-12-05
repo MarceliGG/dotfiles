@@ -1,5 +1,4 @@
 const network = await Service.import("network");
-import { execAsync, notify } from "resource:///com/github/Aylur/ags/utils.js";
 
 export default (monitor = 0) =>
   Widget.Window({
@@ -72,14 +71,14 @@ export default (monitor = 0) =>
         self.children[2].children = aps.map((ap) =>
           Widget.Button({
             on_clicked: () =>
-              execAsync(`nmcli device wifi connect "${ap.ssid}"`)
+              Utils.execAsync(`nmcli device wifi connect "${ap.ssid}"`)
                 .catch((e) => {
-                  notify({
+                  Utils.notify({
                     summary: "Network",
                     body: e,
                     actions: {
                       "Connect using nmtui": () =>
-                        execAsync(
+                        Utils.execAsync(
                           `alacritty -e nmtui connect "${ap.ssid}"`,
                         ).catch(print),
                     },

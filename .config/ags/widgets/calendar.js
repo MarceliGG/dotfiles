@@ -1,5 +1,5 @@
 export default (monitor = 0) =>
-  Widget.Window({
+  new Widget.Window({
     monitor,
     name: "calendar",
     visible: false,

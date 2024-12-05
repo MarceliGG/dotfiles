@@ -35,21 +35,24 @@ alias doas='doas --'
 alias mime="xdg-mime query filetype"
 
 
-# BINDS
+# KEYBINDS
 source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
 
+# make tab complete with zsh-autocomplete
 bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 
-# alt + h,j,k,l zsh autocomplete binds
+# alt + h,j,k,l zsh-autocomplete binds
 bindkey '^[l' menu-select
 bindkey '^[h' menu-select
 bindkey '^[j' menu-select
-bindkey '^[k' menu-select
+bindkey '^[k' history-search-backward
 bindkey -M menuselect '^[l' forward-char
 bindkey -M menuselect '^[h' backward-char
 bindkey -M menuselect '^[j' down-history
 bindkey -M menuselect '^[k' up-history
+# Enter -> submit cmd from completions menu
+# bindkey -M menuselect '\r' .accept-line
 
 
 # PROMPT
@@ -60,28 +63,31 @@ function git_branch_name()
   then
     :
   else
-    echo '%F{yellow}on %F{red} '$branch''
+    echo '%F{red} '$branch''
   fi
 }
 
-del-prompt-accept-line() {
-    OLD_PROMPT="$PROMPT"
-    PROMPT="%F{yellow}→%f "
-    zle reset-prompt
-    PROMPT="$OLD_PROMPT"
-    zle accept-line
-}
-zle -N del-prompt-accept-line
-bindkey "^M" del-prompt-accept-line
+# del-prompt-accept-line() {
+#     OLD_PROMPT="$PROMPT"
+#     PROMPT="%F{yellow}→%f "
+#     zle reset-prompt
+#     PROMPT="$OLD_PROMPT"
+#     zle accept-line
+# }
+# zle -N del-prompt-accept-line
+# bindkey "^M" del-prompt-accept-line
 
 title-change() {
   echo "\033]0;$PWD"
 }
 
 setopt prompt_subst
-PROMPT='$(title-change)%F{red}returned %F{yellow}%? %F{red}at %F{yellow}%D{%H:%M:%S}
-%F{blue} %d $(git_branch_name)
-%F{yellow}→%f '
+# PROMPT='$(title-change)%F{red}returned %F{yellow}󰘦 %? %F{red}at %F{yellow} %D{%H:%M:%S}
+# %F{green}in %F{blue} %d $(git_branch_name)
+# %F{yellow}→%f '
+PROMPT='
+$(title-change)%F{yellow}󰘦 %? %F{green} %D{%H:%M:%S} %F{blue} %d $(git_branch_name)
+%F{cyan}→%f '
 
 # Wlecome scritp
 sh ~/.config/scripts/welcome_shell/run.sh

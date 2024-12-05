@@ -1,4 +1,7 @@
-@import url("autohideBar.css");
+/* @import url("autohideBar.css"); */
+#navigator-toolbox {
+  border: none !important;
+}
 
 :root {
   --toolbar-bgcolor: #292D3E !important;
@@ -9,7 +12,7 @@
   background: rgb(40, 40, 60) !important;
 }
 
-#identity-icon-box{
+#identity-icon-box {
   border-radius: 16px !important;
 }
 

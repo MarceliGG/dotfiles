@@ -1,4 +1,4 @@
-theme = "custom-theme"
+theme = "custom-amberwood"
 
 [keys.normal]
 "C-s" = ":write"

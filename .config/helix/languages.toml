@@ -10,6 +10,7 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 
 [[language]]
 name = "markdown"
+file-types = ["md", "MD"]
 formatter = { command = "prettier", args = ["--stdin-filepath", "md.md"] }
 
 [[language]]

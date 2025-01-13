@@ -1,0 +1,6 @@
+inherits = "amberwood"
+"ui.background" = {}
+"ui.statusline" = { bg = "#222222" }
+"ui.cursor.normal" = { bg = "#8b8bab"}
+"ui.cursor.insert" = { bg = "#8b8bdb"}
+"ui.cursor.select" = { bg = "#8babab"}

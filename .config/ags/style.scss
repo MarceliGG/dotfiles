@@ -1,0 +1,131 @@
+$bg: #212223;
+$bga: #414243;
+$accent: #378DF7;
+$radius: 12px;
+$padd: 2px;
+$size: 14px;
+
+* {
+  color: #f1f1f1;
+  font-size: 15px;
+}
+
+.island-layout > box {
+  margin: 4px 0;
+}
+
+.island-layout > .status {
+  padding-top: $padd * 2;
+  padding-bottom: $padd * 2;
+}
+
+.island-layout > .network {
+  padding-top: $padd * 3;
+  icon {
+    /* icon seams un centered otherwise (?) */
+    margin-left: 1px;
+  }
+}
+
+.island-layout > box,
+.segment {
+  min-width: $size + $padd * 8;
+  background: $bg;
+  border-radius: calc($radius + $padd*2);
+  padding: $padd;
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.workspaces {
+  button {
+    margin: $padd;
+    border-radius: $radius;
+    padding: $padd;
+    min-height: $size;
+    min-width: $size;
+    background: $bga;
+    border: $bga 2px solid;
+  }
+  button.focused {
+    border: $accent 2px solid;
+    /* background: $accent; */
+    /* min-height: calc($size * 1.7); */
+  }
+}
+
+icon {
+  font-size: 25px;
+}
+
+.icon {
+  font-size: 28px;
+}
+
+.battery {
+  /* .icon.charging {
+    color: $accent;
+  } */
+}
+
+.status {
+  margin-top: $padd * 2;
+  /* border-top: 1px white solid; */
+}
+
+.Notifications {
+  eventbox {
+    button {
+      background: $bga;
+      border-radius: $radius;
+      margin: 0 $padd;
+    }
+    
+    > box {
+      margin: 4px;
+      background: $bg;
+      padding: $padd * 2 $padd;
+      min-width: 300px;
+      border-radius: $radius + $padd*2;
+      border: 2px solid $bga;
+    }
+
+    .image {
+      min-height: 80px;
+      min-width: 80px;
+      font-size: 80px;
+      margin: 8px;
+    }
+
+    .main {
+      padding-left: $padd *2;
+      margin-bottom: $padd;
+      .header {
+        .summary {
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  eventbox.critical > box {
+    border-color: $accent;
+  }
+}
+
+.clock icon {
+  margin-left: $padd;
+}
+
+box > .tray {
+  padding: $padd * 2 $padd;
+  /* background: red; */
+  icon {
+    font-size: 22px;
+    margin: $padd 0;
+  }
+}

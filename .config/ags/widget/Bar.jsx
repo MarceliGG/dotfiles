@@ -75,6 +75,7 @@ export default function Bar(monitor) {
 
     return <window
         className="Bar"
+        namespace="ags-bar"
         gdkmonitor={monitor}
         exclusivity={Astal.Exclusivity.EXCLUSIVE}
         margin-top={margin}

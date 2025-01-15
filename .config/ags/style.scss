@@ -129,3 +129,31 @@ box > .tray {
     margin: $padd 0;
   }
 }
+
+#launcher {
+  background: none;
+  .main {
+    padding: $padd * 2;
+    padding-bottom: $padd * 6;
+    background: $bg;
+    border-radius: $radius + $padd * 2;
+
+    button:hover,
+    button:focus {
+      border: $padd solid $accent;
+    }
+    button {
+      border: $padd solid $bga;
+    }
+    button,
+    entry {
+      border-radius: $radius;
+      background: $bga;
+      outline: none;
+    }
+    entry {
+      margin-bottom: $padd * 4;
+      border: none;
+    }
+  }
+}

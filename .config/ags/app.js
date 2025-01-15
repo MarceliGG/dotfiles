@@ -2,19 +2,26 @@ import { App } from "astal/gtk3";
 import style from "./style.scss";
 import Bar from "./widget/Bar";
 import Notifications from "./widget/Notifications";
+import Launcher from "./widget/Launcher";
 
 App.start({
   css: style,
-  instanceName: "js",
+  instanceName: "shell",
   requestHandler(request, res) {
-    print(request);
-    res("ok");
+    if (request == "launcher") {
+      App.get_window("launcher").show()
+      res("ok");
+    } else {
+      print(request);
+      res("unknown command");
+    }
   },
   main: () =>
     App.get_monitors().forEach((m) => {
       if (m.model == "0x08E2") {
         Bar(m);
         Notifications(m);
+        Launcher(m);
       }
     }),
 });

@@ -155,6 +155,8 @@ export default function Notifications(monitor) {
 
   return <window
     gdkmonitor={monitor}
+    namespace="ags-notifd"
+    layer={Astal.Layer.OVERLAY}
     anchor={RIGHT}
     exclusivity={Astal.Exclusivity.NORMAL}
     className="Notifications">

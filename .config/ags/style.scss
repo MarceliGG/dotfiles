@@ -157,3 +157,22 @@ box > .tray {
     }
   }
 }
+
+.Osd {
+  box {
+    background: $bg;
+    border-radius: 24px;
+    padding: 10px;
+    trough {
+      padding: 0;
+      margin: 8px;
+      block {
+        border-radius: 5px;
+        border: none;
+      }
+      block.filled {
+        background: white;
+      }
+    }
+  }
+}

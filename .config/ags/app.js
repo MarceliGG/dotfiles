@@ -3,6 +3,7 @@ import style from "./style.scss";
 import Bar from "./widget/Bar";
 import Notifications from "./widget/Notifications";
 import Launcher from "./widget/Launcher";
+import Osd from "./widget/Osd";
 
 App.start({
   css: style,
@@ -22,6 +23,7 @@ App.start({
         Bar(m);
         Notifications(m);
         Launcher(m);
+        Osd(m);
       }
     }),
 });

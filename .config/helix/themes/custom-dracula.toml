@@ -1,0 +1,5 @@
+inherits = "dracula"
+"ui.background" = {}
+"ui.statusline.insert" = { fg = "green", modifiers = ["bold"] }
+"ui.statusline.normal" = { fg = "purple", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "cyan", modifiers = ["bold"] }

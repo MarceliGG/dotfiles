@@ -3,24 +3,33 @@ command = "pyright-langserver"
 args = ["--stdio"]
 documentFormatting = false
 
+[language-server.jdtls]
+args = ["-Djava.import.generatesMetadataFilesAtProjectRoot=false"]
+
+[language-server.hx-lsp]
+command = "hx-lsp"
+
 [[language]]
 name = "python"
 language-servers = ["pyright"]
 formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 
-[[language]]
-name = "markdown"
-file-types = ["md", "MD"]
-formatter = { command = "prettier", args = ["--stdin-filepath", "md.md"] }
+# [[language]]
+# name = "jsonc"
+# formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
 
-[[language]]
-name = "javascript"
-formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "js.js"] }
+# [[language]]
+# name = "json"
+# formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
 
-[[language]]
-name = "jsonc"
-formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
+# [[language]]
+# name = "html"
+# language-servers = [ "vscode-html-language-server", "hx-lsp" ]
 
-[[language]]
-name = "json"
-formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
+# [[language]]
+# name = "cpp"
+# language-servers = [ "clangd", "hx-lsp" ]
+
+# [[language]]
+# name = "c"
+# language-servers = [ "clangd", "hx-lsp" ]

@@ -4,6 +4,10 @@ source $HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 setopt interactive_comments
 # show dotfiles
 setopt globdots
+# cd automaticly if path typed
+setopt autocd
+
+zstyle ':autocomplete:*' delay 0.2
 
 # custom completions
 FPATH="$HOME/.config/zsh-completions:$FPATH"
@@ -51,8 +55,6 @@ bindkey -M menuselect '^[l' forward-char
 bindkey -M menuselect '^[h' backward-char
 bindkey -M menuselect '^[j' down-history
 bindkey -M menuselect '^[k' up-history
-# Enter -> submit cmd from completions menu
-# bindkey -M menuselect '\r' .accept-line
 
 
 # PROMPT
@@ -67,15 +69,25 @@ function git_branch_name()
   fi
 }
 
-# del-prompt-accept-line() {
-#     OLD_PROMPT="$PROMPT"
-#     PROMPT="%F{yellow}→%f "
-#     zle reset-prompt
-#     PROMPT="$OLD_PROMPT"
-#     zle accept-line
-# }
-# zle -N del-prompt-accept-line
-# bindkey "^M" del-prompt-accept-line
+# add or remove $1 in front of command buffer
+toggle_prefix() {
+  [[ ! $BUFFER =~ "$1 .*" ]] && BUFFER="$1 $BUFFER" || BUFFER="${BUFFER:((${#1}+1))}"
+  zle end-of-line
+}
+
+prefix_doas() {
+  toggle_prefix doas
+}
+
+prefix_edit() {
+  toggle_prefix e
+}
+
+zle -N prefix_doas
+zle -N prefix_edit
+
+bindkey "^b" prefix_doas
+bindkey "^e" prefix_edit
 
 title-change() {
   echo "\033]0;$PWD"
@@ -98,5 +110,6 @@ ZSH_HIGHLIGHT_STYLES[path]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=white'
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+
 
 PATH="$PATH:$HOME/.config/scripts/path"

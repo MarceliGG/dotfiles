@@ -1,4 +1,4 @@
-theme = "custom-amberwood"
+theme = "custom-dracula"
 
 [keys.normal]
 "C-s" = ":write"
@@ -7,11 +7,15 @@ theme = "custom-amberwood"
 "C-k" = "jump_view_up"
 "C-l" = "jump_view_right"
 "x" = ["goto_line_start", "select_mode", "goto_line_end_newline"]
+tab = "move_parent_node_end"
+S-tab = "move_parent_node_start"
 
 [keys.insert]
 "C-s" = ":write"
 
 [keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"
 "C-s" = ":write"
 
 [keys.normal.space]
@@ -27,12 +31,40 @@ theme = "custom-amberwood"
 "e" = "file_picker"
 "E" = "file_picker_in_current_directory"
 
+[editor.statusline]
+left = ["mode", "file-name", "file-modification-indicator", "read-only-indicator", "spinner"]
+right = ["total-line-numbers", "diagnostics", "selections", "position"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
 [editor.cursor-shape]
 insert = "bar"
-select = "underline"
+# select = "underline"
 
 [editor.soft-wrap]
 enable = true
 
+[editor.lsp]
+# display-inlay-hints	= true
+display-messages = true
+
 [editor]
+color-modes = true
+end-of-line-diagnostics = "hint"
 gutters = ["line-numbers", "diagnostics"]
+cursorline = true
+# cursorcolumn = true
+ 
+[editor.inline-diagnostics]
+cursor-line = "hint"
+# other-lines = "error"
+max-diagnostics = 3
+

@@ -11,8 +11,8 @@ export default function Osd(monitor) {
   const brightness_max = exec("brightnessctl max");
   let timer;
   monitorFile(`/sys/class/backlight/${exec("sh -c 'ls -w1 /sys/class/backlight|head -1'")}/brightness`, (file, event) => {
-    if(event==1) {
-      data.set(parseInt(readFile(file))/brightness_max);
+    if (event == 1) {
+      data.set(parseInt(readFile(file)) / brightness_max);
       icon.set("display-brightness-symbolic")
       timer?.cancel()
       show.set(true);
@@ -40,7 +40,7 @@ export default function Osd(monitor) {
     <box visible={bind(show)}>
       <icon icon={bind(icon)} />
       <levelbar value={bind(data)} widthRequest={150} />
-      <label label={bind(data).as(v=>`${Math.round(v*100)}%`)} />
+      <label label={bind(data).as(v => `${Math.round(v * 100)}%`)} />
     </box>
   </window>
 }

@@ -1,6 +1,6 @@
 import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
-import { Variable, execAsync } from "astal"
+import { bind, Variable, execAsync, exec } from "astal"
 
 const MAX_ITEMS = 8
 
@@ -32,18 +32,72 @@ function AppButton({ app }) {
   </button>
 }
 
-function CmdButton({ cmd }) {
+function str_fuzzy (str, s) {
+    var hay = str.toLowerCase(), i = 0, n = -1, l;
+    s = s.toLowerCase();
+    for (; l = s[i++] ;) if (!~(n = hay.indexOf(l, n + 1))) return false;
+    return true;
+};
+
+const res = Variable("...")
+const windows = Variable([])
+
+const plugins = [
+  {
+    "init": ()=>{},
+    "query": (text) => [{
+      "label": text,
+      "sub": "run",
+      "icon": "utilities-terminal",
+      "activate": () => execAsync(["sh", "-c", text])
+    }],
+    "prefix": "/",
+  },
+  {
+    "init": ()=>{},
+    "query": (text) => {
+      res.set("...");
+      if (text.length > 0)
+        execAsync(["qalc", "-t", text]).then(out=>res.set(out)).catch(console.log);
+      return [{
+        "label": bind(res),
+        "sub": "calculate using qalc",
+        "icon": "accessories-calculator",
+        "activate": () => execAsync(["sh", "-c", `echo ${res.get()} | wl-copy`])
+      }]
+    },
+    "prefix": "=",
+  },
+  {
+    "init": ()=>windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
+    "query": (text) => windows.get().map(window => {return {
+      "label": window["title"],
+      "sub": `${window["class"]} ${window["pid"]}`,
+      "icon": window["class"],
+      "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `pid:${window["pid"]}`]),
+    }}).filter(w=>str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text)),
+    "prefix": ";",
+  },
+]
+
+function PluginButton({ item }) {
   return <button
-    onClicked={() => { hide(); execAsync(["bash", "-c", cmd]) }}>
+    onClicked={() => { hide(); item.activate() }}>
     <box>
-      <icon icon="utilities-terminal" />
+      <icon icon={item.icon} />
       <box valign={Gtk.Align.CENTER} vertical>
         <label
           className="name"
           truncate
           xalign={0}
-          label={`run: ${cmd}`}
+          label={item.label}
         />
+        {item.sub && <label
+          className="description"
+          truncate
+          xalign={0}
+          label={item.sub}
+        />}
       </box>
     </box>
   </button>
@@ -57,17 +111,26 @@ export default function Applauncher() {
 
   const text = Variable("")
   const list = text(text => {
-    if(text.substring(0, 1)=="/") {
-      return [{"cmd": text.substring(1, text.length), "is_not_app": true}]
+    for (let idx in plugins) {
+      if(text.substring(0, 1) == plugins[idx].prefix) {
+        if (text.length == 1)
+          plugins[idx].init()
+        return plugins[idx].query(text.substring(1, text.length))
+      }
     }
-    return apps.fuzzy_query(text).slice(0, MAX_ITEMS)})
-  const onEnter = () => {
-    const t = text.get();
-    if(t.substring(0, 1)=="/") {
-      execAsync(["bash", "-c", t.substring(1, t.length)])
-    } else {
-      apps.fuzzy_query(t)?.[0].launch()
-    }
+    return apps.fuzzy_query(text).slice(0, MAX_ITEMS)
+  })
+  const onEnter = (inputbox) => {
+    inputbox.parent.children[1].children[0].clicked()
+    // const t = text.get();
+    // for (let idx in plugins) {
+    //   if(t.substring(0, 1) == plugins[idx].prefix) {
+    //     plugins[idx].query(t.substring(1, t.length))[0].activate()
+    //     hide()
+    //     return
+    //   }
+    // }
+    // apps.fuzzy_query(t)?.[0].launch()
     hide()
   }
 
@@ -80,15 +143,15 @@ export default function Applauncher() {
     keymode={Astal.Keymode.ON_DEMAND}
     application={App}
     visible={false}
-    onShow={() => text.set("")}
+    onShow={(self) => {text.set(""); self.get_child().children[1].children[1].children[0].grab_focus_without_selecting()}}
     onKeyPressEvent={function (self, event) {
       if (event.get_keyval()[1] === Gdk.KEY_Escape)
         self.hide()
     }}>
     <box>
-      <eventbox widthRequest={4000} expand onClick={hide} />
+      <eventbox widthRequest={2000} expand onClick={hide} />
       <box hexpand={false} vertical>
-        <eventbox heightRequest={100} onClick={hide} />
+        <eventbox heightRequest={200} onClick={hide} />
         <box widthRequest={500} className="main" vertical>
           <entry
             placeholderText="Search"
@@ -98,10 +161,10 @@ export default function Applauncher() {
           />
           <box spacing={6} vertical>
             {list.as(list => list.map(item => {
-              if (item.is_not_app)
-                return <CmdButton cmd={item.cmd} />
-              else
+              if (item.app)
                 return <AppButton app={item} />
+              else
+                return <PluginButton item={item} />
             }))}
           </box>
           <box
@@ -115,7 +178,7 @@ export default function Applauncher() {
         </box>
         <eventbox expand onClick={hide} />
       </box>
-      <eventbox widthRequest={4000} expand onClick={hide} />
+      <eventbox widthRequest={2000} expand onClick={hide} />
     </box>
   </window>
 }

@@ -28,7 +28,7 @@ setopt EXTENDED_HISTORY
 
 # ALIASES
 alias ls='eza -a --icons=auto'
-alias lsl='eza -ahlF --icons=auto'
+alias ll='eza -ahlF --icons=auto'
 alias e='$EDITOR'
 alias py='python'
 alias mv='mv -i'

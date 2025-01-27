@@ -33,7 +33,7 @@ S-tab = "extend_parent_node_start"
 
 [editor.statusline]
 left = ["mode", "file-name", "file-modification-indicator", "read-only-indicator", "spinner"]
-right = ["total-line-numbers", "diagnostics", "selections", "position"]
+right = ["diagnostics", "selections", "position"]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"

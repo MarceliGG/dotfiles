@@ -3,8 +3,12 @@ command = "pyright-langserver"
 args = ["--stdio"]
 documentFormatting = false
 
-[language-server.jdtls]
-args = ["-Djava.import.generatesMetadataFilesAtProjectRoot=false"]
+# [language-server.jdtls]
+# args = ["-Djava.import.generatesMetadataFilesAtProjectRoot=false"]
+# command = "jdtls"
+
+# [[language]]
+# name = "java"
 
 [language-server.hx-lsp]
 command = "hx-lsp"
@@ -33,3 +37,5 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 # [[language]]
 # name = "c"
 # language-servers = [ "clangd", "hx-lsp" ]
+
+

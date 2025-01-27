@@ -15,8 +15,8 @@ $size: 15px;
 }
 
 .island-layout>.status {
-  padding-top: $padd * 2;
-  padding-bottom: $padd * 2;
+  padding-top: $padd;
+  padding-bottom: $padd * 3;
 }
 
 .island-layout>.network icon {
@@ -124,6 +124,7 @@ icon {
 
 .clock .icon {
   margin-right: 5px;
+  -top: 2px;
   color: $accent;
 }
 

@@ -1,4 +1,4 @@
 #!/bin/sh
 pkill compiled
 d=`pwd`
-./build.sh && cd && $d/compiled.js &
+./build.sh "$1" && cd && $d/compiled.js &

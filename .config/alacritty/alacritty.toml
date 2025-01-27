@@ -2,6 +2,7 @@
 opacity = 0.8
 dynamic_title = true
 dynamic_padding = true
+padding = { x = 2 }
 
 [font]
 normal = { family = "JetBrains Mono Nerd Font" }
@@ -9,8 +10,9 @@ italic = { family = "Liberation Mono", style = "Italic" }
 bold_italic = { family = "Liberation Mono", style = "Bold Italic" }
 size = 11.5
 
-# [colors.primary]
-# background = "#292d3e"
+[colors.primary]
+background = "#121419"
+# background = "#000000"
 
 [colors.normal]
 yellow = "#ffcb6b"

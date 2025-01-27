@@ -1,2 +1,2 @@
 #!/bin/sh
-ags bundle app.js compiled.js && chmod +x compiled.js
+cd "$1" && ags bundle app.js ../compiled.js && chmod +x ../compiled.js

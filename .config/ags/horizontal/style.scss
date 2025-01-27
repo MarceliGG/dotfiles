@@ -1,0 +1,182 @@
+$bg: #212223;
+$bga: #414243;
+$accent: #378DF7;
+$radius: 0px;
+$padd: 2px;
+$size: 15px;
+
+* {
+  color: #f1f1f1;
+  font-size: 15px;
+}
+
+.Bar {
+  background: $bg;
+
+  icon {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .icon {
+    font-size: 24px;
+    margin-right: 5px;
+  }
+
+  .status {
+    margin: 0 8px;
+  }
+
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+icon {
+  font-size: 25px;
+}
+
+.workspaces {
+  label {
+    margin-left: 4px;
+  }
+
+  button {
+    padding-right: 4px;
+  }
+
+  button.focused {
+    background: $accent;
+  }
+}
+
+
+.Notifications {
+  eventbox {
+    button {
+      background: $bga;
+      border-radius: $radius;
+      margin: 0 $padd;
+    }
+
+    >box {
+      margin: 4px;
+      background: $bg;
+      padding: $padd * 2 $padd;
+      min-width: 300px;
+      border-radius: $radius + $padd*2;
+      border: 2px solid $bga;
+    }
+
+    .image {
+      min-height: 80px;
+      min-width: 80px;
+      font-size: 80px;
+      margin: 8px;
+    }
+
+    .main {
+      padding-left: $padd *2;
+      margin-bottom: $padd;
+
+      .header {
+        .summary {
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  eventbox.critical>box {
+    border-color: $accent;
+  }
+}
+
+.clock .icon {
+  margin-right: 5px;
+  color: $accent;
+}
+
+box>.tray {
+  padding: $padd * 2 $padd;
+
+  /* background: red; */
+  icon {
+    font-size: 22px;
+    margin: $padd 0;
+  }
+}
+
+#launcher {
+  background: none;
+
+  .main {
+    padding: $padd * 2;
+    background: $bg;
+    border-radius: $radius + $padd * 2;
+
+    icon {
+      margin: 0 $padd * 2;
+    }
+
+    .description {
+      color: #bbb;
+      font-size: 0.8em;
+    }
+
+    button:hover,
+    button:focus {
+      border: $padd solid $accent;
+    }
+
+    button {
+      border: $padd solid $bga;
+    }
+
+    button,
+    entry {
+      border-radius: $radius;
+      background: $bga;
+      outline: none;
+    }
+
+    entry {
+      margin-bottom: $padd * 4;
+      border: none;
+      min-height: $radius * 2;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.Osd {
+  box {
+    background: $bg;
+    border-radius: 24px;
+    padding: 10px 12px;
+
+    trough {
+      padding: 0;
+      margin: 8px;
+      border-radius: 5px;
+
+      block {
+        border-radius: 5px;
+        border: none;
+      }
+
+      block.filled {
+        background: white;
+      }
+    }
+
+    label {
+      min-width: 40px;
+    }
+  }
+}

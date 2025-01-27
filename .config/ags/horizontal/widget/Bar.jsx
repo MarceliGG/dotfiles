@@ -10,21 +10,12 @@ function Clock() {
   return (
     <box
       className="clock status"
-      orientation={1}
       halign={Gtk.Align.CENTER}
       hexpand
     >
-      {/* this uses a lot of cpu for some reason */}
-      {/* <icon icon={`${SRC}/assets/clock2.png`} /> */}
-      <label className="icon" label="" />
       <label
         label={Variable("").poll(1000, () =>
-          GLib.DateTime.new_now_local().format("%H"),
-        )()}
-      />
-      <label
-        label={Variable("").poll(1000, () =>
-          GLib.DateTime.new_now_local().format("%M"),
+          GLib.DateTime.new_now_local().format("%H:%M %A %d/%m/%Y"),
         )()}
       />
     </box>
@@ -61,8 +52,6 @@ function BatteryLevel() {
   return (
     <box
       className="battery status"
-      orientation={1}
-      halign={Gtk.Align.CENTER}
       hexpand
     >
       <label
@@ -70,7 +59,7 @@ function BatteryLevel() {
         label={bind(bat, "batteryIconName").as((b) => icons[b])}
       />
       <label
-        label={bind(bat, "percentage").as((p) => `${Math.floor(p * 100)}`)}
+        label={bind(bat, "percentage").as((p) => `${Math.floor(p * 100)}%`)}
       />
     </box>
   );
@@ -80,21 +69,18 @@ function Volume() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker;
 
   return (
-    <box className="volume status" orientation={1}>
+    <box className="volume status">
       <icon icon={bind(speaker, "volumeIcon")} />
-      <label label={bind(speaker, "volume").as((p) => `${Math.floor(p * 100)}`)} />
+      <label label={bind(speaker, "volume").as((p) => `${Math.floor(p * 100)}%`)} />
     </box>
   );
 }
 
 export default function Bar(monitor) {
-  const { TOP, RIGHT, BOTTOM } = Astal.WindowAnchor;
+  const { TOP, RIGHT, LEFT } = Astal.WindowAnchor;
 
-  const margin = 7;
   const network = Network.get_default();
   const wifi = bind(network, "wifi");
-
-  const net = Variable("network-wireless-disabled-symbolic");
 
   return (
     <window
@@ -102,55 +88,42 @@ export default function Bar(monitor) {
       namespace="ags-bar"
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      margin-top={margin}
-      margin-left={0}
-      margin-right={margin}
-      margin-bottom={margin}
-      anchor={TOP | BOTTOM | RIGHT}
+      anchor={TOP | LEFT | RIGHT}
     >
-      {
-        // <centerbox orientation={1}>
-        //     <box className="segment start" orientation={1} valign={Gtk.Align.START}>
-        //       <Workspaces orientation={1}/>
-        //     </box>
-        //     <box className="segment center" orientation={1}>
-        //     </box>
-        //     <box className="segment end" orientation={1} valign={Gtk.Align.END} >
-        //       <Clock />
-        //       <BatteryLevel />
-        //       <Volume />
-        //     </box>
-        // </centerbox>
-      }
-      <box orientation={1} className="island-layout" valign={Gtk.Align.CENTER}>
-        <Workspaces orientation={1} />
-        <Tray orientation={1} />
-        <box
-          className="network status"
-          orientation={1}
-          halign={Gtk.Align.CENTER}
-          hexpand
-        >
-          {wifi.as(
-            (wifi) =>
-              wifi && (
-                <icon
-                  tooltipText={bind(wifi, "ssid").as(String)}
-                  icon={bind(wifi, "iconName")}
-                />
-              ),
-          )}
-          {wifi.as(
-            (wifi) =>
-              wifi && (
-                <label label={bind(wifi, "ssid").as((s) => s.substring(0, 2))} />
-              ),
-          )}
+      <centerbox>
+        <box className="segment start" halign={Gtk.Align.START}>
+          <Workspaces />
         </box>
-        <BatteryLevel />
-        <Volume />
-        <Clock />
-      </box>
-    </window>
+        <box className="segment center">
+          <Clock />
+        </box>
+        <box className="segment end" halign={Gtk.Align.END} >
+          <Tray />
+          <box
+            className="network status"
+            halign={Gtk.Align.CENTER}
+            hexpand
+          >
+            {wifi.as(
+              (wifi) =>
+                wifi && (
+                  <icon
+                    tooltipText={bind(wifi, "ssid").as(String)}
+                    icon={bind(wifi, "iconName")}
+                  />
+                ),
+            )}
+            {wifi.as(
+              (wifi) =>
+                wifi && (
+                  <label label={bind(wifi, "ssid")} />
+                ),
+            )}
+          </box>
+          <BatteryLevel />
+          <Volume />
+        </box>
+      </centerbox>
+    </window >
   );
 }

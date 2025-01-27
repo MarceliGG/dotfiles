@@ -102,13 +102,12 @@ icon {
   color: $accent;
 }
 
-box>.tray {
-  padding: $padd * 2 $padd;
+.tray {
+  margin-right: 2px;
 
-  /* background: red; */
   icon {
-    font-size: 22px;
-    margin: $padd 0;
+    font-size: 16px;
+    margin: 0 4px;
   }
 }
 

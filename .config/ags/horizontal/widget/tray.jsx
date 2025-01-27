@@ -45,7 +45,7 @@ export default function SysTray({orientation}) {
 
           // spawn menu... (use one location)
           // on button
-          menu?.popup_at_widget(btn, Gdk.Gravity.WEST, Gdk.Gravity.EAST, null);
+          menu?.popup_at_widget(btn, Gdk.Gravity.NORTH, Gdk.Gravity.SOUTH, null);
           // on mouse pointer
           // menu?.popup_at_pointer(null);
         }}

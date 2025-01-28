@@ -14,7 +14,7 @@ function Clock() {
       hexpand
     >
       <label
-        label={Variable("").poll(1000, () =>
+        label={Variable("").poll(5000, () =>
           GLib.DateTime.new_now_local().format("%H:%M %A %d/%m/%Y"),
         )()}
       />

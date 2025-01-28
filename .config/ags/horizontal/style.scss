@@ -41,16 +41,30 @@ icon {
 }
 
 .workspaces {
-  label {
-    margin-left: 4px;
+  icon {
+    margin-top: 2px;
+    margin-left: 5px;
   }
 
   button {
     padding-right: 4px;
+    padding-top: 3px;
+    border-bottom: 3px solid $bg;
+
+    label {
+      margin-left: 8px;
+      margin-right: 4px;
+    }
+  }
+
+  button.exist {
+    border-bottom: 3px solid $bga;
   }
 
   button.focused {
-    background: $accent;
+    /* background: $accent; */
+    background: $bga;
+    border-bottom: 3px solid $accent;
   }
 }
 

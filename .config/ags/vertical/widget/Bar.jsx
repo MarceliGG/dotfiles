@@ -18,12 +18,12 @@ function Clock() {
       {/* <icon icon={`${SRC}/assets/clock2.png`} /> */}
       <label className="icon" label="" />
       <label
-        label={Variable("").poll(1000, () =>
+        label={Variable("").poll(5000, () =>
           GLib.DateTime.new_now_local().format("%H"),
         )()}
       />
       <label
-        label={Variable("").poll(1000, () =>
+        label={Variable("").poll(5000, () =>
           GLib.DateTime.new_now_local().format("%M"),
         )()}
       />

@@ -58,7 +58,7 @@ const plugins = [
     "query": (text) => {
       res.set("...");
       if (text.length > 0)
-        execAsync(["qalc", "-t", text]).then(out=>res.set(out)).catch(console.log);
+        execAsync(["qalc", "-t", text]).then(out=>res.set(out)).catch(console.error);
       return [{
         "label": bind(res),
         "sub": "calculate using qalc",
@@ -72,9 +72,9 @@ const plugins = [
     "init": ()=>windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
     "query": (text) => windows.get().map(window => {return {
       "label": window["title"],
-      "sub": `${window["class"]} ${window["pid"]}`,
-      "icon": window["class"],
-      "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `pid:${window["pid"]}`]),
+      "sub": `${window["xwayland"] ? "[X] " : ""}${window["class"]} [${window["pid"]}] ${window["fullscreen"] ? "(fullscreen) " : window["floating"] ? "(floating) " : ""}on ${window["workspace"]["id"]}`,
+      "icon": Astal.Icon.lookup_icon(window["initialClass"]) ? window["initialClass"] : window["initialClass"].toLowerCase(),
+      "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `address:${window["address"]}`]),
     }}).filter(w=>str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text)),
     "prefix": ";",
   },

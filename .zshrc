@@ -91,7 +91,7 @@ bindkey "^e" prefix_edit
 
 if [[ "$TERM" = "alacritty" ]]; then
   change-title() {
-    echo "\033]0;$BUFFER"
+    print -Pn "\e]0;$BUFFER\a" 
     zle accept-line
   }
   zle -N change-title
@@ -99,7 +99,7 @@ if [[ "$TERM" = "alacritty" ]]; then
 fi
 
 title-change() {
-  echo "\033]0;$PWD"
+  print -Pn "\e]0;$PWD\a" 
 }
 
 setopt prompt_subst

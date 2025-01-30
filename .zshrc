@@ -89,17 +89,25 @@ zle -N prefix_edit
 bindkey "^b" prefix_doas
 bindkey "^e" prefix_edit
 
+if [[ "$TERM" = "alacritty" ]]; then
+  change-title() {
+    echo "\033]0;$BUFFER"
+    zle accept-line
+  }
+  zle -N change-title
+  bindkey "^M" change-title
+fi
+
 title-change() {
   echo "\033]0;$PWD"
 }
 
 setopt prompt_subst
-# PROMPT='$(title-change)%F{red}returned %F{yellow}󰘦 %? %F{red}at %F{yellow} %D{%H:%M:%S}
-# %F{green}in %F{blue} %d $(git_branch_name)
-# %F{yellow}→%f '
 PROMPT='
-$(title-change)%F{yellow}󰘦 %? %F{green} %D{%H:%M:%S} %F{blue} %d $(git_branch_name)
+%F{yellow}󰘦 %? %F{green} %D{%H:%M:%S} %F{blue} %d $(git_branch_name)
 %F{cyan}→%f '
+
+[[ "$TERM" = "alacritty" ]] && PROMPT="\$(title-change)$PROMPT"
 
 # Wlecome scritp
 sh ~/.config/scripts/welcome_shell/run.sh

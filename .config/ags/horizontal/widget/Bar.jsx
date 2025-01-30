@@ -51,7 +51,7 @@ function BatteryLevel() {
   };
   return (
     <box
-      className="battery status"
+      className={bind(bat, "charging").as(c => c ? "charging battery status" : "battery status")}
       hexpand
     >
       <label

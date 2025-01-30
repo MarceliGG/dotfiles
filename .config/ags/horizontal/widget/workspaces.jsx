@@ -24,15 +24,15 @@ export default function Workspaces({ orientation }) {
           .sort((a, b) => a.id - b.id)
 
         if (filtered.find(w => w.id === 1) === undefined)
-          filtered.splice(0, 0, { "if": 1, "name": 1, "static": true })
+          filtered.splice(0, 0, { "id": 1, "name": 1, "static": true })
         if (filtered.find(w => w.id === 2) === undefined)
-          filtered.splice(1, 0, { "if": 2, "name": 2, "static": true })
+          filtered.splice(1, 0, { "id": 2, "name": 2, "static": true })
         if (filtered.find(w => w.id === 3) === undefined)
-          filtered.splice(2, 0, { "if": 3, "name": 3, "static": true })
+          filtered.splice(2, 0, { "id": 3, "name": 3, "static": true })
         if (filtered.find(w => w.id === 4) === undefined)
-          filtered.splice(3, 0, { "if": 4, "name": 4, "static": true })
+          filtered.splice(3, 0, { "id": 4, "name": 4, "static": true })
         if (filtered.find(w => w.id === 5) === undefined)
-          filtered.splice(4, 0, { "if": 5, "name": 5, "static": true })
+          filtered.splice(4, 0, { "id": 5, "name": 5, "static": true })
 
         return filtered.map((w) => (
           <button

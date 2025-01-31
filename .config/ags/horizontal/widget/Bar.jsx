@@ -89,7 +89,7 @@ export default function Bar(monitor) {
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | RIGHT}
-      layer={Astal.Layer.Bottom}
+      // layer={Astal.Layer.Bottom}
     >
       <centerbox>
         <box className="segment start" halign={Gtk.Align.START}>

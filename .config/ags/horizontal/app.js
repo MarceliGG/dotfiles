@@ -19,11 +19,9 @@ App.start({
     }
   },
   main: () => App.get_monitors().forEach((m) => {
-    if (m.model == "0x08E2") {
-      Bar(m);
-      Notifications(m);
-      Launcher(m);
-      Osd(m);
-    }
+    Bar(m);
+    Notifications(m);
+    Launcher(m);
+    Osd(m);
   }),
 });

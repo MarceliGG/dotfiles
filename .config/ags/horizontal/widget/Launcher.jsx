@@ -1,6 +1,7 @@
 import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { bind, Variable, execAsync, exec } from "astal"
+import { get_icon } from "../util.js";
 
 const MAX_ITEMS = 8
 
@@ -73,7 +74,7 @@ const plugins = [
     "query": (text) => windows.get().map(window => {return {
       "label": window["title"],
       "sub": `${window["xwayland"] ? "[X] " : ""}${window["class"]} [${window["pid"]}] ${window["fullscreen"] ? "(fullscreen) " : window["floating"] ? "(floating) " : ""}on ${window["workspace"]["id"]}`,
-      "icon": Astal.Icon.lookup_icon(window["initialClass"]) ? window["initialClass"] : window["initialClass"].toLowerCase(),
+      "icon": get_icon(window["initialClass"]),
       "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `address:${window["address"]}`]),
     }}).filter(w=>str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text)),
     "prefix": ";",

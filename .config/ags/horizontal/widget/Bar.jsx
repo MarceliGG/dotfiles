@@ -82,6 +82,8 @@ export default function Bar(monitor) {
   const network = Network.get_default();
   const wifi = bind(network, "wifi");
 
+  print("aaa")
+
   return (
     <window
       className="Bar"

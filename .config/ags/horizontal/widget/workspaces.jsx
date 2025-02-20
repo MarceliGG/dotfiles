@@ -1,6 +1,6 @@
 import Hyprland from "gi://AstalHyprland";
-import { Gtk, Astal } from "astal/gtk3";
 import { bind } from "astal";
+import { get_icon } from "../util.js";
 
 export default function Workspaces({ orientation }) {
   const hypr = Hyprland.get_default();
@@ -47,7 +47,7 @@ export default function Workspaces({ orientation }) {
       })}
       {bind(hypr, "focusedClient").as(client => {
         if (client)
-          return <icon icon={bind(client, "initial-class").as(c => Astal.Icon.lookup_icon(c) ? c : c.toLowerCase())} />
+          return <icon icon={bind(client, "initial-class").as(c => get_icon(c))} />
         else
           return "";
       })}

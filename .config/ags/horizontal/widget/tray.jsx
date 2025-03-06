@@ -35,25 +35,14 @@ export default function SysTray({orientation}) {
 
 
       return <button
-        onClick={(btn, event)=>{
-          // if (isPrimaryClick(event)) {
-          //   item.activate(0, 0);
-          // }
-          // else if (isSecondaryClick(event)){
-            
-          // }
-
-          // spawn menu... (use one location)
-          // on button
+        onClick={(btn, _)=>{
           menu?.popup_at_widget(btn, Gdk.Gravity.NORTH, Gdk.Gravity.SOUTH, null);
-          // on mouse pointer
-          // menu?.popup_at_pointer(null);
         }}
         onDestroy={() => {
           menu?.destroy();
           entryBinding.drop();
         }}>
-        <icon g-icon={bind(item, "gicon")} /* icon={bind(item, "iconName")} */ />
+        <icon g-icon={bind(item, "gicon")}/>
       </button>
     }))}
   </box>

@@ -53,10 +53,7 @@ export default function Workspaces({ orientation }) {
       })}
       {bind(hypr, "focusedClient").as(client => {
         if (client)
-          return <label label={bind(client, "title").as(title => title.length > 40 ? `${title.substring(0, 40)}...` : title)} />;
-          // <box>
-          //   <icon icon={bind(client, "initial-class").as(c => Astal.Icon.lookup_icon(c) ? c : c.toLowerCase())} />
-          // </box>;
+          return <label ellipsize={3} label={bind(client, "title").as(t => t || client.initialTitle || client.class)} css="margin-right: 20px"/>;
         else
           return "";
       })}

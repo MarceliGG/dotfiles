@@ -6,22 +6,6 @@ import Tray from "./tray";
 import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
 
-function Clock() {
-  return (
-    <box
-      className="clock status"
-      halign={Gtk.Align.CENTER}
-      hexpand
-    >
-      <label
-        label={Variable("").poll(5000, () =>
-          GLib.DateTime.new_now_local().format("%H:%M %A %d/%m/%Y"),
-        )()}
-      />
-    </box>
-  );
-}
-
 function BatteryLevel() {
   const bat = Battery.get_default();
   const icons = {
@@ -91,14 +75,18 @@ export default function Bar(monitor) {
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | RIGHT}
-      // layer={Astal.Layer.Bottom}
+    // layer={Astal.Layer.Bottom}
     >
       <centerbox>
         <box className="segment start" halign={Gtk.Align.START}>
           <Workspaces />
         </box>
         <box className="segment center">
-          <Clock />
+          <label
+            label={Variable("").poll(5000, () =>
+              GLib.DateTime.new_now_local().format("%H:%M %A %d/%m/%Y"),
+            )()}
+          />
         </box>
         <box className="segment end" halign={Gtk.Align.END} >
           <Tray />

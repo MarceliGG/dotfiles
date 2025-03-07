@@ -98,14 +98,14 @@ if [[ "$TERM" = "alacritty" ]]; then
   bindkey "^M" change-title
 fi
 
-title-change() {
-  print -Pn "\e]0;$PWD\a" 
-}
-
 setopt prompt_subst
 PROMPT='
 %F{yellow}󰘦 %? %F{green} %D{%H:%M:%S} %F{blue} %d $(git_branch_name)
 %F{cyan}→%f '
+
+title-change() {
+  print -Pn "\e]0;$PWD\a" 
+}
 
 [[ "$TERM" = "alacritty" ]] && PROMPT="\$(title-change)$PROMPT"
 
@@ -119,5 +119,8 @@ ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=white'
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
+function chpwd() {
+  ls
+}
 
 PATH="$PATH:$HOME/.config/scripts/path"

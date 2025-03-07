@@ -37,5 +37,9 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 # [[language]]
 # name = "c"
 # language-servers = [ "clangd", "hx-lsp" ]
+#
+# [[language]]
+# name = "php"
+# language-servers = ["vscode-html-language-server"]
 
 

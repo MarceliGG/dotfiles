@@ -39,7 +39,7 @@ export default function Osd(monitor) {
   >
     <box visible={bind(show)}>
       <icon icon={bind(icon)} />
-      <levelbar value={bind(data)} widthRequest={150} />
+      <levelbar max-value="1.08" value={bind(data).as(d=>d+0.08)} widthRequest={150} />
       <label label={bind(data).as(v => `${Math.round(v * 100)}%`)} />
     </box>
   </window>

@@ -33,11 +33,11 @@ function AppButton({ app }) {
   </button>
 }
 
-function str_fuzzy (str, s) {
-    var hay = str.toLowerCase(), i = 0, n = -1, l;
-    s = s.toLowerCase();
-    for (; l = s[i++] ;) if (!~(n = hay.indexOf(l, n + 1))) return false;
-    return true;
+function str_fuzzy(str, s) {
+  var hay = str.toLowerCase(), i = 0, n = -1, l;
+  s = s.toLowerCase();
+  for (; l = s[i++];) if (!~(n = hay.indexOf(l, n + 1))) return false;
+  return true;
 };
 
 const res = Variable("...")
@@ -45,7 +45,7 @@ const windows = Variable([])
 
 const plugins = [
   {
-    "init": ()=>{},
+    "init": () => { },
     "query": (text) => [{
       "label": text,
       "sub": "run",
@@ -55,11 +55,11 @@ const plugins = [
     "prefix": "/",
   },
   {
-    "init": ()=>{},
+    "init": () => { },
     "query": (text) => {
       res.set("...");
       if (text.length > 0)
-        execAsync(["qalc", "-t", text]).then(out=>res.set(out)).catch(console.error);
+        execAsync(["qalc", "-t", text]).then(out => res.set(out)).catch(console.error);
       return [{
         "label": bind(res),
         "sub": "calculate using qalc",
@@ -70,13 +70,15 @@ const plugins = [
     "prefix": "=",
   },
   {
-    "init": ()=>windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
-    "query": (text) => windows.get().map(window => {return {
-      "label": window["title"],
-      "sub": `${window["xwayland"] ? "[X] " : ""}${window["class"]} [${window["pid"]}] ${window["fullscreen"] ? "(fullscreen) " : window["floating"] ? "(floating) " : ""}on ${window["workspace"]["id"]}`,
-      "icon": get_icon(window["initialClass"]),
-      "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `address:${window["address"]}`]),
-    }}).filter(w=>str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text)),
+    "init": () => windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
+    "query": (text) => windows.get().map(window => {
+      return {
+        "label": window["title"],
+        "sub": `${window["xwayland"] ? "[X] " : ""}${window["class"]} [${window["pid"]}] ${window["fullscreen"] ? "(fullscreen) " : window["floating"] ? "(floating) " : ""}on ${window["workspace"]["id"]}`,
+        "icon": get_icon(window["initialClass"]),
+        "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `address:${window["address"]}`]),
+      }
+    }).filter(w => str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text)),
     "prefix": ";",
   },
 ]
@@ -113,7 +115,7 @@ export default function Applauncher() {
   const text = Variable("")
   const list = text(text => {
     for (let idx in plugins) {
-      if(text.substring(0, 1) == plugins[idx].prefix) {
+      if (text.substring(0, 1) == plugins[idx].prefix) {
         if (text.length == 1)
           plugins[idx].init()
         return plugins[idx].query(text.substring(1, text.length))
@@ -144,10 +146,45 @@ export default function Applauncher() {
     keymode={Astal.Keymode.ON_DEMAND}
     application={App}
     visible={false}
-    onShow={(self) => {text.set(""); self.get_child().children[1].children[1].children[0].grab_focus_without_selecting()}}
-    onKeyPressEvent={function (self, event) {
+    onShow={(self) => { text.set(""); self.get_child().children[1].children[1].children[0].grab_focus_without_selecting() }}
+    onKeyPressEvent={function(self, event) {
+      // console.log(Gdk.ModifierType.CONTROL_MASK)
+      // console.log(event.get_state()[1])
       if (event.get_keyval()[1] === Gdk.KEY_Escape)
         self.hide()
+      else if (event.get_state()[1] === Gdk.ModifierType.MOD1_MASK) {
+        let idx = -1;
+        switch (event.get_keyval()[1]) {
+          case Gdk.KEY_a:
+            idx = 0;
+            break;
+          case Gdk.KEY_s:
+            idx = 1;
+            break;
+          case Gdk.KEY_d:
+            idx = 2;
+            break;
+          case Gdk.KEY_f:
+            idx = 3;
+            break;
+          case Gdk.KEY_h:
+            idx = 4;
+            break;
+          case Gdk.KEY_j:
+            idx = 5;
+            break;
+          case Gdk.KEY_k:
+            idx = 6;
+            break;
+          case Gdk.KEY_l:
+            idx = 7;
+            break;
+        }
+        if (idx >= 0) {
+          self.get_child().children[1].children[1].children[1].children[idx].clicked()
+          self.hide()
+        }
+      }
     }}>
     <box>
       <eventbox widthRequest={2000} expand onClick={hide} />

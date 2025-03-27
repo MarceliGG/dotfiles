@@ -119,8 +119,14 @@ ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=white'
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
-function chpwd() {
+chpwd() {
   ls
 }
+
+debug() {
+  # start saving errors to file
+  exec 2>&2 2>>debug.log
+}
+debug
 
 PATH="$PATH:$HOME/.config/scripts/path"

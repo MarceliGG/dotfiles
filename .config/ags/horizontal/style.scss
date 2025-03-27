@@ -1,6 +1,6 @@
 $bg: #212223;
 $bga: #414243;
-$accent: #378DF7;
+$accent: #2B82D3;
 $radius: 12px;
 $padd: 2px;
 $size: 15px;
@@ -53,6 +53,7 @@ icon {
 }
 
 .workspaces {
+
   icon {
     margin-top: 2px;
     margin-left: 5px;
@@ -62,6 +63,7 @@ icon {
     padding-right: 4px;
     padding-top: 3px;
     border-bottom: 3px solid $bg;
+    font-weight: normal;
 
     label {
       margin-left: 8px;
@@ -171,6 +173,7 @@ icon {
     }
 
     entry {
+      padding: 2px 10px;
       margin-bottom: $padd * 4;
       border: none;
       min-height: $radius * 2;

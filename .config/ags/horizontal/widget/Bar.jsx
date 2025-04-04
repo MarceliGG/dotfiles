@@ -1,4 +1,4 @@
-import { Variable, GLib, bind } from "astal";
+import { Variable, GLib, bind, execAsync } from "astal";
 import { Astal, Gtk } from "astal/gtk3";
 import Battery from "gi://AstalBattery";
 import Workspaces from "./workspaces";
@@ -33,6 +33,10 @@ function BatteryLevel() {
     "battery-level-90-symbolic": "󰂂",
     "battery-level-100-symbolic": "󰁹",
   };
+
+  let wasNotified = false;
+
+
   return (
     <box
       className={bind(bat, "charging").as(c => c ? "charging battery status" : "battery status")}
@@ -43,7 +47,15 @@ function BatteryLevel() {
         label={bind(bat, "batteryIconName").as((b) => icons[b])}
       />
       <label
-        label={bind(bat, "percentage").as((p) => `${Math.floor(p * 100)}%`)}
+        label={bind(bat, "percentage").as((p) => {
+          if (p < 0.2) {
+            if (!wasNotified) {
+              execAsync(["notify-send", "-u", "critical", "-i", "battery-caution-symbolic", "Low Battery"])
+              wasNotified = true;
+            }
+          } else wasNotified = false;
+          return `${Math.floor(p * 100)}%`;
+        })}
       />
     </box>
   );

@@ -38,6 +38,9 @@ alias gits="git status"
 alias doas='doas --'
 alias mime="xdg-mime query filetype"
 
+export PAGER=bat
+export MANPAGER="bat -l man"
+
 
 # KEYBINDS
 source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
@@ -123,10 +126,10 @@ chpwd() {
   ls
 }
 
-debug() {
-  # start saving errors to file
-  exec 2>&2 2>>debug.log
-}
-debug
+# debug() {
+#   # start saving errors to file
+#   exec 2>&2 2>>~/debug.log
+# }
+# debug
 
-PATH="$PATH:$HOME/.config/scripts/path"
+export PATH="$PATH:$HOME/.config/scripts/path"

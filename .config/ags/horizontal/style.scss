@@ -97,13 +97,13 @@ icon {
       padding: $padd * 2 $padd;
       min-width: 300px;
       border-radius: $radius + $padd*2;
-      border: 2px solid $bga;
+      border: 2px solid red;
     }
 
     .image {
-      min-height: 80px;
-      min-width: 80px;
-      font-size: 80px;
+      min-height: 48px;
+      min-width: 48px;
+      font-size: 48px;
       margin: 8px;
     }
 

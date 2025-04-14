@@ -42,4 +42,6 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 # name = "php"
 # language-servers = ["vscode-html-language-server"]
 
-
+[[language]]
+name = "markdown"
+file-types = ["md", "MD", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "mdown", "markdn", "mdtxt", "mdtext", "workbook", { glob = "PULLREQ_EDITMSG" }]

@@ -43,33 +43,40 @@ function str_fuzzy(str, s) {
 const res = Variable("...")
 const windows = Variable([])
 
-const plugins = [
-  {
+const plugins = {
+  "\\": {
+    "init": () => { },
+    "query": (text) => [{
+      "label": "Reload",
+      "sub": "Refresh desktop files on system",
+      "icon": "view-refresh-symbolic",
+      "activate": () => apps.reload,
+    }]
+  },
+  "/": {
     "init": () => { },
     "query": (text) => [{
       "label": text,
       "sub": "run",
       "icon": "utilities-terminal",
       "activate": () => execAsync(["sh", "-c", text])
-    }],
-    "prefix": "/",
+    }]
   },
-  {
+  "=": {
     "init": () => { },
     "query": (text) => {
       res.set("...");
       if (text.length > 0)
-        execAsync(["qalc", "-t", text]).then(out => res.set(out)).catch(console.error);
+        execAsync(["qalc", "-t", text]).then(out => res.set(out)).catch(_ => {res.set("error")});
       return [{
         "label": bind(res),
-        "sub": "calculate using qalc",
+        "sub": "Calculate using qalc",
         "icon": "accessories-calculator",
         "activate": () => execAsync(["sh", "-c", `echo ${res.get()} | wl-copy`])
       }]
-    },
-    "prefix": "=",
+    }
   },
-  {
+  ";": {
     "init": () => windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
     "query": (text) => windows.get().map(window => {
       return {
@@ -78,10 +85,9 @@ const plugins = [
         "icon": get_icon(window["initialClass"]),
         "activate": () => execAsync(["hyprctl", "dispatch", "focuswindow", `address:${window["address"]}`]),
       }
-    }).filter(w => str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text)),
-    "prefix": ";",
-  },
-]
+    }).filter(w => str_fuzzy(w["label"], text) || str_fuzzy(w["sub"], text))
+  }
+}
 
 function PluginButton({ item }) {
   return <button
@@ -107,33 +113,24 @@ function PluginButton({ item }) {
 }
 
 
+const apps = new Apps.Apps()
 
 export default function Applauncher() {
   const { CENTER } = Gtk.Align
-  const apps = new Apps.Apps()
 
   const text = Variable("")
   const list = text(text => {
-    for (let idx in plugins) {
-      if (text.substring(0, 1) == plugins[idx].prefix) {
-        if (text.length == 1)
-          plugins[idx].init()
-        return plugins[idx].query(text.substring(1, text.length))
-      }
+    let p = plugins[text.substring(0, 1)]
+    if (p) {
+      if (text.length == 1)
+        p.init()
+      return p.query(text.substring(1, text.length))
     }
+
     return apps.fuzzy_query(text).slice(0, MAX_ITEMS)
   })
   const onEnter = (inputbox) => {
-    inputbox.parent.children[1].children[0].clicked()
-    // const t = text.get();
-    // for (let idx in plugins) {
-    //   if(t.substring(0, 1) == plugins[idx].prefix) {
-    //     plugins[idx].query(t.substring(1, t.length))[0].activate()
-    //     hide()
-    //     return
-    //   }
-    // }
-    // apps.fuzzy_query(t)?.[0].launch()
+    inputbox.get_parent().children[1].children[0].clicked()
     hide()
   }
 
@@ -148,43 +145,42 @@ export default function Applauncher() {
     visible={false}
     onShow={(self) => { text.set(""); self.get_child().children[1].children[1].children[0].grab_focus_without_selecting() }}
     onKeyPressEvent={function(self, event) {
-      // console.log(Gdk.ModifierType.CONTROL_MASK)
-      // console.log(event.get_state()[1])
       if (event.get_keyval()[1] === Gdk.KEY_Escape)
         self.hide()
-      else if (event.get_state()[1] === Gdk.ModifierType.MOD1_MASK) {
-        let idx = -1;
-        switch (event.get_keyval()[1]) {
-          case Gdk.KEY_a:
-            idx = 0;
-            break;
-          case Gdk.KEY_s:
-            idx = 1;
-            break;
-          case Gdk.KEY_d:
-            idx = 2;
-            break;
-          case Gdk.KEY_f:
-            idx = 3;
-            break;
-          case Gdk.KEY_h:
-            idx = 4;
-            break;
-          case Gdk.KEY_j:
-            idx = 5;
-            break;
-          case Gdk.KEY_k:
-            idx = 6;
-            break;
-          case Gdk.KEY_l:
-            idx = 7;
-            break;
-        }
-        if (idx >= 0) {
-          self.get_child().children[1].children[1].children[1].children[idx].clicked()
-          self.hide()
-        }
-      }
+      // else if (event.get_state()[1] === Gdk.ModifierType.MOD1_MASK) {
+      //   let idx = -1;
+      //   switch (event.get_keyval()[1]) {
+      //     case Gdk.KEY_a:
+      //       console.log("asdsakf")
+      //       idx = 0;
+      //       break;
+      //     case Gdk.KEY_s:
+      //       idx = 1;
+      //       break;
+      //     case Gdk.KEY_d:
+      //       idx = 2;
+      //       break;
+      //     case Gdk.KEY_f:
+      //       idx = 3;
+      //       break;
+      //     case Gdk.KEY_h:
+      //       idx = 4;
+      //       break;
+      //     case Gdk.KEY_j:
+      //       idx = 5;
+      //       break;
+      //     case Gdk.KEY_k:
+      //       idx = 6;
+      //       break;
+      //     case Gdk.KEY_l:
+      //       idx = 7;
+      //       break;
+      //   }
+      //   if (idx >= 0) {
+      //     self.get_child().children[1].children[1].children[1].children[idx].clicked()
+      //     self.hide()
+      //   }
+      // }
     }}>
     <box>
       <eventbox widthRequest={2000} expand onClick={hide} />

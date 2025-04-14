@@ -7,7 +7,7 @@ setopt globdots
 # cd automaticly if path typed
 setopt autocd
 
-zstyle ':autocomplete:*' delay 0.2
+zstyle ':autocomplete:*' delay 0.4
 
 # custom completions
 FPATH="$HOME/.config/zsh-completions:$FPATH"
@@ -117,9 +117,11 @@ sh ~/.config/scripts/welcome_shell/run.sh
 
 # Syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[path]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'
-ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=white'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=magenta'
+# ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bg=yellow'
+ZSH_HIGHLIGHT_STYLES[comment]='bg=magenta,fg=black'
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 chpwd() {

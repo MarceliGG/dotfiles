@@ -112,8 +112,7 @@ title-change() {
 
 [[ "$TERM" = "alacritty" ]] && PROMPT="\$(title-change)$PROMPT"
 
-# Wlecome scritp
-sh ~/.config/scripts/welcome_shell/run.sh
+sh ~/.scripts/welcome_shell/run.sh
 
 # Syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -134,4 +133,4 @@ chpwd() {
 # }
 # debug
 
-export PATH="$PATH:$HOME/.config/scripts/path"
+export PATH="$PATH:$HOME/.scripts/path"

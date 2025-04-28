@@ -33,7 +33,6 @@ alias e='$EDITOR'
 alias py='python'
 alias mv='mv -i'
 alias cp='cp -i'
-alias dotfiles="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias gits="git status"
 alias doas='doas --'
 alias mime="xdg-mime query filetype"
@@ -133,4 +132,3 @@ chpwd() {
 # }
 # debug
 
-export PATH="$PATH:$HOME/.scripts/path"

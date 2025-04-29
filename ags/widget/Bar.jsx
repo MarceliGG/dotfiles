@@ -78,8 +78,6 @@ export default function Bar(monitor) {
   const network = Network.get_default();
   const wifi = bind(network, "wifi");
 
-  print("aaa")
-
   return (
     <window
       className="Bar"
@@ -87,7 +85,6 @@ export default function Bar(monitor) {
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | RIGHT}
-    // layer={Astal.Layer.Bottom}
     >
       <centerbox>
         <box className="segment start" halign={Gtk.Align.START}>
@@ -102,27 +99,21 @@ export default function Bar(monitor) {
         </box>
         <box className="segment end" halign={Gtk.Align.END} >
           <Tray />
-          <box
-            className="network status"
-            halign={Gtk.Align.CENTER}
-            hexpand
-          >
-            {wifi.as(
-              (wifi) =>
-                wifi && (
+          {wifi.as(
+            (wifi) =>
+              wifi && (
+                <box
+                  className="network status"
+                  halign={Gtk.Align.CENTER}
+                  hexpand
+                >
                   <icon
-                    tooltipText={bind(wifi, "ssid").as(String)}
                     icon={bind(wifi, "iconName")}
                   />
-                ),
-            )}
-            {wifi.as(
-              (wifi) =>
-                wifi && (
                   <label label={bind(wifi, "ssid")} />
-                ),
-            )}
-          </box>
+                </box>
+              ),
+          )}
           <BatteryLevel />
           <Volume />
         </box>

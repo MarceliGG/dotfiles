@@ -11,6 +11,7 @@ function hide() {
 
 function AppButton({ app }) {
   return <button
+    hexpand
     className="AppButton"
     onClicked={() => { hide(); app.launch() }}>
     <box>
@@ -18,12 +19,13 @@ function AppButton({ app }) {
       <box valign={Gtk.Align.CENTER} vertical>
         <label
           className="name"
-          truncate
+          ellipsize={3}
           xalign={0}
           label={app.name}
         />
         {app.description && <label
           className="description"
+          ellipsize={3}
           wrap
           xalign={0}
           label={app.description}
@@ -46,7 +48,7 @@ const windows = Variable([])
 const plugins = {
   "\\": {
     "init": () => { },
-    "query": (text) => [{
+    "query": (_text) => [{
       "label": "Reload",
       "sub": "Refresh desktop files on system",
       "icon": "view-refresh-symbolic",
@@ -67,7 +69,7 @@ const plugins = {
     "query": (text) => {
       res.set("...");
       if (text.length > 0)
-        execAsync(["qalc", "-t", text]).then(out => res.set(out)).catch(_ => {res.set("error")});
+        execAsync(["qalc", "-t", text]).then(out => res.set(out)).catch(_ => { res.set("error") });
       return [{
         "label": bind(res),
         "sub": "Calculate using qalc",
@@ -91,19 +93,20 @@ const plugins = {
 
 function PluginButton({ item }) {
   return <button
+    hexpand
     onClicked={() => { hide(); item.activate() }}>
     <box>
       <icon icon={item.icon} />
       <box valign={Gtk.Align.CENTER} vertical>
         <label
           className="name"
-          truncate
+          ellipsize={3}
           xalign={0}
           label={item.label}
         />
         {item.sub && <label
           className="description"
-          truncate
+          ellipsize={3}
           xalign={0}
           label={item.sub}
         />}
@@ -124,15 +127,35 @@ export default function Applauncher() {
     if (p) {
       if (text.length == 1)
         p.init()
-      return p.query(text.substring(1, text.length))
+      return p.query(text.substring(1, text.length)).slice(0, MAX_ITEMS)
     }
 
     return apps.fuzzy_query(text).slice(0, MAX_ITEMS)
   })
-  const onEnter = (inputbox) => {
-    inputbox.get_parent().children[1].children[0].clicked()
+
+  const onEnter = () => {
+    list_box.children[0].clicked()
     hide()
   }
+
+  const entry = (<entry
+    placeholderText="Search"
+    widthRequest={400}
+    text={text()}
+    onChanged={self => text.set(self.text)}
+    onActivate={onEnter}
+    heightRequest={50}
+  />)
+
+  const list_box = (
+    <box spacing={6} vertical className="listbox">
+      {list.as(list => list.map(item => {
+        if (item.app)
+          return <AppButton app={item} />
+        else
+          return <PluginButton item={item} />
+      }))}
+    </box>)
 
   return <window
     name="launcher"
@@ -143,7 +166,7 @@ export default function Applauncher() {
     keymode={Astal.Keymode.ON_DEMAND}
     application={App}
     visible={false}
-    onShow={(self) => { text.set(""); self.get_child().children[1].children[1].children[0].grab_focus_without_selecting() }}
+    onShow={() => { text.set(""); entry.grab_focus_without_selecting() }}
     onKeyPressEvent={function(self, event) {
       if (event.get_keyval()[1] === Gdk.KEY_Escape)
         self.hide()
@@ -186,21 +209,14 @@ export default function Applauncher() {
       <eventbox widthRequest={2000} expand onClick={hide} />
       <box hexpand={false} vertical>
         <eventbox heightRequest={200} onClick={hide} />
-        <box widthRequest={500} className="main" vertical>
-          <entry
-            placeholderText="Search"
-            text={text()}
-            onChanged={self => text.set(self.text)}
-            onActivate={onEnter}
-          />
-          <box spacing={6} vertical>
-            {list.as(list => list.map(item => {
-              if (item.app)
-                return <AppButton app={item} />
-              else
-                return <PluginButton item={item} />
-            }))}
+        <box widthRequest={900} heightRequest={410} className="main" >
+          <box
+            className="entrybox"
+            vertical>
+            {entry}
+            <box />
           </box>
+          {list_box}
           <box
             halign={CENTER}
             className="not-found"

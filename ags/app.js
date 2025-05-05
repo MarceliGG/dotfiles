@@ -5,6 +5,7 @@ import Bar from "./widget/Bar";
 import Notifications from "./widget/Notifications";
 import Launcher from "./widget/Launcher";
 import Osd from "./widget/Osd";
+import Background from "./widget/Background";
 
 App.start({
   css: style,
@@ -23,5 +24,6 @@ App.start({
     Notifications(m);
     Launcher(m);
     Osd(m);
+    Background();
   }),
 });

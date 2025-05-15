@@ -1,0 +1,22 @@
+[
+  {
+    "property": "custom.floating_sidebar",
+    "label": "Floating Sidebar (history, bookmarks, etc.)",
+    "type": "checkbox"
+  },
+  {
+    "property": "custom.hide_back_forward",
+    "label": "Hide back and forward buttons",
+    "type": "checkbox"
+  },
+  {
+    "property": "custom.hide_pinned_reset",
+    "label": "Hide reset button on pinned tabs",
+    "type": "checkbox"
+  },
+  {
+    "property": "custom.hide_pinned_close",
+    "label": "Hide close button on pinned tabs",
+    "type": "checkbox"
+  }
+]

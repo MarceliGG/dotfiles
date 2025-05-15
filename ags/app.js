@@ -24,6 +24,6 @@ App.start({
     Notifications(m);
     Launcher(m);
     Osd(m);
-    Background();
+    // Background(m);
   }),
 });

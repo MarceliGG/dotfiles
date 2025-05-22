@@ -22,6 +22,12 @@
       }
     }
 
+    .tab-reset-pin-button::after {
+      width: 1px !important;
+      height: 20px !important;
+      transform: translateY(-50%) !important;
+    }
+
     @media (-moz-bool-pref: "custom.hide_pinned_reset") {
       tab .tab-reset-button {
         display: none !important;
@@ -40,10 +46,6 @@
   .zen-glance-overlay {
     height: 95% !important;
     margin: auto;
-  }
-
-  #PanelUI-menu-button {
-    margin-left: 2px !important;
   }
 
   /* #nav-bar { */
@@ -140,5 +142,39 @@
     height: 80% !important;
     margin: auto 0 !important;
     } */
+  }
+
+  #titlebar {
+    margin-top: 8px !important;
+  }
+
+  /* use with https://github.com/Uiniel/zen-mods/tree/main/sidebar-expand-on-hover */
+  #navigator-toolbox:not([zen-has-hover],
+    [movingtab],
+    [flash-popup],
+    [has-popup-menu],
+    :has(.tabbrowser-tab:active),
+    :has(toolbarbutton[open="true"]:not(#zen-sidepanel-button), #urlbar[open])) {
+    padding-left: 2px !important;
+
+    #PanelUI-menu-button {
+      margin-left: 2px !important;
+    }
+  }
+
+  /* use with https://github.com/Uiniel/zen-mods/tree/main/sidebar-expand-on-hover */
+  #navigator-toolbox {
+    margin-right: -6px !important;
+  }
+
+
+  /* fix context menu icons */
+  #contentAreaContextMenu>*>.menu-iconic-left {
+    padding: 0 0 0 4px !important;
+    margin: 0 !important;
+  }
+
+  #ublock0_raymondhill_net-menuitem-_uBlock0-blockElement .menu-iconic-left {
+    margin-left: 0.5px !important;
   }
 }

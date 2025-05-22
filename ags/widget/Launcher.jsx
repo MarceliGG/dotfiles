@@ -52,7 +52,7 @@ const plugins = {
       "label": "Reload",
       "sub": "Refresh desktop files on system",
       "icon": "view-refresh-symbolic",
-      "activate": () => apps.reload,
+      "activate": () => apps.reload(),
     }]
   },
   "/": {

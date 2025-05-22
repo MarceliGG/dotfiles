@@ -35,7 +35,7 @@ export default function Osd(monitor) {
     anchor={Astal.WindowAnchor.BOTTOM}
     margin-bottom={200}
     className="Osd"
-    namespace="ags-launcher"
+    namespace="ags-osd"
   >
     <box visible={bind(show)}>
       <icon icon={bind(icon)} />

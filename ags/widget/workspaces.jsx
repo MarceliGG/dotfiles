@@ -46,7 +46,7 @@ export default function Workspaces({ orientation }) {
       })}
       {bind(hypr, "focusedClient").as(client => {
         if (client)
-          return <label ellipsize={3} label={bind(client, "title").as(t => t || client.initialTitle || client.class)} css="margin-right: 20px" />;
+          return <label ellipsize={3} label={bind(client, "title").as(t => t || client.initialTitle || client.class)} css="margin-right: 40px" />;
         else
           return "";
       })}

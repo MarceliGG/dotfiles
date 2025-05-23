@@ -1,7 +1,7 @@
 @-moz-document url-prefix("chrome:") {
 
   /* hide some bar with window controlls and etc in single toolbar layout */
-  #zen-appcontent-navbar-container[should-hide="true"] {
+  #zen-appcontent-navbar-wrapper[should-hide="true"] {
     display: none !important;
   }
 
@@ -9,14 +9,17 @@
     margin: 0 !important;
   }
 
-  #vertical-pinned-tabs-container {
+  /* hide to workspace indicator */
+  .zen-workspace-tabs-section.zen-current-workspace-indicator {
+    display: none !important;
+  }
+
+  .zen-workspace-pinned-tabs-section {
     .zen-workspace-tabs-section:not([active="true"]) {
       display: none !important;
     }
 
-
     @media (-moz-bool-pref: "custom.hide_pinned_reset") {
-
       tab .tab-reset-pin-button {
         display: none !important;
       }
@@ -176,5 +179,14 @@
 
   #ublock0_raymondhill_net-menuitem-_uBlock0-blockElement .menu-iconic-left {
     margin-left: 0.5px !important;
+  }
+
+  tab {
+    width: 100% !important;
+  }
+
+  .zen-workspace-tabs-section {
+    margin-left: 5px;
+    padding: 0 !important;
   }
 }

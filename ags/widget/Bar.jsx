@@ -4,7 +4,7 @@ import Battery from "gi://AstalBattery";
 import Workspaces from "./workspaces";
 import Tray from "./tray";
 import Wp from "gi://AstalWp";
-import Network from "gi://AstalNetwork";
+import Network from "./network";
 
 function BatteryLevel() {
   const bat = Battery.get_default();
@@ -75,9 +75,6 @@ function Volume() {
 export default function Bar(monitor) {
   const { TOP, RIGHT, LEFT } = Astal.WindowAnchor;
 
-  const network = Network.get_default();
-  const wifi = bind(network, "wifi");
-
   return (
     <window
       className="Bar"
@@ -99,21 +96,7 @@ export default function Bar(monitor) {
         </box>
         <box className="segment end" halign={Gtk.Align.END} >
           <Tray />
-          {wifi.as(
-            (wifi) =>
-              wifi && (
-                <box
-                  className="network status"
-                  halign={Gtk.Align.CENTER}
-                  hexpand
-                >
-                  <icon
-                    icon={bind(wifi, "iconName")}
-                  />
-                  <label label={bind(wifi, "ssid")} />
-                </box>
-              ),
-          )}
+          <Network />
           <BatteryLevel />
           <Volume />
         </box>

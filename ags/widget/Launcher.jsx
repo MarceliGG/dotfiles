@@ -2,6 +2,7 @@ import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { bind, Variable, execAsync, exec } from "astal"
 import { get_icon } from "../util.js";
+import GLib from "gi://GLib"
 
 const MAX_ITEMS = 8
 
@@ -25,10 +26,8 @@ function AppButton({ app }) {
         />
         {app.description && <label
           className="description"
-          ellipsize={3}
-          wrap
-          xalign={0}
-          label={app.description}
+          truncate
+          label={app.description.length > 70 ? app.description.substring(0, 70) + "..." : app.description}
         />}
       </box>
     </box>
@@ -77,8 +76,11 @@ const plugins = {
         "activate": () => execAsync(["sh", "-c", `echo ${res.get()} | wl-copy`])
       }]
     }
-  },
-  ";": {
+  }
+}
+
+if (GLib.getenv("XDG_CURRENT_DESKTOP") == "Hyprland") {
+  plugins[";"] = {
     "init": () => windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
     "query": (text) => windows.get().map(window => {
       return {
@@ -157,16 +159,27 @@ export default function Applauncher() {
       }))}
     </box>)
 
+  // return <window
+  //   name="launcher"
+  //   namespace="ags-launcher"
+  //   layer={Astal.Layer.OVERLAY}
+  //   anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
+  //   application={App}
+  //   visible={false}
+  //   >
+  //   <label label="aaaaaaaaaa"/>
+  // </window>
+
   return <window
     name="launcher"
     namespace="ags-launcher"
     layer={Astal.Layer.OVERLAY}
-    anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
+    anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
     exclusivity={Astal.Exclusivity.IGNORE}
     keymode={Astal.Keymode.ON_DEMAND}
     application={App}
     visible={false}
-    onShow={() => { text.set(""); entry.grab_focus_without_selecting() }}
+    // onShow={() => { text.set(""); entry.grab_focus_without_selecting() }}
     onKeyPressEvent={function(self, event) {
       if (event.get_keyval()[1] === Gdk.KEY_Escape)
         self.hide()
@@ -206,7 +219,7 @@ export default function Applauncher() {
       // }
     }}>
     <box>
-      <eventbox widthRequest={2000} expand onClick={hide} />
+      <eventbox expand onClick={hide} />
       <box hexpand={false} vertical>
         <eventbox heightRequest={200} onClick={hide} />
         <box widthRequest={900} heightRequest={410} className="main" >
@@ -228,7 +241,7 @@ export default function Applauncher() {
         </box>
         <eventbox expand onClick={hide} />
       </box>
-      <eventbox widthRequest={2000} expand onClick={hide} />
+      <eventbox expand onClick={hide} />
     </box>
   </window>
 }

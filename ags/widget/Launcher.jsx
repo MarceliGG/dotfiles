@@ -159,17 +159,6 @@ export default function Applauncher() {
       }))}
     </box>)
 
-  // return <window
-  //   name="launcher"
-  //   namespace="ags-launcher"
-  //   layer={Astal.Layer.OVERLAY}
-  //   anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
-  //   application={App}
-  //   visible={false}
-  //   >
-  //   <label label="aaaaaaaaaa"/>
-  // </window>
-
   return <window
     name="launcher"
     namespace="ags-launcher"
@@ -179,44 +168,10 @@ export default function Applauncher() {
     keymode={Astal.Keymode.ON_DEMAND}
     application={App}
     visible={false}
-    // onShow={() => { text.set(""); entry.grab_focus_without_selecting() }}
+    onShow={() => { text.set(""); entry.grab_focus_without_selecting() }}
     onKeyPressEvent={function(self, event) {
       if (event.get_keyval()[1] === Gdk.KEY_Escape)
         self.hide()
-      // else if (event.get_state()[1] === Gdk.ModifierType.MOD1_MASK) {
-      //   let idx = -1;
-      //   switch (event.get_keyval()[1]) {
-      //     case Gdk.KEY_a:
-      //       console.log("asdsakf")
-      //       idx = 0;
-      //       break;
-      //     case Gdk.KEY_s:
-      //       idx = 1;
-      //       break;
-      //     case Gdk.KEY_d:
-      //       idx = 2;
-      //       break;
-      //     case Gdk.KEY_f:
-      //       idx = 3;
-      //       break;
-      //     case Gdk.KEY_h:
-      //       idx = 4;
-      //       break;
-      //     case Gdk.KEY_j:
-      //       idx = 5;
-      //       break;
-      //     case Gdk.KEY_k:
-      //       idx = 6;
-      //       break;
-      //     case Gdk.KEY_l:
-      //       idx = 7;
-      //       break;
-      //   }
-      //   if (idx >= 0) {
-      //     self.get_child().children[1].children[1].children[1].children[idx].clicked()
-      //     self.hide()
-      //   }
-      // }
     }}>
     <box>
       <eventbox expand onClick={hide} />

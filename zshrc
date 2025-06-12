@@ -41,15 +41,17 @@ export MANPAGER="bat -l man"
 
 # FZF
 fzf_cd() {
-    local dir
-    dir=$(find . -type d -maxdepth 6 2> /dev/null | fzf --preview 'eza -A --icons=auto {}' --height 40%)
-    if [[ -n $dir ]]; then
-        cd "$dir" || return
-    fi
+  echo -n "Cd to: "
+  local dir
+  dir=$(find . -type d -maxdepth 6 2> /dev/null | fzf --preview 'eza -A --icons=auto {}' --height 40%)
+  if [[ -n $dir ]]; then
+    cd "$dir" || return
+  fi
 }
 zle -N fzf_cd
 
 fzf_hist() {
+  echo -n "Search history:"
   local selected
   selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --height 40%)
   if [[ -n $selected ]]; then
@@ -61,6 +63,7 @@ fzf_hist() {
 zle -N fzf_hist
 
 fzf_file() {
+  echo -n "↰"
   local selected
   selected=$(find . -type f -maxdepth 6 2> /dev/null | fzf --preview 'previewer {}' --height 40%)
   if [[ -n $selected ]]; then
@@ -74,7 +77,7 @@ zle -N fzf_file
 # KEYBINDS
 source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
 
-bindkey '^[c' fzf_cd
+bindkey '^H' fzf_cd
 bindkey '^R' fzf_hist
 bindkey '^T' fzf_file
 

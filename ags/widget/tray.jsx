@@ -1,6 +1,6 @@
 import Tray from "gi://AstalTray";
 import { Variable, bind } from "astal";
-import { Astal, Gtk, Gdk } from "astal/gtk3"
+import { Gtk, Gdk } from "astal/gtk3"
 
 const createMenu = (menuModel, actionGroup) => {
   const menu = Gtk.Menu.new_from_model(menuModel);
@@ -14,6 +14,7 @@ export default function SysTray({orientation}) {
   
   return <box className="tray" orientation={orientation} visible={bind(tray, "items").as(items=>items.length>0)}>
     {bind(tray, "items").as(items => items.map(item => {
+      console.log(item)
 
       // Make sure you're bound to the menuModel and actionGroup which can change
 

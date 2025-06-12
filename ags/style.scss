@@ -1,10 +1,10 @@
-$bg: rgba(0, 0, 0, 0.8);
+$bg: rgba(16, 22, 33, 0.8);
 $bga: rgb(50, 50, 50);
 $accent: #2B82D3;
-$radius: 12px;
 $padd: 2px;
-$size: 15px;
-$wallpaper: url("/home/marcel/Pictures/wallpappers/pexels-eberhard-grossgasteiger-443446.jpg");
+$wallpaper: url("/home/marcel/Pictures/wallpappers/wallpaper.jpg");
+$radius: 12px;
+$inner-radius: 8px;
 
 * {
   color: #f1f1f1;
@@ -32,10 +32,6 @@ $wallpaper: url("/home/marcel/Pictures/wallpappers/pexels-eberhard-grossgasteige
 }
 
 .battery.charging {
-  /* label {
-    color: $accent;
-  } */
-
   .icon {
     color: $accent;
     margin-right: 10px;
@@ -87,7 +83,7 @@ icon {
   eventbox {
     button {
       background: $bga;
-      border-radius: $radius - $padd * 2;
+      border-radius: $inner-radius;
       margin: 0 $padd;
     }
 
@@ -153,8 +149,8 @@ icon {
 
     .listbox {
       background: $bg;
-      border-bottom-right-radius: $radius - $padd;
-      border-top-right-radius: $radius - $padd;
+      border-bottom-right-radius: $radius;
+      border-top-right-radius: $radius;
     }
 
     icon {
@@ -186,7 +182,7 @@ icon {
 
     entry {
       background: $bg;
-      border-radius: $radius - $padd;
+      border-radius: $inner-radius;
       margin: $padd * 2;
     }
   }

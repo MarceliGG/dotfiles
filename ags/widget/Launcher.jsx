@@ -1,8 +1,7 @@
 import Apps from "gi://AstalApps"
 import { App, Astal, Gdk, Gtk } from "astal/gtk3"
 import { bind, Variable, execAsync, exec } from "astal"
-import { get_icon } from "../util.js";
-import GLib from "gi://GLib"
+import { get_icon, desktop } from "../util.js";
 
 const MAX_ITEMS = 8
 
@@ -79,7 +78,7 @@ const plugins = {
   }
 }
 
-if (GLib.getenv("XDG_CURRENT_DESKTOP") == "Hyprland") {
+if (desktop == "Hyprland") {
   plugins[";"] = {
     "init": () => windows.set(JSON.parse(exec(["hyprctl", "-j", "clients"]))),
     "query": (text) => windows.get().map(window => {

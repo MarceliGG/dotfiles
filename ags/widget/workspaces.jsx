@@ -1,10 +1,9 @@
 import Hyprland from "gi://AstalHyprland";
 import { bind, subprocess, Variable, execAsync, exec } from "astal";
-import { get_icon } from "../util.js";
-import GLib from "gi://GLib"
+import { get_icon, desktop} from "../util.js";
 
 export default function Workspaces({ orientation }) {
-  switch (GLib.getenv("XDG_CURRENT_DESKTOP")) {
+  switch (desktop) {
     case "Hyprland":
       const hypr = Hyprland.get_default();
 

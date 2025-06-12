@@ -1,4 +1,5 @@
 import { Astal } from "astal/gtk3"
+import GLib from "gi://GLib"
 
 export function get_icon(window_class) {
   switch (window_class) {
@@ -10,3 +11,4 @@ export function get_icon(window_class) {
   }
 }
 
+export const desktop = GLib.getenv("XDG_CURRENT_DESKTOP")

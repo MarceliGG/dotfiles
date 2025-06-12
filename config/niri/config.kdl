@@ -23,7 +23,7 @@ input {
 }
 
 layout {
-    gaps 12
+    gaps 8
     center-focused-column "never"
     always-center-single-column
 
@@ -36,7 +36,7 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-        width 4
+        width 3
         active-gradient from="#7fc8ff" to="#449922"
     }
 
@@ -71,6 +71,8 @@ environment {
     DISPLAY ":0"
     _JAVA_AWT_WM_NONREPARENTING "1"
     PAGER "bat"
+    GTK_USE_PORTAL "1"
+    QT_QPA_PLATFORMTHEME "qt5ct"
 }
 
 binds {
@@ -79,6 +81,7 @@ binds {
     Mod+X { spawn "alacritty"; }
     Mod+B { spawn "zen-browser"; }
     Mod+R { spawn "astal" "-i" "shell" "launcher"; }
+    Mod+E { spawn "dolphin"; }
 
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
     XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
@@ -161,6 +164,6 @@ binds {
 
     Mod+Shift+Backspace { quit; }
 
-    Mod+Shift+Escape { spawn "loginctl lock-session"; }
+    Mod+Shift+Escape { spawn "loginctl" "lock-session"; }
     Mod+Shift+P      { power-off-monitors; }
 }

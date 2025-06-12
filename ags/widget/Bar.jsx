@@ -5,6 +5,7 @@ import Workspaces from "./workspaces";
 import Tray from "./tray";
 import Wp from "gi://AstalWp";
 import Network from "./network";
+import { desktop } from "../util.js";
 
 function BatteryLevel() {
   const bat = Battery.get_default();
@@ -75,12 +76,19 @@ function Volume() {
 export default function Bar(monitor) {
   const { TOP, RIGHT, LEFT } = Astal.WindowAnchor;
 
+  let margin = 0;
+
+  if(desktop == "niri") margin = 8;
+
   return (
     <window
       className="Bar"
       namespace="ags-bar"
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
+      margin-top={margin}
+      margin-left={margin}
+      margin-right={margin}
       anchor={TOP | LEFT | RIGHT}
     >
       <centerbox>

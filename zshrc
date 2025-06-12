@@ -1,5 +1,5 @@
 # AUTOCOMPLETIONS
-source $HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# source $HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 # iteractive comments are required for autocopletions to be shown when typing
 setopt interactive_comments
 # show dotfiles
@@ -9,8 +9,8 @@ setopt autocd
 
 zstyle ':autocomplete:*' delay 0.4
 
-# custom completions
 FPATH="$HOME/.config/zsh-completions:$FPATH"
+PATH="$HOME/.scripts/path:$PATH"
 
 # HISTORY
 HISTFILE=~/.zshhist
@@ -23,12 +23,11 @@ setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-setopt EXTENDED_HISTORY
-
+# setopt EXTENDED_HISTORY
 
 # ALIASES
-alias ls='eza -a --icons=auto'
-alias ll='eza -ahlF --icons=auto'
+alias ls='eza -A --icons=auto'
+alias ll='eza -AhlF --icons=auto'
 alias e='$EDITOR'
 alias py='python'
 alias mv='mv -i'
@@ -40,36 +39,44 @@ alias mime="xdg-mime query filetype"
 export PAGER=bat
 export MANPAGER="bat -l man"
 
+# FZF
+fzf_cd() {
+    local dir
+    dir=$(find . -type d -maxdepth 6 2> /dev/null | fzf --preview 'eza -A --icons=auto {}' --height 40%)
+    if [[ -n $dir ]]; then
+        cd "$dir" || return
+    fi
+}
+zle -N fzf_cd
+
+fzf_hist() {
+  local selected
+  selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --height 40%)
+  if [[ -n $selected ]]; then
+    LBUFFER="$selected"
+    CURSOR=${#LBUFFER}
+  fi
+  zle reset-prompt
+}
+zle -N fzf_hist
+
+fzf_file() {
+  local selected
+  selected=$(find . -type f -maxdepth 6 2> /dev/null | fzf --preview 'previewer {}' --height 40%)
+  if [[ -n $selected ]]; then
+    LBUFFER="$LBUFFER$selected"
+    CURSOR=${#LBUFFER}
+  fi
+  zle reset-prompt
+}
+zle -N fzf_file
 
 # KEYBINDS
 source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
 
-# make tab complete with zsh-autocomplete
-bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
-# alt + h,j,k,l zsh-autocomplete binds
-bindkey '^[l' menu-select
-bindkey '^[h' menu-select
-bindkey '^[j' menu-select
-bindkey '^[k' history-search-backward
-bindkey -M menuselect '^[l' forward-char
-bindkey -M menuselect '^[h' backward-char
-bindkey -M menuselect '^[j' down-history
-bindkey -M menuselect '^[k' up-history
-
-
-# PROMPT
-function git_branch_name()
-{
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-  if [[ $branch == "" ]];
-  then
-    :
-  else
-    echo '%F{red} '$branch''
-  fi
-}
+bindkey '^[c' fzf_cd
+bindkey '^R' fzf_hist
+bindkey '^T' fzf_file
 
 # add or remove $1 in front of command buffer
 toggle_prefix() {
@@ -90,6 +97,33 @@ zle -N prefix_edit
 
 bindkey "^b" prefix_doas
 bindkey "^e" prefix_edit
+
+# make tab complete with zsh-autocomplete
+# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+# alt + h,j,k,l zsh-autocomplete binds
+# bindkey '^[l' menu-select
+# bindkey '^[h' menu-select
+# bindkey '^[j' menu-select
+# bindkey '^[k' history-search-backward
+# bindkey -M menuselect '^[l' forward-char
+# bindkey -M menuselect '^[h' backward-char
+# bindkey -M menuselect '^[j' down-history
+# bindkey -M menuselect '^[k' up-history
+
+
+# PROMPT
+function git_branch_name()
+{
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    echo '%F{red} '$branch''
+  fi
+}
 
 if [[ "$TERM" = "alacritty" ]]; then
   change-title() {

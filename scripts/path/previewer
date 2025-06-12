@@ -1,0 +1,10 @@
+#!/bin/sh
+type=$(xdg-mime query filetype "$1")
+case "$type" in
+    text/*)
+        bat "$1";;
+    *)
+        echo "$type"
+        ;;
+esac
+

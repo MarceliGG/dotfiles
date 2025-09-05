@@ -21,16 +21,16 @@
     },
     "network": {
       "rotate": 270,
-      "format-wifi": "{essid} ({signalStrength}%)   ",
-      "format-ethernet": "{ipaddr}/{cidr}   ",
-      "tooltip-format": "{ifname} via {gwaddr}   ",
-      "format-linked": "{ifname} (No IP)   ",
-      "format-disconnected": "Disconnected ⚠  ",
+      "format-wifi": "{essid} ({signalStrength}%)  ",
+      "format-ethernet": "{ipaddr}/{cidr}  ",
+      "tooltip-format": "{ifname} via {gwaddr}  ",
+      "format-linked": "{ifname} (No IP)  ",
+      "format-disconnected": "Disconnected ⚠ ",
     },
     "pulseaudio": {
       "rotate": 270,
         "scroll-step": 2, // %, can be a float
-        "format": "{volume}% {icon} ",
+        "format": "{volume}% {icon}  {format_source}",
         "format-bluetooth": "{volume}% {icon} ",
         "format-bluetooth-muted": " {icon} ",
         "format-muted": " {format_source}",
@@ -52,5 +52,10 @@
     },
     "tray": {
       "spacing": 4
+    },
+    "battery": {
+      "rotate": 270,
+      "format": "{capacity}% {icon}  ",
+      "format-icons": ["", "", "", "", ""]
     }
 }

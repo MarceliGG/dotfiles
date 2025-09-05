@@ -1,0 +1,38 @@
+@import url(./styles/disapearingButtons.css);
+@import url(./styles/roundUiItems.css);
+/* @import url(./styles/autohideBookmarks.css); */
+
+/* Compact sidebar */
+#sidebar-main {
+  margin-right: -6px !important;
+  margin-left: -8px !important;
+}
+
+/* Hide window close button */
+.titlebar-button.titlebar-close {
+  display: none !important;
+}
+
+
+#navigator-toolbox,
+#browser {
+  /* background: transparent !important; */
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+#tabbrowser-tabbox {
+  border-top-left-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+#sidebar-box {
+  padding-bottom: 0 !important;
+}
+
+#sidebar {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* #main-window { */
+/* } */

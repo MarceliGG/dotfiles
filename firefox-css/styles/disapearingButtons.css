@@ -1,0 +1,40 @@
+#navigator-toolbox:not(:hover):not(:has(#urlbar-input:focus)) {
+
+  #urlbar-background,
+  #urlbar-searchmode-switcher,
+  #main-menubar>menu:not([open]),
+  toolbarbutton:not(#urlbar-container *):not(#customizationui-widget-panel *):not(#sidebar-button:is(:first-child, [sidebar-positionend]:last-child)):not(.titlebar-button):not([open]):not(#downloads-button[progress]),
+  #search-container:not(:focus-within),
+  #zoom-controls,
+  #edit-controls {
+    opacity: 0 !important;
+  }
+}
+
+#tabs-newtab-button,
+#urlbar-background,
+#sidebar-tools-and-extensions-splitter,
+.tools-and-extensions,
+#main-menubar>menu,
+toolbarbutton,
+#search-container,
+#zoom-controls,
+#edit-controls {
+  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+}
+
+
+#tabbrowser-tabs:not(:hover) {
+  #tabs-newtab-button {
+    opacity: 0 !important;
+  }
+}
+
+.wrapper:not(:hover) {
+
+  #sidebar-tools-and-extensions-splitter,
+  .tools-and-extensions {
+    opacity: 0 !important;
+  }
+}

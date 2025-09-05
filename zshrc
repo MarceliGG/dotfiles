@@ -47,6 +47,7 @@ fzf_cd() {
   if [[ -n $dir ]]; then
     cd "$dir" || return
   fi
+  zle reset-prompt
 }
 zle -N fzf_cd
 
@@ -75,11 +76,11 @@ fzf_file() {
 zle -N fzf_file
 
 # KEYBINDS
-source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
+source "$HOME/.config/zsh/zsh-helix-mode/zsh-helix-mode.zsh"
 
-bindkey '^H' fzf_cd
+bindkey '^G' fzf_cd
 bindkey '^R' fzf_hist
-bindkey '^T' fzf_file
+bindkey '^F' fzf_file
 
 # add or remove $1 in front of command buffer
 toggle_prefix() {
@@ -148,8 +149,6 @@ title-change() {
 
 [[ "$TERM" = "alacritty" ]] && PROMPT="\$(title-change)$PROMPT"
 
-sh ~/.scripts/welcome_shell/run.sh
-
 # Syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
@@ -163,9 +162,4 @@ chpwd() {
   ls
 }
 
-# debug() {
-#   # start saving errors to file
-#   exec 2>&2 2>>~/debug.log
-# }
-# debug
-
+sleep 0.01 && fastfetch

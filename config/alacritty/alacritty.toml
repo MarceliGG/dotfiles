@@ -11,8 +11,9 @@ bold_italic = { family = "Liberation Mono", style = "Bold Italic" }
 size = 11.5
 
 [colors.primary]
-background = "#141B29"
-# # background = "#000000"
+# background = "#141B29"
+# background = "#000000"
+background = "#050e15"
 # background = "#334455"
 
 [colors.normal]

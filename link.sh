@@ -24,7 +24,3 @@ for file in "$SCRIPT_DIR"/config/*; do
 done
 
 symlink_config "$SCRIPT_DIR/zshrc" "$HOME/.zshrc"
-echo
-symlink_config "$SCRIPT_DIR/scripts" "$HOME/.scripts"
-echo
-symlink_config "$SCRIPT_DIR/ags/compiled.js" "$HOME/.shell.js"

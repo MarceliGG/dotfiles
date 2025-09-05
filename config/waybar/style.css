@@ -1,0 +1,9 @@
+#waybar {
+  background: #000000;
+}
+
+#workspaces button.active {
+    border-right: 2px solid #335;
+    border-radius: 0;
+    /* box-shadow: inset 0 -3px #ffffff; */
+}

@@ -3,8 +3,7 @@
   "spacing": 8,
   "width": 30,
   "modules-left": [
-        "hyprland/workspaces",
-        "wlr/taskbar"
+        "hyprland/workspaces"
     ],
     "modules-center": [
         "clock"
@@ -49,7 +48,8 @@
         "on-click": "pavucontrol"
     },
     "wlr/taskbar": {
-      "on-click": "activate"
+      "on-click": "activate",
+      "icon-size": 18
     },
     "tray": {
       "spacing": 4

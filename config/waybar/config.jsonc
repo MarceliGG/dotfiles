@@ -3,60 +3,72 @@
   "spacing": 8,
   "width": 30,
   "modules-left": [
-        "hyprland/workspaces"
-    ],
-    "modules-center": [
-        "clock"
-    ],
-    "modules-right": [
-        "tray",
-        "pulseaudio",
-        "network",
-        "battery"
-    ],
-    "clock" : {
-      "rotate": 270,
-      "format": "{:%H : %M   %d / %m / %Y}"
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "network",
+    "battery"
+  ],
+  "clock": {
+    "rotate": 270,
+    "format": "{:%H : %M   %d / %m / %Y}"
+  },
+  "network": {
+    "rotate": 270,
+    "format-wifi": "{essid} ({signalStrength}%)  ",
+    "format-ethernet": "{ipaddr}/{cidr}  ",
+    "tooltip-format": "{ifname} via {gwaddr}  ",
+    "format-linked": "{ifname} (No IP)  ",
+    "format-disconnected": "Disconnected ⚠ ",
+    "on-click": "alacritty --class alacritty-nmtui -e nmtui"
+  },
+  "pulseaudio": {
+    "rotate": 270,
+    "scroll-step": 2, // %, can be a float
+    "format": "{volume}% {icon}  {format_source}",
+    "format-bluetooth": "{volume}% {icon} ",
+    "format-bluetooth-muted": " {icon} ",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
-    "network": {
-      "rotate": 270,
-      "format-wifi": "{essid} ({signalStrength}%)  ",
-      "format-ethernet": "{ipaddr}/{cidr}  ",
-      "tooltip-format": "{ifname} via {gwaddr}  ",
-      "format-linked": "{ifname} (No IP)  ",
-      "format-disconnected": "Disconnected ⚠ ",
-      "on-click": "alacritty --class alacritty-nmtui -e nmtui"
-    },
-    "pulseaudio": {
-      "rotate": 270,
-        "scroll-step": 2, // %, can be a float
-        "format": "{volume}% {icon}  {format_source}",
-        "format-bluetooth": "{volume}% {icon} ",
-        "format-bluetooth-muted": " {icon} ",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "wlr/taskbar": {
-      "on-click": "activate",
-      "icon-size": 18
-    },
-    "tray": {
-      "spacing": 4
-    },
-    "battery": {
-      "rotate": 270,
-      "format": "{capacity}% {icon}  ",
-      "format-icons": ["", "", "", "", ""]
-    }
+    "on-click": "pavucontrol"
+  },
+  "wlr/taskbar": {
+    "on-click": "activate",
+    "icon-size": 18
+  },
+  "tray": {
+    "spacing": 4
+  },
+  "battery": {
+    "rotate": 270,
+    "interval": 20,
+    "format": "{capacity}% {icon}  ",
+    "format-charging": "{capacity}% {icon} 󰚥 ",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  }
 }

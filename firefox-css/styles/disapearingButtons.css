@@ -3,7 +3,7 @@
   #urlbar-background,
   #urlbar-searchmode-switcher,
   #main-menubar>menu:not([open]),
-  toolbarbutton:not(#urlbar-container *):not(#customizationui-widget-panel *):not(#sidebar-button:is(:first-child, [sidebar-positionend]:last-child)):not(.titlebar-button):not([open]):not(#downloads-button[progress]),
+  toolbarbutton:not(#urlbar-container *):not(#customizationui-widget-panel *):not(#sidebar-button:is(:first-child, [sidebar-positionend]:last-child)):not(.titlebar-button):not([open]):not(#downloads-button),
   #search-container:not(:focus-within),
   #zoom-controls,
   #edit-controls {
@@ -20,7 +20,6 @@ toolbarbutton,
 #search-container,
 #zoom-controls,
 #edit-controls {
-  transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
 

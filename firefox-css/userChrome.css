@@ -16,8 +16,7 @@
 
 #navigator-toolbox,
 #browser {
-  /* background: transparent !important; */
-  background: rgba(5, 14, 21, 0.7) !important;
+  background: rgba(5, 14, 21, 0.5) !important;
 }
 
 #tabbrowser-tabbox {
@@ -34,5 +33,14 @@
   border-bottom-right-radius: 0 !important;
 }
 
-/* #main-window { */
-/* } */
+/* hide unnecesary buttons */
+#back-button,
+#forward-button,
+#vertical-spacer {
+  display: none !important;
+}
+
+/* reduce hight of extension sidebar headers */
+.sidebar-panel-header h4 {
+  margin: 0 !important;
+}

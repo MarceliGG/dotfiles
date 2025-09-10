@@ -35,6 +35,7 @@ alias cp='cp -i'
 alias gits="git status"
 alias doas='doas --'
 alias mime="xdg-mime query filetype"
+alias lg="lazygit"
 
 export PAGER=bat
 export MANPAGER="bat -l man"

@@ -24,6 +24,14 @@
   overflow: hidden !important;
 }
 
+#sidebar-tools-and-extensions-splitter {
+  margin: 0 !important;
+}
+
+#tabbrowser-tabs {
+  gap: 0 !important;
+}
+
 #sidebar-box {
   padding-bottom: 0 !important;
 }

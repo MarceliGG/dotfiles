@@ -1,8 +1,4 @@
 @-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
-  body {
-    background: transparent !important;
-  }
-
   button.search-handoff-button {
     border-radius: 26px !important;
     background-color: rgb(0, 0, 0, 0.5) !important;

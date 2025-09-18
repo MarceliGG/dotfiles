@@ -1,6 +1,5 @@
 @import url(./styles/disapearingButtons.css);
 @import url(./styles/roundUiItems.css);
-/* @import url(./styles/autohideBookmarks.css); */
 
 /* Compact sidebar */
 #sidebar-main {
@@ -25,7 +24,8 @@
 }
 
 #sidebar-tools-and-extensions-splitter {
-  margin: 0 !important;
+  margin: 0 10px !important;
+
 }
 
 #tabbrowser-tabs {
@@ -51,12 +51,4 @@
 /* reduce hight of extension sidebar headers */
 .sidebar-panel-header h4 {
   margin: 0 !important;
-}
-
-:root {
-  --custom-tab-background-opacity: 0.2;
-  --tabpanel-background-color: linear-gradient(114deg,
-      rgba(32, 142, 186, var(--custom-tab-background-opacity)) 0%,
-      rgba(87, 199, 133, var(--custom-tab-background-opacity)) 50%,
-      rgba(237, 221, 83, var(--custom-tab-background-opacity)) 100%) !important;
 }

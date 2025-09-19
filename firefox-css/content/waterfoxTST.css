@@ -1,0 +1,26 @@
+@-moz-document url-prefix("moz-extension://") {
+  * {
+    --browser-background: transparent !important;
+    --tab-surface-active: rgba(50, 50, 50, 0.2);
+  }
+
+  tab-item {
+    .background {
+      border-radius: 30px !important;
+    }
+
+    tab-favicon {
+      margin-top: 2px !important;
+      margin-left: -8px !important;
+    }
+
+    tab-label {
+      margin-top: 4px !important;
+    }
+
+    tab-twisty {
+      opacity: 0 !important;
+      padding-left: 10px !important;
+    }
+  }
+}

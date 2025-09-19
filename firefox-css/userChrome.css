@@ -2,10 +2,10 @@
 @import url(./styles/roundUiItems.css);
 
 /* Compact sidebar */
-#sidebar-main {
+/* #sidebar-main {
   margin-right: -6px !important;
   margin-left: -8px !important;
-}
+} */
 
 /* Hide window close button */
 .titlebar-button.titlebar-close {
@@ -51,4 +51,9 @@
 /* reduce hight of extension sidebar headers */
 .sidebar-panel-header h4 {
   margin: 0 !important;
+}
+
+/* transparent tree style tabs background for waterfox */
+#tree-vertical-tabs-box {
+  background: transparent !important;
 }

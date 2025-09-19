@@ -1,3 +1,5 @@
+@import url(./content/waterfoxTST.css);
+
 @-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
   button.search-handoff-button {
     border-radius: 26px !important;

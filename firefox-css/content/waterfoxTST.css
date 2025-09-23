@@ -1,4 +1,4 @@
-@-moz-document url-prefix("moz-extension://") {
+@-moz-document url-prefix("moz-extension://9b9a5b8e-d95c-44c8-89cd-57edc5c6ffa3") {
   * {
     --browser-background: transparent !important;
     --tab-surface-active: rgba(50, 50, 50, 0.2);
@@ -22,5 +22,17 @@
       opacity: 0 !important;
       padding-left: 10px !important;
     }
+  }
+
+  #pinned-tabs-container tab-item .background {
+    background-color: rgba(50, 50, 100, 0.5) !important;
+  }
+
+  .newtab-button-box {
+    transition: opacity 0.3s ease;
+  }
+
+  .sidebar:not(:hover) .newtab-button-box {
+    opacity: 0 !important;
   }
 }

@@ -1,11 +1,9 @@
 @import url(./styles/disapearingButtons.css);
 @import url(./styles/roundUiItems.css);
 
-/* Compact sidebar */
-/* #sidebar-main {
-  margin-right: -6px !important;
-  margin-left: -8px !important;
-} */
+#sidebar-main {
+  padding: 0 2px !important;
+}
 
 /* Hide window close button */
 .titlebar-button.titlebar-close {

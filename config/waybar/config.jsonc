@@ -15,7 +15,7 @@
   ],
   "clock": {
     "rotate": 270,
-    "format": "{:%H : %M   %d / %m / %Y}  "
+    "format": " {:%H : %M   %d / %m / %Y}  "
   },
   "network": {
     "rotate": 270,

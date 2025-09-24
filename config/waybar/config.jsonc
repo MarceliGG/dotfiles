@@ -1,22 +1,21 @@
 {
   "position": "right",
   "spacing": 8,
-  "width": 30,
   "modules-left": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/window"
   ],
-  "modules-center": [
-    "clock"
-  ],
+  "modules-center": [],
   "modules-right": [
     "tray",
     "pulseaudio",
     "network",
-    "battery"
+    "battery",
+    "clock"
   ],
   "clock": {
     "rotate": 270,
-    "format": "{:%H : %M   %d / %m / %Y}"
+    "format": "{:%H : %M   %d / %m / %Y}  "
   },
   "network": {
     "rotate": 270,
@@ -27,10 +26,17 @@
     "format-disconnected": "Disconnected ⚠ ",
     "on-click": "alacritty --class alacritty-nmtui -e nmtui"
   },
+  "hyprland/workspaces": {
+    "sort-by": "id"
+  },
+  "hyprland/window": {
+    "rotate": 270,
+    "icon": true
+  },
   "pulseaudio": {
     "rotate": 270,
     "scroll-step": 2, // %, can be a float
-    "format": "{volume}% {icon}  {format_source}",
+    "format": "{volume}% {icon} {format_source}",
     "format-bluetooth": "{volume}% {icon} ",
     "format-bluetooth-muted": " {icon} ",
     "format-muted": " {format_source}",
@@ -61,8 +67,8 @@
   "battery": {
     "rotate": 270,
     "interval": 20,
-    "format": "{capacity}% {icon}  ",
-    "format-charging": "{capacity}% {icon} 󰚥 ",
+    "format": "{capacity}% {icon} ",
+    "format-charging": "{capacity}% {icon} 󰚥",
     "format-icons": [
       "",
       "",

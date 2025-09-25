@@ -24,7 +24,7 @@
     "tooltip-format": "{ifname} via {gwaddr}  ",
     "format-linked": "{ifname} (No IP)  ",
     "format-disconnected": "Disconnected ⚠ ",
-    "on-click": "alacritty --class alacritty-nmtui -e nmtui"
+    "on-click": "foot -a term-nmtui -e nmtui"
   },
   "hyprland/workspaces": {
     "sort-by": "id"

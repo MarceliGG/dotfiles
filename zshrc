@@ -130,9 +130,9 @@ function git_branch_name()
   fi
 }
 
-if [[ "$TERM" = "alacritty" ]]; then
+if [[ "$TERM" = "alacritty" || "$TERM" = "foot" ]]; then
   change-title() {
-    print -Pn "\e]0;$BUFFER\a" 
+    print -Pn "\e]0;$PWD : $BUFFER\a" 
     zle accept-line
   }
   zle -N change-title
@@ -148,7 +148,7 @@ title-change() {
   print -Pn "\e]0;$PWD\a" 
 }
 
-[[ "$TERM" = "alacritty" ]] && PROMPT="\$(title-change)$PROMPT"
+[[ "$TERM" = "alacritty" || "$TERM" = "foot" ]] && PROMPT="\$(title-change)$PROMPT"
 
 # Syntax highlighting
 typeset -A ZSH_HIGHLIGHT_STYLES

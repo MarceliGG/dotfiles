@@ -35,4 +35,8 @@
   .sidebar:not(:hover) .newtab-button-box {
     opacity: 0 !important;
   }
+
+  tab-item.discarded tab-item-substance {
+    opacity: 0.6 !important;
+  }
 }

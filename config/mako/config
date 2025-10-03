@@ -2,6 +2,14 @@ layer=overlay
 background-color=#000000
 border-radius=8
 default-timeout=5000
+height=300
+
+[urgency=low]
+border-color=#262626
+
+[urgency=normal]
+border-color=#ffffff
 
 [urgency=high]
+border-color=#ff0000
 default-timeout=0

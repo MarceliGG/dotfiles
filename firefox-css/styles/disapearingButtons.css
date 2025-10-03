@@ -3,7 +3,7 @@
   #urlbar-background,
   #urlbar-searchmode-switcher,
   #main-menubar>menu:not([open]),
-  toolbarbutton:not(#urlbar-container *):not(#customizationui-widget-panel *):not(#sidebar-button:is(:first-child, [sidebar-positionend]:last-child)):not(.titlebar-button):not([open]):not(#downloads-button),
+  toolbarbutton:not(#urlbar-container *):not(#customizationui-widget-panel *):not(#sidebar-button:is(:first-child, [sidebar-positionend]:last-child)):not(.titlebar-button):not([open]),
   #search-container:not(:focus-within),
   #zoom-controls,
   #edit-controls {

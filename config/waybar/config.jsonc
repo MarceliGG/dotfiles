@@ -1,6 +1,7 @@
 {
+  "width": 32,
   "position": "right",
-  "spacing": 8,
+  "spacing": 12,
   "modules-left": [
     "hyprland/workspaces",
     "hyprland/window"
@@ -15,16 +16,23 @@
   ],
   "clock": {
     "rotate": 270,
-    "format": " {:%H : %M   %d / %m / %Y}  "
+    "format": "{:%H:%M %d/%m/%Y} "
   },
   "network": {
     "rotate": 270,
-    "format-wifi": "{essid} ({signalStrength}%)  ",
+    "format-wifi": "{essid} {icon}",
     "format-ethernet": "{ipaddr}/{cidr}  ",
-    "tooltip-format": "{ifname} via {gwaddr}  ",
+    "tooltip-format": "ssid: {essid}\nstrength: {signaldBm}dBm ({signalStrength}%)\nfrequency: {frequency}GHz\ninterface: {ifname}\nlocal IP: {ipaddr}",
     "format-linked": "{ifname} (No IP)  ",
     "format-disconnected": "Disconnected ⚠ ",
-    "on-click": "foot -a term-nmtui -e nmtui"
+    "on-click": "foot -a term-nmtui -e nmtui",
+    "format-icons": [
+      "󰤯 ",
+      "󰤟 ",
+      "󰤢 ",
+      "󰤥 ",
+      "󰤨 "
+    ]
   },
   "hyprland/workspaces": {
     "sort-by": "id"
@@ -37,11 +45,11 @@
     "rotate": 270,
     "scroll-step": 2, // %, can be a float
     "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} ",
-    "format-bluetooth-muted": " {icon} ",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": " {icon}",
     "format-muted": " {format_source}",
     "format-source": "{volume}% ",
-    "format-source-muted": "",
+    "format-source-muted": " ",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -67,14 +75,42 @@
   "battery": {
     "rotate": 270,
     "interval": 20,
-    "format": "{capacity}% {icon} ",
-    "format-charging": "{capacity}% {icon} 󰚥",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format": "{capacity}% {icon}",
+    // "format-charging": "{capacity}% {icon}󰚥",
+    // "format-icons": [
+    //   "",
+    //   "",
+    //   "",
+    //   "",
+    //   ""
+    // ]
+    "format-icons": {
+      "charging": [
+        "󰢟 ",
+        "󰢜 ",
+        "󰂆 ",
+        "󰂇 ",
+        "󰂈 ",
+        "󰢝 ",
+        "󰂉 ",
+        "󰢞 ",
+        "󰂊 ",
+        "󰂋 ",
+        "󰂅 "
+      ],
+      "discharging": [
+        "󰂎",
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ]
+    }
   }
 }

@@ -33,7 +33,6 @@ alias py='python'
 alias mv='mv -i'
 alias cp='cp -i'
 alias gits="git status"
-alias doas='doas --'
 alias mime="xdg-mime query filetype"
 alias lg="lazygit"
 
@@ -89,18 +88,18 @@ toggle_prefix() {
   zle end-of-line
 }
 
-prefix_doas() {
-  toggle_prefix doas
+prefix_sudo() {
+  toggle_prefix sudo
 }
 
 prefix_edit() {
   toggle_prefix e
 }
 
-zle -N prefix_doas
+zle -N prefix_sudo
 zle -N prefix_edit
 
-bindkey "^b" prefix_doas
+bindkey "^b" prefix_sudo
 bindkey "^e" prefix_edit
 
 # make tab complete with zsh-autocomplete

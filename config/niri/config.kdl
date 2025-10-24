@@ -36,6 +36,7 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
+        // off
         width 3
         active-gradient from="#7fc8ff" to="#449922"
     }
@@ -51,16 +52,23 @@ layout {
     }
 }
 
+window-rule {
+    match app-id="waterfox"
+    draw-border-with-background false
+}
+
 hotkey-overlay {
     skip-at-startup
 }
 
 // AUTOSTART
-spawn-at-startup "~/.shell.js"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "hypridle"
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "mako" "-c" ".config/mako/niri.config"
+spawn-at-startup "swayosd-server"
+spawn-at-startup "waybar"
 
 prefer-no-csd
 
@@ -78,19 +86,19 @@ environment {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+X { spawn "alacritty"; }
-    Mod+B { spawn "zen-browser"; }
-    Mod+R { spawn "astal" "-i" "shell" "launcher"; }
-    Mod+E { spawn "dolphin"; }
+    Mod+X { spawn "foot"; }
+    Mod+B { spawn "waterfox"; }
+    Mod+R { spawn "wofi" "-show" "drun"; }
+    Mod+E { spawn "pcmanfm-qt" "-style" "kvantum"; }
 
-    XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
-    XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
-    XF86AudioMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute      allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
-    Ctrl+F5               allow-when-locked=true { spawn "brightnessctl" "set" "35%"; }
-    Ctrl+F6               allow-when-locked=true { spawn "brightnessctl" "set" "70%"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-2"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "+2"; }
+    XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    XF86MonBrightnessDown     allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }
+    XF86MonBrightnessUp       allow-when-locked=true { spawn "swayosd-client" "--brightness" "+5"; }
+    Mod+XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "35"; }
+    Mod+XF86MonBrightnessUp   allow-when-locked=true { spawn "swayosd-client" "--brightness" "70"; }
 
     Mod+Shift+Q { close-window; }
 

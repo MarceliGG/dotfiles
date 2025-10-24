@@ -1,10 +1,12 @@
 {
-  "width": 32,
+  "width": 30,
   "position": "right",
   "spacing": 12,
+  "layer": "top",
   "modules-left": [
+    "niri/workspaces",
     "hyprland/workspaces",
-    "hyprland/window"
+    "wlr/taskbar"
   ],
   "modules-center": [],
   "modules-right": [
@@ -67,6 +69,7 @@
   },
   "wlr/taskbar": {
     "on-click": "activate",
+    "format": "{icon}",
     "icon-size": 18
   },
   "tray": {

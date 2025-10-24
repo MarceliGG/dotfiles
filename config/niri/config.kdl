@@ -28,9 +28,11 @@ layout {
     always-center-single-column
 
     preset-column-widths {
+        proportion 0.25
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
     }
 
     default-column-width { proportion 0.5; }
@@ -46,6 +48,7 @@ layout {
     }
 
     tab-indicator {
+        width 3
         gap 0
         active-color "#ff3344"
         length total-proportion=1.0
@@ -88,7 +91,7 @@ binds {
 
     Mod+X { spawn "foot"; }
     Mod+B { spawn "waterfox"; }
-    Mod+R { spawn "wofi" "-show" "drun"; }
+    Mod+R { spawn "wofi" "--show" "drun"; }
     Mod+E { spawn "pcmanfm-qt" "-style" "kvantum"; }
 
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-2"; }
@@ -117,7 +120,7 @@ binds {
     Mod+Shift+N { consume-window-into-column; }
     Mod+Shift+M { expel-window-from-column; }
 
-    Mod+W { toggle-column-tabbed-display; }
+    Mod+G { toggle-column-tabbed-display; }
     
     Mod+Home       { focus-column-first; }
     Mod+End        { focus-column-last; }
@@ -154,8 +157,9 @@ binds {
     Mod+Shift+3 { move-window-to-workspace 3; }
     Mod+Shift+4 { move-window-to-workspace 4; }
 
-    Mod+S       { switch-preset-column-width; }
-    Mod+Shift+S { reset-window-height; }
+    Mod+Period  { switch-preset-column-width; }
+    Mod+Comma   { switch-preset-column-width-back; }
+    Mod+Ctrl+F  { reset-window-height; }
     Mod+F       { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+C       { center-column; }

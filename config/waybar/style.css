@@ -6,3 +6,7 @@
   border-radius: 0;
   background: #333;
 }
+
+#workspaces button {
+  padding: 2px;
+}

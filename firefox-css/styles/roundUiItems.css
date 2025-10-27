@@ -60,3 +60,19 @@ toolbar toolbarbutton:not(#back-button):not(.bookmark-item):not(.titlebar-button
 menugroup:hover>menuitem {
   clip-path: circle()
 }
+
+
+
+#tabbrowser-tabbox {
+  border-top-left-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+#sidebar-box {
+  padding-bottom: 0 !important;
+}
+
+#sidebar {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}

@@ -57,6 +57,7 @@ layout {
 
 window-rule {
     match app-id="waterfox"
+    match app-id="firefox"
     draw-border-with-background false
 }
 
@@ -90,7 +91,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+X { spawn "foot"; }
-    Mod+B { spawn "waterfox"; }
+    Mod+B { spawn "firefox"; }
     Mod+R { spawn "wofi" "--show" "drun"; }
     Mod+E { spawn "pcmanfm-qt" "-style" "kvantum"; }
 

@@ -1,5 +1,5 @@
-@import url(./styles/disapearingButtons.css);
-@import url(./styles/roundUiItems.css);
+/* @import url(./styles/disapearingButtons.css); */
+/* @import url(./styles/roundUiItems.css); */
 
 #sidebar-main {
   padding: 0 2px !important;
@@ -16,27 +16,20 @@
   background: rgba(5, 14, 21, 0.7) !important;
 }
 
-#tabbrowser-tabbox {
-  border-top-left-radius: 8px !important;
-  overflow: hidden !important;
+#navigator-toolbox>* {
+  background: none !important;
 }
 
 #sidebar-tools-and-extensions-splitter {
   margin: 0 10px !important;
+}
 
+.tabbrowser-tab[selected="true"] .tab-background {
+  background: rgba(200, 200, 200, 0.2) !important;
 }
 
 #tabbrowser-tabs {
   gap: 0 !important;
-}
-
-#sidebar-box {
-  padding-bottom: 0 !important;
-}
-
-#sidebar {
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
 }
 
 /* hide unnecesary buttons */
@@ -54,4 +47,38 @@
 /* transparent tree style tabs background for waterfox */
 #tree-vertical-tabs-box {
   background: transparent !important;
+}
+
+@media (min-width: 1100px) {
+  :root {
+    --navbarWidth: 500px;
+  }
+
+  #TabsToolbar {
+    margin-left: var(--navbarWidth) !important;
+  }
+
+  #urlbar-container {
+    min-width: 0px !important;
+  }
+
+  #nav-bar {
+    margin-right: calc(100vw - var(--navbarWidth)) !important;
+  }
+
+
+  :root[uidensity="compact"] #nav-bar {
+    margin-top: -37px !important;
+    height: 37px !important;
+  }
+
+  :root:not([uidensity="compact"]):not([uidensity="touch"]) #nav-bar {
+    margin-top: -44px !important;
+    height: 44px !important;
+  }
+
+  :root[uidensity="touch"] #nav-bar {
+    margin-top: -49px !important;
+    height: 49px !important;
+  }
 }

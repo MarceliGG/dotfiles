@@ -125,9 +125,9 @@ function git_branch_name()
   branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
   if [[ $branch == "" ]];
   then
-    :
+    echo '%F{blue}%k'
   else
-    echo '%F{red} '$branch''
+    echo '%F{blue}%K{red} %F{black} '$branch' %F{red}%k'
   fi
 }
 
@@ -142,8 +142,7 @@ fi
 
 setopt prompt_subst
 PROMPT='
-%F{yellow}󰘦 %? %F{green} %D{%H:%M:%S} %F{blue} %d $(git_branch_name)
-%F{cyan}→%f '
+%F{yellow}%K{yellow}%F{black}󰘦 %? %F{yellow}%K{green} %F{black} %D{%H:%M:%S} %F{green}%K{blue} %F{black} %d $(git_branch_name)%f%k '
 
 title-change() {
   print -Pn "\e]0;$PWD\a" 

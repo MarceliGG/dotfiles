@@ -97,8 +97,8 @@ binds {
     Mod+R { spawn "wofi" "--show" "drun"; }
     Mod+E { spawn "pcmanfm-qt" "-style" "kvantum"; }
 
-    XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-2"; }
-    XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "+2"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "-2"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "swayosd-client" "--output-volume" "+2"; }
     XF86AudioMute         allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
     XF86AudioMicMute      allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
     XF86MonBrightnessDown     allow-when-locked=true { spawn "swayosd-client" "--brightness" "-5"; }

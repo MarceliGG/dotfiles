@@ -155,8 +155,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=magenta'
-# ZSH_HIGHLIGHT_STYLES[comment]='fg=black,bg=yellow'
-ZSH_HIGHLIGHT_STYLES[comment]='bg=magenta,fg=black'
+ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
 source $HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 chpwd() {

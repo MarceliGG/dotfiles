@@ -1,0 +1,64 @@
+"ui.selection" = { bg = "#333333" }
+"ui.selection.primary" = { bg = "#444444" }
+"ui.cursor" = { fg = "black", bg = "blue" }
+"ui.cursor.select" = { fg = "black", bg = "purple" }
+"ui.cursor.insert" = { fg = "black", bg = "green" }
+"ui.cursor.match" = { fg = "foreground", bg = "grey"}
+"ui.cursor.primary.normal" = { fg = "black", bg = "cyan" }
+"ui.cursor.primary.select" = { fg = "black", bg = "purple" }
+"ui.cursorline.primary" = {bg = "cursorline"}
+"ui.linenr" = { fg = "punctuation" }
+
+"diagnostic" = { underline = { color = "orange", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "purple", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.info" = { underline = { color = "cyan", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+"error" = { fg = "red" }
+"hint" = { fg = "purple" }
+"info" = { fg = "cyan" }
+"warning" = { fg = "yellow" }
+
+"string" = { fg = "string" }
+"string.regexp" = { fg = "string", modifiers = ["bold"] }
+"comment" = { fg = "yellow" }
+"punctuation" = { fg = "#7999a9" }
+"ui.virtual.indent-guide" = { fg = "punctuation" }
+"keyword" = { modifiers = ["italic"] }
+"function" = { fg = "green" }
+# "variable" = { fg = "cyan" }
+"constructor" = { fg = "purple" }
+"constant" = { modifiers = ["bold"] }
+"constant.numeric" = { fg = "orange" }
+"constant.builtin" = { fg = "orange" }
+
+"ui.menu" = { bg = "background" }
+"ui.menu.selected" = { fg = "black", bg = "cyan" }
+"ui.popup" = { bg = "background" }
+"ui.statusline" = { bg = "background" }
+"ui.statusline.inactive" = { bg = "black" }
+"ui.statusline.insert" = { fg = "green", modifiers = ["bold"] }
+"ui.statusline.normal" = { fg = "cyan", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "purple", modifiers = ["bold"] }
+
+
+[palette]
+background        = "#282A36"
+string            = "#33aa33"
+black             = "#191A21"
+punctuation       = "#6272A4"
+current_line      = "#44475a"
+cursorline        = "#2d303e"
+cyan              = "#8be9fd"
+foreground        = "#f8f8f2"
+green             = "#50fa7b" 
+grey              = "#666771"
+purple            = "#BD93F9" 
+red               = "#ff5555"
+selection         = "#363848"
+whitespace        = "#586693"
+yellow            = "#f1fa8c" 
+orange            = "#ffb86c" 

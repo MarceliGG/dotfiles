@@ -1,4 +1,4 @@
-theme = "custom-dracula"
+theme = "custom-simple"
 
 [keys.normal]
 "C-s" = ":write"

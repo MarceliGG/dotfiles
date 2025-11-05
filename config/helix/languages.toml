@@ -45,3 +45,11 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 [[language]]
 name = "markdown"
 file-types = ["md", "MD", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "mdown", "markdn", "mdtxt", "mdtext", "workbook", { glob = "PULLREQ_EDITMSG" }]
+
+[language-server.tailwind]
+command = "tailwindcss-language-server"
+args = ["-vvv", "--stdio"] 
+
+[[language]]
+name = "tsx"
+language-servers = [ "tailwindcss-ls", "typescript-language-server" ]

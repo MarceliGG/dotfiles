@@ -1,0 +1,23 @@
+@define-color selected #0088cc;
+
+#window {
+  border: @selected 2px solid;
+}
+
+#outer-box {
+  margin: 8px;
+}
+
+#entry:selected {
+  background: @selected;
+  border-radius: 0;
+}
+
+#input {
+  border-radius: 0;
+  margin-bottom: 8px;
+}
+
+#img {
+  margin-right: 8px;
+}

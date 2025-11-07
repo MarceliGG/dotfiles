@@ -1,2 +1,5 @@
-
 run-always_parse_args=true
+allow_images=true
+layer=overlay
+height=80%
+width=400

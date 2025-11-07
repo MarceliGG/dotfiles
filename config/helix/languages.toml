@@ -50,6 +50,6 @@ file-types = ["md", "MD", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "m
 command = "tailwindcss-language-server"
 args = ["-vvv", "--stdio"] 
 
-[[language]]
-name = "tsx"
-language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
+# [[language]]
+# name = "tsx"
+# language-servers = [ "tailwindcss-ls", "typescript-language-server" ]

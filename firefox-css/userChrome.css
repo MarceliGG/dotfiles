@@ -8,7 +8,7 @@
 
 #navigator-toolbox,
 #browser {
-  background: rgba(5, 14, 21, 0.7) !important;
+  background: rgba(5, 14, 21, 0.8) !important;
 }
 
 #navigator-toolbox>* {
@@ -31,6 +31,15 @@
   padding: 0 6px 0 2px !important;
 }
 
+#TabsToolbar {
+  margin-top: -2px !important;
+  /* margin-top: -2px !important; */
+}
+
+:root #nav-bar {
+  margin-top: -4px !important;
+}
+
 @media (min-width: 1100px) {
   :root {
     --navbarWidth: 500px;
@@ -46,21 +55,7 @@
 
   #nav-bar {
     margin-right: calc(100vw - var(--navbarWidth)) !important;
-  }
-
-  :root[uidensity="compact"] #nav-bar {
-    margin-top: -37px !important;
-    height: 37px !important;
-  }
-
-  :root:not([uidensity="compact"]):not([uidensity="touch"]) #nav-bar {
-    margin-top: -44px !important;
-    height: 44px !important;
-  }
-
-  :root[uidensity="touch"] #nav-bar {
-    margin-top: -49px !important;
-    height: 49px !important;
+    margin-top: -36px !important;
   }
 }
 

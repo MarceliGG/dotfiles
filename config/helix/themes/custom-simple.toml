@@ -1,15 +1,15 @@
 "ui.selection" = { bg = "#555577" }
 # "ui.selection.primary" = { bg = "#444444" }
 "ui.cursor" = { fg = "black", bg = "blue" }
-"ui.cursor.select" = { fg = "black", bg = "blue", underline = { color = "purple", style = "curl"} }
+"ui.cursor.select" = { fg = "black", bg = "blue", underline = { color = "magenta", style = "curl"} }
 "ui.cursor.insert" = { fg = "black", bg = "green" }
 "ui.cursor.match" = { fg = "black", bg = "guides" }
 "ui.cursor.primary.normal" = { fg = "black", bg = "cyan" }
-"ui.cursor.primary.select" = { fg = "black", bg = "purple" }
+"ui.cursor.primary.select" = { fg = "black", bg = "magenta" }
 "ui.cursorline.primary" = { bg = "cursorline" }
 "ui.linenr" = { fg = "guides" }
 
-"diagnostic.hint" = { underline = { color = "purple", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "magenta", style = "curl" } }
 "diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
 "diagnostic.error" = { underline = { color = "red", style = "curl" } }
 "diagnostic.info" = { underline = { color = "cyan", style = "curl" } }
@@ -17,36 +17,36 @@
 "diagnostic.deprecated" = { modifiers = ["crossed_out"] }
 
 "error" = { fg = "red" }
-"hint" = { fg = "purple" }
+"hint" = { fg = "magenta" }
 "info" = { fg = "cyan" }
 "warning" = { fg = "yellow" }
 
-"string" = { fg = "string" }
-"string.regexp" = { fg = "string", modifiers = ["bold"] }
+"string" = { fg = "green" }
+"string.regexp" = { fg = "green", modifiers = ["bold"] }
 "comment" = { fg = "yellow" }
 "punctuation" = { fg = "punctuation" }
 "ui.virtual.indent-guide" = { fg = "guides" }
 "keyword" = { modifiers = ["italic"] }
-"function" = { fg = "green" }
+"function" = { fg = "light-green" }
 # "variable" = { fg = "cyan" }
-"constructor" = { fg = "purple" }
+"constructor" = { fg = "magenta" }
 "constant" = { modifiers = ["bold"] }
-"constant.numeric" = { fg = "values" }
-"constant.builtin" = { fg = "values" }
+"constant.numeric" = { fg = "light-yellow" }
+"constant.builtin" = { fg = "light-yellow" }
 
 "ui.menu" = { bg = "background" }
 "ui.menu.selected" = { fg = "black", bg = "cyan" }
 "ui.popup" = { bg = "background" }
 "ui.statusline" = { bg = "background" }
 "ui.statusline.inactive" = { bg = "black" }
-"ui.statusline.insert" = { fg = "green", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "light-green", modifiers = ["bold"] }
 "ui.statusline.normal" = { fg = "cyan", modifiers = ["bold"] }
-"ui.statusline.select" = { fg = "purple", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "magenta", modifiers = ["bold"] }
 
 "markup.heading" = { fg = "blue", modifiers = ["bold"] }
-"markup.heading.marker" = { fg = "cyan", modifiers = ["bold"] }
-"markup.heading.1" = { fg = "purple", modifiers = ["bold"] }
-"markup.heading.2" = { fg = "green", modifiers = ["bold"] }
+"markup.heading.marker" = { fg = "blue", modifiers = ["bold"] }
+"markup.heading.1" = { fg = "magenta", modifiers = ["bold"] }
+"markup.heading.2" = { fg = "light-green", modifiers = ["bold"] }
 "markup.heading.3" = { fg = "yellow", modifiers = ["bold"] }
 "markup.list" = { fg = "blue", modifiers = ["bold"] }
 
@@ -60,21 +60,19 @@
 
 "ui.virtual.jump-label" = { fg = "black", bg = "yellow" }
 
-"label" = { fg = "green" }
+"label" = { fg = "light-green" }
 "tag" = { fg = "blue" }
 
 
 [palette]
 background        = "#262626"
-values            = "#ffb86c" 
-string            = "#33aa33"
-black             = "#191A21"
+# values            = "#ffb86c" 
+# string            = "#33aa33"
+# black             = "#191A21"
 punctuation       = "#AAAAAA"
 guides            = "#6272A4"
 cursorline        = "#323232"
-cyan              = "#8be9fd"
-green             = "#50fa7b" 
-purple            = "#BD93F9" 
-red               = "#ff5555"
+# cyan              = "#8be9fd"
+# green             = "#50fa7b" 
+# magenta            = "#BD93F9" 
 selection         = "#363848"
-yellow            = "#f1fa8c" 

@@ -12,7 +12,6 @@ zstyle ':autocomplete:*' delay 0.4
 autoload -U compinit; compinit
 
 FPATH="$HOME/.config/zsh-completions:$FPATH"
-PATH="$HOME/.scripts/path:$PATH"
 
 # HISTORY
 HISTFILE=~/.zshhist

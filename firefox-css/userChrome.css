@@ -6,9 +6,12 @@
   display: none !important;
 }
 
-#navigator-toolbox,
-#browser {
+#navigator-toolbox {
   background: rgba(5, 14, 21, 0.8) !important;
+}
+
+#tabbrowser-tabpanels>hbox {
+  background: #eaeaea !important;
 }
 
 #navigator-toolbox>* {

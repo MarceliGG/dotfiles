@@ -1,0 +1,11 @@
+[mgr]
+syntect_theme = "~/.config/yazi/highlight.tmTheme"
+
+[mode]
+normal_main = { fg = "cyan", bg = "black" }
+select_main = { fg = "magenta", bg = "black" }
+
+[status]
+overall = { bg = "#262626" }
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }

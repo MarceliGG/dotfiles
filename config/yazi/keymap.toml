@@ -1,0 +1,32 @@
+[[mgr.prepend_keymap]]
+on = "G"
+run = "noop"
+
+[[mgr.prepend_keymap]]
+on = ["g", "e"]
+run = "arrow bot"
+desc = "Go to bottom"
+
+[[mgr.prepend_keymap]]
+on = "d"
+run = "yank --cut"
+
+[[mgr.prepend_keymap]]
+on = "D"
+run = "remove"
+
+[[mgr.prepend_keymap]]
+on = "<Delete>"
+run = "remove --permanently"
+
+[[mgr.prepend_keymap]]
+on = "J"
+run = "tab_switch --relative -1"
+
+[[mgr.prepend_keymap]]
+on = "K"
+run = "tab_switch --relative 1"
+
+[[mgr.prepend_keymap]]
+on = "x"
+run = "help"

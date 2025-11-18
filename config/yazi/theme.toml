@@ -9,3 +9,9 @@ select_main = { fg = "magenta", bg = "black" }
 overall = { bg = "#262626" }
 sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
+
+[tabs]
+inactive = { bg = "#262626", fg = "blue" }
+sep_outer = { open = "█", close = "█" }
+active = { fg = "#262626", bg = "blue" }
+sep_inner = { open = "", close = "" }

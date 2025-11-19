@@ -57,10 +57,13 @@ layout {
     }
 
     tab-indicator {
-        width 3
+        width 6
         gap 0
-        active-color "#ff3344"
-        length total-proportion=1.0
+        active-color "#fac873"
+        length total-proportion=0.98
+        place-within-column
+        gaps-between-tabs 8
+        corner-radius 3
     }
 }
 

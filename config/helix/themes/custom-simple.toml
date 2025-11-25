@@ -26,6 +26,7 @@
 "comment" = { fg = "yellow" }
 "punctuation" = { fg = "punctuation" }
 "ui.virtual.indent-guide" = { fg = "guides" }
+"ui.virtual.whitespace" = { fg = "guides" }
 "keyword" = { modifiers = ["italic"] }
 "function" = { fg = "light-green" }
 # "variable" = { fg = "cyan" }

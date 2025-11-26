@@ -112,7 +112,7 @@ environment {
 
 binds {
     Mod+X       { spawn "foot"; }
-    Mod+B       { spawn "firefox"; }
+    Mod+B       { spawn "waterfox"; }
     Mod+R       { spawn "wofi" "--show" "drun"; }
     Mod+Shift+R { spawn "wofi" "--show" "run"; }
     Mod+E       { spawn "pcmanfm-qt" "-style" "kvantum"; }

@@ -79,41 +79,19 @@
     "rotate": 270,
     "interval": 20,
     "format": "{capacity}% {icon}",
-    // "format-charging": "{capacity}% {icon}󰚥",
-    // "format-icons": [
-    //   "",
-    //   "",
-    //   "",
-    //   "",
-    //   ""
-    // ]
-    "format-icons": {
-      "charging": [
-        "󰢟 ",
-        "󰢜 ",
-        "󰂆 ",
-        "󰂇 ",
-        "󰂈 ",
-        "󰢝 ",
-        "󰂉 ",
-        "󰢞 ",
-        "󰂊 ",
-        "󰂋 ",
-        "󰂅 "
-      ],
-      "discharging": [
-        "󰂎",
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂",
-        "󰁹"
-      ]
-    }
+    "format-charging": "{capacity}% {icon}󱐋",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
   }
 }

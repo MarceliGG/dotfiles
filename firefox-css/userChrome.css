@@ -6,21 +6,22 @@
   display: none !important;
 }
 
+#sidebar-main,
 #navigator-toolbox {
   background: rgba(5, 14, 21, 0.8) !important;
 }
 
-#tabbrowser-tabpanels>hbox {
+/* #tabbrowser-tabpanels>hbox {
   background: #eaeaea !important;
-}
+} */
 
 #navigator-toolbox>* {
   background: none !important;
 }
 
-.tabbrowser-tab[selected="true"] .tab-background {
+/* .tabbrowser-tab[selected="true"] .tab-background {
   background: rgba(200, 200, 200, 0.2) !important;
-}
+} */
 
 /* hide unnecesary buttons */
 #back-button,
@@ -34,9 +35,8 @@
   padding: 0 6px 0 2px !important;
 }
 
-#TabsToolbar {
+/* #TabsToolbar {
   margin-top: -2px !important;
-  /* margin-top: -2px !important; */
 }
 
 #nav-bar {
@@ -60,8 +60,28 @@
     margin-right: calc(100vw - var(--navbarWidth)) !important;
     margin-top: -36px !important;
   }
-}
+} */
 
 .titlebar-spacer {
   display: none !important;
+}
+
+#browser {
+  background: transparent !important;
+}
+
+#tabs-newtab-button,
+tab .tab-background {
+  margin-left: 4px !important;
+  margin-right: 4px !important;
+}
+
+.tools-and-extensions.actions-list moz-button {
+  margin-left: -8px !important;
+  margin-right: -8px !important;
+}
+
+tab .tab-content {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }

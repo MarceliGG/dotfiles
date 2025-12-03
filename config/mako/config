@@ -1,6 +1,5 @@
 layer=overlay
 background-color=#000000
-border-radius=8
 default-timeout=5000
 height=300
 

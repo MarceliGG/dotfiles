@@ -92,8 +92,7 @@ hotkey-overlay {
 spawn-at-startup "swww-daemon"
 spawn-at-startup "hypridle"
 spawn-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
-// spawn-at-startup "xwayland-satellite"
-spawn-at-startup "mako" "-c" ".config/mako/niri.config"
+spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "waybar"
 

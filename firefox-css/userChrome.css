@@ -30,9 +30,8 @@
   display: none !important;
 }
 
-/* reduce hight of extension sidebar headers */
-#sidebar-header {
-  padding: 0 6px 0 2px !important;
+.sidebar-panel-header>h4 {
+  margin: 0 !important;
 }
 
 /* #TabsToolbar {
@@ -84,4 +83,12 @@ tab .tab-background {
 tab .tab-content {
   padding-left: 10px !important;
   padding-right: 10px !important;
+}
+
+#sidebar-box {
+  padding: 0 !important;
+}
+
+#sidebar {
+  border-radius: 0 !important;
 }

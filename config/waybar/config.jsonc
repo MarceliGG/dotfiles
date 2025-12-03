@@ -3,11 +3,7 @@
   "position": "right",
   "spacing": 12,
   "layer": "top",
-  "modules-left": [
-    "niri/workspaces",
-    "hyprland/workspaces",
-    "wlr/taskbar"
-  ],
+  "include": "~/.config/waybar/${XDG_CURRENT_DESKTOP}.jsonc",
   "modules-center": [],
   "modules-right": [
     "tray",

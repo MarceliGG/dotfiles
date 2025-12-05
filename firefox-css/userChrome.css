@@ -92,3 +92,13 @@ tab .tab-content {
 #sidebar {
   border-radius: 0 !important;
 }
+
+/* remove bottom border on container tabs */
+hbox.tab-content::before {
+  border: none !important;
+}
+
+/* add border around container tabs */
+.tabbrowser-tab .tab-background {
+  box-shadow: inset 0px 0px 0px 1px var(--identity-icon-color) !important;
+}

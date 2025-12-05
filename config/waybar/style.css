@@ -3,10 +3,10 @@
 }
 
 #workspaces button.active {
-  border-radius: 0;
   background: #333;
 }
 
 #workspaces button {
+  border-radius: 0;
   padding: 2px;
 }

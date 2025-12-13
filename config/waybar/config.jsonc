@@ -3,7 +3,6 @@
   "position": "right",
   "spacing": 12,
   "layer": "top",
-  "include": "~/.config/waybar/${XDG_CURRENT_DESKTOP}.jsonc",
   "modules-center": [],
   "modules-right": [
     "tray",

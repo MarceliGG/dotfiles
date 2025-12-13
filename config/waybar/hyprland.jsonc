@@ -1,6 +1,6 @@
 {
   "modules-left": [
-    "niri/workspaces"
+    "hyprland/workspaces"
   ],
   "include": "~/.config/waybar/config.jsonc",
 }

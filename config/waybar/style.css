@@ -2,10 +2,22 @@
   background: #000000;
 }
 
+/* #tags button.focused, */
 #workspaces button.active {
   background: #333;
 }
 
+/* #tags button:not(.occupied):not(.focused) { */
+  /* font-size: 0; */
+  /* min-width: 0; */
+  /* min-height: 0; */
+  /* margin: -17px; */
+  /* padding: 0; */
+  /* color: transparent; */
+  /* background-color: transparent; */
+/* } */
+
+/* #tags button, */
 #workspaces button {
   border-radius: 0;
   padding: 2px;

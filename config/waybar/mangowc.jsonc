@@ -1,6 +1,6 @@
 {
   "modules-left": [
-    "niri/workspaces"
+    "ext/workspaces"
   ],
   "include": "~/.config/waybar/config.jsonc",
 }

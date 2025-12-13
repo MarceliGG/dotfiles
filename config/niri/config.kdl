@@ -94,7 +94,7 @@ spawn-at-startup "hypridle"
 spawn-at-startup "/usr/lib/hyprpolkitagent/hyprpolkitagent"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
-spawn-at-startup "waybar"
+spawn-sh-at-startup "waybar -c ~/.config/waybar/niri.jsonc"
 
 prefer-no-csd
 

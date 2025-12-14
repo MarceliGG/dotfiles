@@ -1,0 +1,130 @@
+configuration {
+    modes: [drun,run,window];
+    location: 6;
+    show-icons: true;
+    sidebar-mode: true;
+    kb-mode-next: "Shift+Right,Tab";
+    kb-mode-previous: "Shift+Left,ISO_Left_Tab";
+    kb-element-next: "";
+    kb-element-prev: "";
+
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+
+    display-drun:               " app";
+    display-run:                " run";
+    display-window:             " win";
+}
+
+* {
+    fg: #eeeeeeff;
+    active: #61c0dcff;
+    font: "JetBrains Mono Nerd Font 12";
+    background: transparent;
+    text-color: @fg; 
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    background-color: #050e15e6;
+    width: 900px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+mainbox {
+    children: [ "inputbar", "listbox" ];
+}
+
+inputbar {
+    padding: 0px 8px;
+    orientation: horizontal;
+    children: [ "textbox-prompt-colon", "entry", "mode-switcher" ];
+}
+
+mode-switcher {
+    orientation: horizontal;
+    text-color: @fg;
+}
+
+button {
+    padding: 0px 8px;
+    border-radius: 8px;
+    text-color: inherit;
+    cursor: pointer;
+}
+
+textbox-prompt-colon {
+    enabled: true;
+    expand: false;
+    str: " ";
+    background-color: inherit;
+    text-color: inherit;
+}
+
+entry {
+    text-color: @fg;
+    placeholder: "Search";
+
+}
+
+message {
+    background-color: #aa3333ff;
+}
+
+listbox {
+    padding: 2px;
+    background-color: transparent;
+    orientation: vertical;
+    children: [ "message", "listview" ];
+}
+
+element {
+    spacing: 10px;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-color: @fg;
+    cursor: pointer;
+}
+
+element normal.normal {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element alternate.normal {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element selected.normal {
+    background-color: @active;
+    text-color: @foreground;
+}
+
+button selected {
+    background-color: @active;
+    text-color: @foreground;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+inputbar {
+    text-color: @fg;
+}
+
+listview {
+    lines: 10;
+    columns: 1;
+    border: 1px 0 0;
+}
+

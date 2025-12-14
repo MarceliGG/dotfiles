@@ -36,7 +36,10 @@ c.tabs.show = "multiple"
 c.tabs.title.alignment = "left"
 
 # search egines and newtab
-c.url.searchengines = {"DEFAULT": "https://www.startpage.com/search?q={}"}
+c.url.searchengines = {
+    "DEFAULT": "https://www.startpage.com/search?q={}",
+    "@a": "https://wiki.archlinux.org/index.php?search={}"
+}
 c.url.default_page = "~/.config/qutebrowser/newtab.html"
 c.url.start_pages = c.url.default_page
 

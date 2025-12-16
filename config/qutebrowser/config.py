@@ -6,18 +6,23 @@ config.bind("ga", "tab-focus last", mode="normal")
 config.bind("J", "tab-prev", mode="normal")
 config.bind("K", "tab-next", mode="normal")
 config.unbind("G", mode="normal")
+config.bind("gJ", "tab-move -", mode="normal")
+config.bind("gK", "tab-move +", mode="normal")
 
 config.bind("<Ctrl-space>s", "config-source", mode="normal")
 config.bind("<Ctrl-space>r", "restart", mode="normal")
-config.bind("<Ctrl-space>u", "spawn --userscript /home/marcel/.config/qutebrowser/scripts/bitwarden.sh username {url:host}", mode="normal")
+config.bind("<Ctrl-space>g", "spawn --userscript ~/.config/qutebrowser/scripts/reload-gs.sh", mode="normal")
+config.bind("<Ctrl-space>u", "spawn --userscript ~/.config/qutebrowser/scripts/bitwarden.sh username {url:host}", mode="normal")
+config.bind("<Ctrl-space>p", "spawn --userscript ~/.config/qutebrowser/scripts/bitwarden.sh password {url:host}", mode="normal")
+config.bind("<Ctrl-space>b", "spawn --userscript ~/.config/qutebrowser/scripts/bitwarden.sh both {url:host}", mode="normal")
 
 config.bind("<Ctrl-o>", "cmd-set-text :open {url}", mode="normal")
 config.bind("<F12>", "devtools", mode="normal")
 
 
 # speed up scrolling
-config.bind("k", "cmd-repeat 3 scroll up")
-config.bind("j", "cmd-repeat 3 scroll down")
+# config.bind("k", "cmd-repeat 3 scroll up")
+# config.bind("j", "cmd-repeat 3 scroll down")
 
 # CONFIG
 c.scrolling.smooth = True
@@ -50,3 +55,5 @@ c.colors.tabs.odd.bg = "transparent"
 c.colors.tabs.even.bg = "transparent"
 c.colors.statusbar.normal.bg = "transparent"
 c.colors.webpage.bg = "transparent"
+c.colors.tabs.selected.odd.bg = "#08508a"
+c.colors.tabs.selected.even.bg = "#08508a"

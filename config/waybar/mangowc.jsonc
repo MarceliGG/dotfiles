@@ -3,4 +3,10 @@
     "ext/workspaces"
   ],
   "include": "~/.config/waybar/config.jsonc",
+  "ext/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "overview": ""
+    }
+  }
 }

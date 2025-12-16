@@ -17,9 +17,9 @@
   },
   "network": {
     "rotate": 270,
-    "format-wifi": "{essid} {icon}",
-    "format-ethernet": "{ipaddr}/{cidr}  ",
-    "tooltip-format": "ssid: {essid}\nstrength: {signaldBm}dBm ({signalStrength}%)\nfrequency: {frequency}GHz\ninterface: {ifname}\nlocal IP: {ipaddr}",
+    "format-wifi": "[{frequency}GHz] {essid} ({signalStrength}%) {icon}",
+    "format-ethernet": "{ifname}  ",
+    // "tooltip-format": "ssid: {essid}\nstrength: {signaldBm}dBm ({signalStrength}%)\nfrequency: {frequency}GHz\ninterface: {ifname}\nlocal IP: {ipaddr}",
     "format-linked": "{ifname} (No IP)  ",
     "format-disconnected": "Disconnected ⚠ ",
     "on-click": "foot -a term-nmtui -e nmtui",

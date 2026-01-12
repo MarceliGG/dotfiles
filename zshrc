@@ -130,18 +130,31 @@ function git_branch_name()
   fi
 }
 
-if [[ "$TERM" = "alacritty" || "$TERM" = "foot" ]]; then
-  change-title() {
-    print -Pn "\e]0;$PWD : $BUFFER\a" 
-    zle accept-line
-  }
-  zle -N change-title
-  bindkey "^M" change-title
-fi
+# if [[ "$TERM" = "alacritty" || "$TERM" = "foot" ]]; then
+#   change-title() {
+#     print -Pn "\e]0;$PWD : $BUFFER\a" 
+#     zle accept-line
+#   }
+#   zle -N change-title
+#   bindkey "^M" change-title
+# fi
+
+function preexec() {
+  timer=${timer:-$(date +%s.%3N)}
+}
+
+timer_show=0
+
+function precmd() {
+  if [ $timer ]; then
+    timer_show=$(printf "%.0f" "$((($(date +%s.%3N) - $timer) * 1000))")
+    unset timer
+  fi
+}
 
 setopt prompt_subst
 PROMPT='
-%F{yellow}%K{yellow}%F{black}󰘦 %? %F{yellow}%K{green} %F{black} %D{%H:%M:%S} %F{green}%K{blue} %F{black} %d $(git_branch_name)%f%k '
+%F{yellow}%K{yellow}%F{black}󰘦 %? %F{yellow}%K{green} %F{black}󰄉 ${timer_show}ms %F{green}%K{blue} %F{black} %d $(git_branch_name)%f%k '
 
 title-change() {
   print -Pn "\e]0;$PWD\a" 

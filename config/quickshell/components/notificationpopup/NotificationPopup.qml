@@ -7,10 +7,11 @@ import QtQuick
 
 Rectangle {
   id: root
-  color: "black"
+  color: "#ee121212"
   width: notifications.width
-  border.color: "white"
+  border.color: "#333"
   clip: true
+  radius: 8
   
   MouseArea {
     id: mArea
@@ -30,7 +31,7 @@ Rectangle {
       IconImage {
         id: nImage
         implicitSize: 48
-        source: Quickshell.iconPath(modelData.appIcon)
+        source: Quickshell.iconPath(modelData.appIcon || "dialog-information")
       }
       
       Text {
@@ -75,6 +76,8 @@ Rectangle {
       width: root.width - 16
       height: 20
       color: "#484852"
+      radius: 4
+
       Text {
         anchors.centerIn: parent
         text: modelData.text
@@ -88,13 +91,6 @@ Rectangle {
         onClicked: modelData.invoke()
       }
     }
-  }
-  
-  Timer { // DEBUG
-    interval: 1
-    running: true
-    repeat: false
-    onTriggered: print(`appIcon: '${modelData.appIcon}', image: '${modelData.image}'`)
   }
   
   Timer {

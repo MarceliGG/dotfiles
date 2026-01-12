@@ -215,7 +215,7 @@ PanelWindow {
       onRead: (data) => {
         if (!data.includes(" tag ")) return
         const d = data.split(" ")
-        bar.tags[d[2]].color = d[3] !== "0" ? "#333340" : d[4] !== "0" ? "#16161a" : "black"
+        bar.tags[d[2]].color = d[3] !== "0" ? "#3f3f4a" : d[4] !== "0" ? "#1b1b22" : "black"
       }
     }
   }

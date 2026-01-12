@@ -35,13 +35,13 @@ PanelWindow {
 
     delegate: NotificationPopup {}
 
-    // displaced: Transition {
-    //   NumberAnimation {
-    //     property: "y"
-    //     duration: 300
-    //     easing.type: Easing.OutCubic
-    //   }
-    // }
+    displaced: Transition {
+      NumberAnimation {
+        property: "y"
+        duration: 200
+        easing.type: Easing.OutCubic
+      }
+    }
   }
 
 

@@ -8,7 +8,7 @@ import QtQuick
 Rectangle {
   id: root
   color: "#ee121212"
-  width: notifications.width
+  height: mArea.implicitHeight + nActions.implicitHeight
   border.color: "#333"
   clip: true
   radius: 8
@@ -103,8 +103,6 @@ Rectangle {
   function rm(ex) {
     nTitle.wrapMode = Text.NoWrap
     nBody.wrapMode = Text.NoWrap
-    // exitAnim.onFinished = disimssed ? modelData.dismissed
-    // modelData.dismiss()
     exitAnim.expired = ex
     exitAnim.start()
   }
@@ -151,9 +149,27 @@ Rectangle {
 
     NumberAnimation {
       target: root
-      property: "height"
+      property: "width"
       from: 0
-      to: mArea.implicitHeight + nActions.implicitHeight
+      to: notifications.width
+      duration: enterAnim.duration
+      easing.type: enterAnim.easing
+    }
+
+    NumberAnimation {
+      target: root
+      property: "x"
+      from: notifications.width / 2
+      to: 0
+      duration: enterAnim.duration
+      easing.type: enterAnim.easing
+    }
+
+    NumberAnimation {
+      target: root
+      property: "rotation"
+      from: 90
+      to: 0
       duration: enterAnim.duration
       easing.type: enterAnim.easing
     }
@@ -164,6 +180,13 @@ Rectangle {
       from: 0
       to: 1
       duration: enterAnim.duration
+    }
+
+    NumberAnimation {
+      target: root
+      property: "height"
+      to: root.height
+      duration: exitAnim.duration
     }
   }
 }

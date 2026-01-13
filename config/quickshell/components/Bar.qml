@@ -1,10 +1,7 @@
 import Quickshell
 import Quickshell.Io
-import Quickshell.Widgets
-import Quickshell.Services.SystemTray
 import QtQuick
 import QtQuick.Layouts
-import QtNetwork
 import qs.components.bar
 
 PanelWindow {
@@ -43,8 +40,8 @@ PanelWindow {
             bar.tags[`${index+1}`] = null
           }
 
-          width: bar.implicitWidth
-          height: width
+          implicitWidth: bar.implicitWidth
+          implicitHeight: implicitWidth
           color: "black"
 
 
@@ -71,58 +68,12 @@ PanelWindow {
           }
         }
       }
-      
     }
   }
 
-  ColumnLayout {
-    id: sysTray
-    // implicitHeight: sysTrayLayout.implicitHeight
-    // anchors.horizontalCenter: parent.horizontalCenter
+  SysTray {
     anchors.bottom: bottom.top
     anchors.bottomMargin: 8
-    implicitWidth: bar.width
-
-    Repeater {
-      model: SystemTray.items
-
-      MouseArea {
-        required property SystemTrayItem modelData
-        id: trayItem
-
-        QsMenuAnchor {
-          anchor {
-            window: bar
-            item: trayItem
-            edges: Edges.Top | Edges.Right 
-           }
-
-          id: menuAnchor
-          menu: modelData.menu
-        }
-
-        implicitWidth: bar.width
-        implicitHeight: bar.width
-
-        acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
-        onClicked: (m) => {
-          if (m.button === Qt.RightButton) {
-            modelData.activate()
-          } else if (m.button === Qt.MiddleButton) {
-            modelData.secondaryActivate()
-          } else {
-            menuAnchor.open()
-          }
-        }
-
-        IconImage {
-          anchors.centerIn: parent
-          implicitSize: 16
-          source: modelData.icon
-          smooth: true
-        }
-      }
-    }
   }
 
   Item {
@@ -146,27 +97,7 @@ PanelWindow {
         text: Qt.formatDateTime(sys_clock.date, "d MMM yyyy | hh:mm");
       }
 
-      Text {
-        function formatNetwork(medium) {
-          switch (medium) {
-            case NetworkInformation.TransportMedium.Ethernet:
-              return "󰈀 Ethernet"
-            case NetworkInformation.TransportMedium.WiFi:
-              nmcli.running = true
-              return `󰖩 ${nmcli.ssid}`
-            case NetworkInformation.TransportMedium.Unknown:
-              return " Disconnected"
-            default:
-              return "network: (switch)default reached!"
-          }
-        }
-
-        color: "#ddd"
-        font.pixelSize: 14
-        font.family: fontF
-        text: formatNetwork(NetworkInformation.transportMedium)
-      }
-
+      Network {}
       Battery {}
       Volume {
         implicitHeight: parent.implicitWidth
@@ -184,25 +115,6 @@ PanelWindow {
     id: mmsgToggle
     property string idx: "1"
     command: ["mmsg", "-s", "-t", mmsgToggle.idx + "^"]
-  }
-
-  Process {
-    id: nmcli
-
-    property string ssid: "[wait..]"
-
-    command: ["nmcli", "-t", "-f", "active,ssid", "dev", "wifi"]
-
-    stdout: StdioCollector {
-      onStreamFinished: {
-        for (const line of text.split("\n")) {
-          if (line.startsWith("yes:")) {
-            nmcli.ssid = line.substring(4, line.length)
-            break
-          }
-        }
-      }
-    }
   }
 
   Process {

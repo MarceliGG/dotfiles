@@ -33,12 +33,14 @@ alias e='$EDITOR'
 alias py='python'
 alias mv='mv -i'
 alias cp='cp -i'
-alias gits="git status"
 alias mime="xdg-mime query filetype"
 alias lg="lazygit"
 
-export PAGER=bat
-export MANPAGER="bat -l man"
+gdiff() {
+  git diff --name-only --relative --diff-filter=d -z $1 | xargs -0 bat --diff
+}
+
+export MANPAGER="bat -l man --style grid,header,snip"
 
 # FZF
 fzf_cd() {

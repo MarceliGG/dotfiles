@@ -6,12 +6,13 @@ import qs.services
 import QtQuick
 
 Item {
-  width: text.width + image.width
+  implicitWidth: text.width + image.width
 
   IconImage {
     id: image
     implicitSize: 19
     anchors.verticalCenter: parent.verticalCenter
+    anchors.left: parent.left
     source: Quickshell.iconPath(Audio.getIcon())
   }
 

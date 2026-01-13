@@ -18,17 +18,16 @@ PanelWindow {
   implicitWidth: 200
   implicitHeight: 216
   mask: Region {}
-
+  
   Rectangle {
     color: "#ee121212"
     anchors.fill: parent
     radius: 16
     clip: true
-
   }
   
   Item {
-    width: parent.width - 16
+    implicitWidth: parent.implicitWidth - 16
     height: text.height
     anchors.top: text.top
     anchors.horizontalCenter: parent.horizontalCenter
@@ -37,7 +36,7 @@ PanelWindow {
       visible: false
       id: progress
       anchors.centerIn: parent
-      width: parent.width
+      implicitWidth: parent.implicitWidth
       height: parent.height
 
       from: 0
@@ -50,7 +49,7 @@ PanelWindow {
 
       contentItem: Rectangle {
           radius: 8
-          width: progress.visualPosition * progress.width
+          implicitWidth: progress.visualPosition * progress.implicitWidth
           color: "#0033cc"
       }
     }

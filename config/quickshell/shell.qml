@@ -1,7 +1,7 @@
 //@ pragma UseQApplication
 import Quickshell
 
-import qs.widgets
+import qs.components
 
 ShellRoot {
   readonly property string fontF: "JetBrains Mono NF"

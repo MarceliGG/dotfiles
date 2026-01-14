@@ -21,21 +21,43 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # ALIASES
+ealiases=()
+
+ealias() {
+  alias $1
+  ealiases+="${1%%=*}"
+}
+
+function expand-alias() {
+  if [[ " $ealiases " =~ " $LBUFFER " ]]; then
+    zle _expand_alias
+  fi
+  zle self-insert
+}
+zle -N expand-alias
+bindkey -M main ' ' expand-alias
+
 alias ls='eza -A --icons=auto'
 alias ll='eza -AhlF --icons=auto'
 alias e='$EDITOR'
-alias py='python'
 alias mv='mv -i'
 alias cp='cp -i'
-alias mime="xdg-mime query filetype"
 alias lg="lazygit"
+alias .f="cd ~/dotfiles"
 
-gdiff() {
+ealias py='python'
+ealias mime="xdg-mime query filetype"
+ealias ga="git add"
+ealias gs="git status"
+ealias gc="git commit -m"
+ealias gp="git pull"
+ealias gP="git push"
+
+gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff
 }
 
 export MANPAGER="bat -l man -p"
-
 
 # FZF
 fzf_cd() {

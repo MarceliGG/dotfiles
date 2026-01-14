@@ -31,7 +31,7 @@ alias mime="xdg-mime query filetype"
 alias lg="lazygit"
 
 gdiff() {
-  git diff --name-only --relative --diff-filter=d -z $1 | xargs -0 bat --diff
+  git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff
 }
 
 export MANPAGER="bat -l man -p"
@@ -54,7 +54,7 @@ fzf_hist() {
   local selected
   selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --height 40%)
   if [[ -n $selected ]]; then
-    LBUFFER="$selected"
+    BUFFER="$selected"
     CURSOR=${#LBUFFER}
   fi
   zle reset-prompt

@@ -1,13 +1,8 @@
-# AUTOCOMPLETIONS
-# source $HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# iteractive comments are required for autocopletions to be shown when typing
-setopt interactive_comments
-# show dotfiles
-setopt globdots
-# cd automaticly if path typed
-setopt autocd
+source "$HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh" # commit adfade3
 
-zstyle ':autocomplete:*' delay 0.4
+setopt interactive_comments
+setopt globdots
+setopt autocd
 
 autoload -U compinit; compinit
 
@@ -24,21 +19,45 @@ setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-# setopt EXTENDED_HISTORY
 
 # ALIASES
+ealiases=()
+
+ealias() {
+  alias $1
+  ealiases+="${1%%=*}"
+}
+
+function expand-alias() {
+  if [[ " $ealiases " =~ " $LBUFFER " ]]; then
+    zle _expand_alias
+  fi
+  zle self-insert
+}
+zle -N expand-alias
+bindkey -M main ' ' expand-alias
+
 alias ls='eza -A --icons=auto'
 alias ll='eza -AhlF --icons=auto'
 alias e='$EDITOR'
-alias py='python'
 alias mv='mv -i'
 alias cp='cp -i'
-alias gits="git status"
-alias mime="xdg-mime query filetype"
 alias lg="lazygit"
+alias .f="cd ~/dotfiles"
 
-export PAGER=bat
-export MANPAGER="bat -l man"
+ealias py='python'
+ealias mime="xdg-mime query filetype"
+ealias ga="git add"
+ealias gs="git status"
+ealias gc="git commit -m"
+ealias gp="git pull"
+ealias gP="git push"
+
+gd() {
+  git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff
+}
+
+export MANPAGER="bat -l man -p"
 
 # FZF
 fzf_cd() {
@@ -57,7 +76,7 @@ fzf_hist() {
   local selected
   selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --height 40%)
   if [[ -n $selected ]]; then
-    LBUFFER="$selected"
+    BUFFER="$selected"
     CURSOR=${#LBUFFER}
   fi
   zle reset-prompt
@@ -78,6 +97,20 @@ zle -N fzf_file
 
 # KEYBINDS
 source "$HOME/.config/zsh/zsh-helix-mode/zsh-helix-mode.zsh"
+
+# make tab complete with zsh-autocomplete
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+# h,j,k,l zsh-autocomplete binds
+bindkey '^[l' menu-select
+bindkey '^[h' menu-select
+bindkey '^[j' menu-select
+bindkey '^[k' history-search-backward
+bindkey -M menuselect '^[l' forward-char
+bindkey -M menuselect '^[h' backward-char
+bindkey -M menuselect '^[j' down-history
+bindkey -M menuselect '^[k' up-history
 
 bindkey '^G' fzf_cd
 bindkey '^R' fzf_hist
@@ -103,21 +136,6 @@ zle -N prefix_edit
 bindkey "^b" prefix_sudo
 bindkey "^e" prefix_edit
 
-# make tab complete with zsh-autocomplete
-# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
-# alt + h,j,k,l zsh-autocomplete binds
-# bindkey '^[l' menu-select
-# bindkey '^[h' menu-select
-# bindkey '^[j' menu-select
-# bindkey '^[k' history-search-backward
-# bindkey -M menuselect '^[l' forward-char
-# bindkey -M menuselect '^[h' backward-char
-# bindkey -M menuselect '^[j' down-history
-# bindkey -M menuselect '^[k' up-history
-
-
 # PROMPT
 function git_branch_name()
 {
@@ -130,18 +148,22 @@ function git_branch_name()
   fi
 }
 
-if [[ "$TERM" = "alacritty" || "$TERM" = "foot" ]]; then
-  change-title() {
-    print -Pn "\e]0;$PWD : $BUFFER\a" 
-    zle accept-line
-  }
-  zle -N change-title
-  bindkey "^M" change-title
-fi
+function preexec() {
+  timer=${timer:-$(date +%s.%3N)}
+}
+
+timer_show=0
+
+function precmd() {
+  if [ $timer ]; then
+    timer_show=$(printf "%.0f" "$((($(date +%s.%3N) - $timer) * 1000))")
+    unset timer
+  fi
+}
 
 setopt prompt_subst
 PROMPT='
-%F{yellow}%K{yellow}%F{black}󰘦 %? %F{yellow}%K{green} %F{black} %D{%H:%M:%S} %F{green}%K{blue} %F{black} %d $(git_branch_name)%f%k '
+%F{yellow}%K{yellow}%F{black}󰘦 %? %F{yellow}%K{green} %F{black}󰄉 ${timer_show}ms %F{green}%K{blue} %F{black} %d $(git_branch_name)%f%k '
 
 title-change() {
   print -Pn "\e]0;$PWD\a" 

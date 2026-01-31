@@ -35,7 +35,6 @@ function expand-alias() {
   zle self-insert
 }
 zle -N expand-alias
-bindkey -M main ' ' expand-alias
 
 alias ls='eza -A --icons=auto'
 alias ll='eza -AhlF --icons=auto'
@@ -115,6 +114,8 @@ bindkey -M menuselect '^[k' up-history
 bindkey '^G' fzf_cd
 bindkey '^R' fzf_hist
 bindkey '^F' fzf_file
+
+bindkey -M main ' ' expand-alias
 
 # add or remove $1 in front of command buffer
 toggle_prefix() {

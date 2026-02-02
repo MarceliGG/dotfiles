@@ -7,9 +7,9 @@ import QtQuick
 
 Rectangle {
   id: root
-  color: "#ee121212"
+  color: "black"
   height: mArea.implicitHeight + nActions.implicitHeight
-  border.color: "#333"
+  // border.color: "#333"
   clip: true
   radius: 8
   
@@ -28,39 +28,39 @@ Rectangle {
       }
     }
           
-      IconImage {
-        id: nImage
-        implicitSize: 48
-        source: Quickshell.iconPath(modelData.appIcon || "dialog-information")
-      }
-      
-      Text {
-        anchors.left: nImage.right
-        anchors.leftMargin: 4
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        id: nTitle
-        text: modelData.summary
-        font.pixelSize: 16
-        font.family: fontF
-        font.bold: true
-        color: "white"
-      }
-      
-      Text {
-        id: nBody
-        anchors.leftMargin: 4
-        anchors.left: nImage.right
-        anchors.top: nTitle.bottom
-        anchors.right: parent.right
-        anchors.rightMargin: 10
-        text: modelData.body
-        wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-        font.pixelSize: 14
-        font.family: fontF
-        color: "white"
-      }
+    IconImage {
+      id: nImage
+      implicitSize: 48
+      source: Quickshell.iconPath(modelData.appIcon || "dialog-information")
+    }
+    
+    Text {
+      anchors.left: nImage.right
+      anchors.leftMargin: 4
+      anchors.right: parent.right
+      anchors.rightMargin: 10
+      wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+      id: nTitle
+      text: modelData.summary
+      font.pixelSize: 16
+      font.family: fontF
+      font.bold: true
+      color: "white"
+    }
+    
+    Text {
+      id: nBody
+      anchors.leftMargin: 4
+      anchors.left: nImage.right
+      anchors.top: nTitle.bottom
+      anchors.right: parent.right
+      anchors.rightMargin: 10
+      text: modelData.body
+      wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+      font.pixelSize: 14
+      font.family: fontF
+      color: "white"
+    }
   }
   
   ListView {
@@ -94,7 +94,7 @@ Rectangle {
   }
   
   Timer {
-    interval: modelData.expireTimeout >= 0 ? modelData.expireTimeout : 3000
+    interval: modelData.expireTimeout >= 0 ? modelData.expireTimeout : 5000
     running: true
     repeat: false
     onTriggered: rm(true)

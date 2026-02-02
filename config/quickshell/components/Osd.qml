@@ -20,41 +20,13 @@ PanelWindow {
   mask: Region {}
   
   Rectangle {
-    color: "#ee121212"
+    // color: "#ee121212"
+    color: "black"
     anchors.fill: parent
     radius: 16
     clip: true
   }
   
-  Item {
-    implicitWidth: parent.implicitWidth - 16
-    height: text.height
-    anchors.top: text.top
-    anchors.horizontalCenter: parent.horizontalCenter
-
-    ProgressBar {
-      visible: false
-      id: progress
-      anchors.centerIn: parent
-      implicitWidth: parent.implicitWidth
-      height: parent.height
-
-      from: 0
-      to: 100
-
-      background: Rectangle {
-          radius: 8
-          color: "black"
-      }
-
-      contentItem: Rectangle {
-          radius: 8
-          implicitWidth: progress.visualPosition * progress.implicitWidth
-          color: "#0033cc"
-      }
-    }
-  }
-
   IconImage {
     id: image
     anchors.topMargin: 16
@@ -63,6 +35,23 @@ PanelWindow {
     implicitSize: 160
   }
 
+  Rectangle {
+    id: progress
+    property int value: 0
+    anchors.centerIn: text
+    color: "#222"
+    width: 180
+    height: 20
+    radius: 8
+
+    Rectangle {
+      height: parent.height
+      color: "#1343aa"
+      width: parent.width * (parent.value / 100)
+      radius: parent.radius
+    }
+  }
+  
   Text {
     id: text
     anchors.horizontalCenter: parent.horizontalCenter
@@ -73,7 +62,6 @@ PanelWindow {
     anchors.bottom: parent.bottom
     anchors.bottomMargin: 8
   }
-
 
   Timer {
     id: hide
@@ -110,7 +98,7 @@ PanelWindow {
 
     function toggleMute() {
       const m = Audio.toggleMute()
-      display(Audio.getIcon(), m ? "Audio Muted" : "Audio Unmuted")
+      display(Audio.getIcon(), m ? "Audio Muted" : `Audio Unmuted (${Audio.volume}%)`)
     }
   }
 }

@@ -19,12 +19,22 @@ PanelWindow {
   implicitHeight: 216
   mask: Region {}
   
-  Rectangle {
+  ClippingRectangle {
     // color: "#ee121212"
     color: "black"
     anchors.fill: parent
     radius: 16
-    clip: true
+
+    Rectangle {
+      visible: false
+      id: progress
+      anchors.bottom: parent.bottom
+      property int value: 0
+      height: parent.height * (value / 100)
+      color: "#112"
+      width: parent.width
+      radius: parent.radius
+    }
   }
   
   IconImage {
@@ -35,22 +45,22 @@ PanelWindow {
     implicitSize: 160
   }
 
-  Rectangle {
-    id: progress
-    property int value: 0
-    anchors.centerIn: text
-    color: "#222"
-    width: 180
-    height: 20
-    radius: 8
+  // Rectangle {
+  //   id: progress
+  //   property int value: 0
+  //   anchors.centerIn: text
+  //   color: "#222"
+  //   width: 180
+  //   height: 20
+  //   radius: 8
 
-    Rectangle {
-      height: parent.height
-      color: "#1343aa"
-      width: parent.width * (parent.value / 100)
-      radius: parent.radius
-    }
-  }
+  //   Rectangle {
+  //     height: parent.height
+  //     color: "#1343aa"
+  //     width: parent.width * (parent.value / 100)
+  //     radius: parent.radius
+  //   }
+  // }
   
   Text {
     id: text
@@ -98,7 +108,7 @@ PanelWindow {
 
     function toggleMute() {
       const m = Audio.toggleMute()
-      display(Audio.getIcon(), m ? "Audio Muted" : `Audio Unmuted (${Audio.volume}%)`)
+      display(Audio.getIcon(), m ? "Audio Muted" : `Volume: ${Audio.volume}%`, m ? undefined : Audio.volume)
     }
   }
 }

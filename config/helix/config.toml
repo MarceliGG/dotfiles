@@ -20,16 +20,23 @@ S-tab = "extend_parent_node_start"
 
 [keys.normal.space]
 "space" = "hover"
-"w" = "no_op"
-"k" = "no_op"
-"'" = "no_op"
-"S" = "no_op"
-"G" = "no_op"
 "q" = ":q"
 "f" = ":format"
 "F" = "no_op"
 "e" = "file_picker"
 "E" = "file_picker_in_current_directory"
+"k" = "file_explorer"
+"K" = "file_explorer_in_current_buffer_directory"
+
+[keys.select.space]
+"space" = "hover"
+"q" = ":q"
+"f" = ":format"
+"F" = "no_op"
+"e" = "file_picker"
+"E" = "file_picker_in_current_directory"
+"k" = "file_explorer"
+"K" = "file_explorer_in_current_buffer_directory"
 
 [editor.statusline]
 left = ["mode", "file-name", "file-modification-indicator", "read-only-indicator", "spinner"]
@@ -47,14 +54,12 @@ skip-levels = 1
 
 [editor.cursor-shape]
 insert = "bar"
-# select = "underline"
 
 [editor.soft-wrap]
 enable = true
 wrap-indicator = ""
 
 [editor.lsp]
-# display-inlay-hints	= true
 display-messages = true
 
 [editor]
@@ -62,10 +67,8 @@ color-modes = true
 end-of-line-diagnostics = "hint"
 gutters = ["line-numbers", "diagnostics"]
 cursorline = true
-# cursorcolumn = true
  
 [editor.inline-diagnostics]
 cursor-line = "hint"
-# other-lines = "error"
 max-diagnostics = 3
 

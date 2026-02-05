@@ -7,14 +7,13 @@ keyid="$(keyctl request user bw_session)"
 
 export BW_SESSION="$(keyctl pipe "$keyid")"
 
-swayosd-client --custom-message="Loading Bitwarden..." --custom-icon=qutebrowser
+echo "message-info 'Loading Bitwarden...'" > $QUTE_FIFO
 
 status() {
   bw status | jq '.["status"]'
 }
 
 get_logins() {
-  # bw list items --search "$search"
   echo $BW_SESSION
   logins="$(bw list items --search "$search")"
   picked="$(echo $logins | jq -r ".[] | .login.username " | rofi -dmenu -p "Select Login")"
@@ -49,4 +48,4 @@ case "$(status)" in
   *) bw_login;;
 esac
 
-# sleep 5
+echo "message-info 'BW exited.'" > $QUTE_FIFO

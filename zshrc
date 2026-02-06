@@ -36,6 +36,25 @@ function expand-alias() {
 }
 zle -N expand-alias
 
+cdd() {
+  if [ -z "$@" ]; then
+    cd
+  elif [ -d "$@" ]; then
+    cd "$@"
+  else
+    l="$(ls -d "$@"*/)"
+    if [ -z "$l" ]; then
+      return 1
+    elif [ $(echo "$l" | wc -l) -eq 1 ]; then
+      cd "$l"
+    else
+      echo "cdd: multiple possible directories: $@" >&2
+      return 1
+    fi
+  fi
+}
+
+alias cd='cdd'
 alias ls='eza -A --icons=auto'
 alias ll='eza -AhlF --icons=auto'
 alias e='$EDITOR'

@@ -33,6 +33,7 @@ config.bind("<F12>", "devtools", mode="normal")
 c.scrolling.smooth = True
 c.colors.webpage.preferred_color_scheme = "dark"
 c.keyhint.delay = 0
+c.editor.command = ["foot", "helix", "{file}:{line}:{column}"]
 
 c.auto_save.session = True
 

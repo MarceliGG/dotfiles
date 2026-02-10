@@ -1,13 +1,19 @@
 config.load_autoconfig(False)
 
 # KEYBINDS
+
+# helix styled
 config.bind("ge", "scroll-to-perc", mode="normal")
 config.bind("ga", "tab-focus last", mode="normal")
+config.unbind("G", mode="normal")
+
+# swap 'J' & 'K' for navigating tabs
 config.bind("J", "tab-prev", mode="normal")
 config.bind("K", "tab-next", mode="normal")
-config.unbind("G", mode="normal")
 config.bind("gJ", "tab-move -", mode="normal")
 config.bind("gK", "tab-move +", mode="normal")
+
+config.unbind("g0")
 
 config.bind("<space>s", "config-source", mode="normal")
 config.bind("<space>r", "restart", mode="normal")
@@ -16,7 +22,6 @@ config.bind("<space>u", "spawn --userscript ~/.config/qutebrowser/scripts/bitwar
 config.bind("<space>p", "spawn --userscript ~/.config/qutebrowser/scripts/bitwarden.sh password {url:host}", mode="normal")
 config.bind("<space>b", "spawn --userscript ~/.config/qutebrowser/scripts/bitwarden.sh both {url:host}", mode="normal")
 
-config.bind("<Ctrl-o>", "cmd-set-text :open {url}", mode="normal")
 config.bind("<F12>", "devtools", mode="normal")
 
 

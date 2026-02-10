@@ -75,7 +75,8 @@ gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff
 }
 
-export MANPAGER="bat -l man -p"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT='-c'
 
 # FZF
 fzf_cd() {

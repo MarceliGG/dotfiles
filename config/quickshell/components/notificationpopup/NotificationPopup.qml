@@ -9,7 +9,7 @@ Rectangle {
   id: root
   color: "black"
   height: mArea.implicitHeight + nActions.implicitHeight
-  // border.color: "#333"
+  width: notifications.width
   clip: true
   radius: 8
   
@@ -21,11 +21,9 @@ Rectangle {
     anchors.leftMargin: 8
     width: parent.width
     implicitHeight: Math.max(nImage.height, nTitle.height + nBody.height) + 16 + (modelData.actions.length ? 4 : 0)
-    acceptedButtons: Qt.LeftButton | Qt.RightButton
+    acceptedButtons: Qt.RightButton
     onClicked: (m) => {
-      if (m.button === Qt.RightButton) {
-          parent.rm(false)
-      }
+      parent.rm(false)
     }
           
     IconImage {
@@ -101,37 +99,20 @@ Rectangle {
   }
   
   function rm(ex) {
-    nTitle.wrapMode = Text.NoWrap
-    nBody.wrapMode = Text.NoWrap
     exitAnim.expired = ex
     exitAnim.start()
   }
       
-  ParallelAnimation {
-    readonly property var easing: Easing.OutCubic
-    readonly property int duration: 300
+  NumberAnimation {
     property bool expired
     id: exitAnim
-    NumberAnimation {
-      target: root
-      property: "width"
-      to: 0
-      duration: exitAnim.duration
-      easing.type: exitAnim.easing
-    }
-    NumberAnimation {
-      target: root
-      property: "x"
-      to: root.width / 2
-      duration: exitAnim.duration
-      easing.type: exitAnim.easing
-    }
-    NumberAnimation {
-      target: root
-      property: "height"
-      to: root.height
-      duration: exitAnim.duration
-    }
+
+    target: root
+    property: "x"
+    to: 300
+    duration: 300
+    easing.type: Easing.OutCubic
+
     onFinished: {
       if(expired) modelData.expire()
       else modelData.dismiss()
@@ -146,15 +127,6 @@ Rectangle {
     readonly property var easing: Easing.OutCubic
     readonly property int duration: 300
     id: enterAnim
-
-    NumberAnimation {
-      target: root
-      property: "width"
-      from: 0
-      to: notifications.width
-      duration: enterAnim.duration
-      easing.type: enterAnim.easing
-    }
 
     NumberAnimation {
       target: root
@@ -176,17 +148,10 @@ Rectangle {
 
     NumberAnimation {
       target: root
-      property: "opacity"
+      property: "scale"
       from: 0
       to: 1
       duration: enterAnim.duration
-    }
-
-    NumberAnimation {
-      target: root
-      property: "height"
-      to: root.height
-      duration: exitAnim.duration
     }
   }
 }

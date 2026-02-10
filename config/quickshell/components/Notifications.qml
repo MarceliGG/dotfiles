@@ -17,9 +17,16 @@ PanelWindow {
 
   property Notification n
 
+
   anchors {
     bottom: true
     top: true
+    right: true
+  }
+
+  margins {
+    top: 2
+    right: 2
   }
 
   exclusionMode: ExclusionMode.Ignore

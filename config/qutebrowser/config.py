@@ -48,10 +48,10 @@ c.tabs.title.alignment = "left"
 
 # search egines and newtab
 c.url.searchengines = {
-    "DEFAULT": "https://eu.startpage.com/search?q={}",
+    "DEFAULT": "https://searx.oloke.xyz/search?q={}",
     "@a": "https://wiki.archlinux.org/index.php?search={}"
 }
-c.url.default_page = "https://eu.startpage.com/"
+c.url.default_page = "https://searx.oloke.xyz/"
 c.url.start_pages = c.url.default_page
 
 # COLORS

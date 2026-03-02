@@ -21,55 +21,27 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # ALIASES
-ealiases=()
-
-ealias() {
-  alias $1
-  ealiases+="${1%%=*}"
-}
 
 function expand-alias() {
-  if [[ " $ealiases " =~ " $LBUFFER " ]]; then
-    zle _expand_alias
-  fi
+  zle _expand_alias
   zle self-insert
 }
 zle -N expand-alias
 
-cdd() {
-  if [ -z "$@" ]; then
-    cd
-  elif [ -d "$@" ]; then
-    cd "$@"
-  else
-    l="$(ls -d "$@"*/)"
-    if [ -z "$l" ]; then
-      return 1
-    elif [ $(echo "$l" | wc -l) -eq 1 ]; then
-      cd "$l"
-    else
-      echo "cdd: multiple possible directories: $@" >&2
-      return 1
-    fi
-  fi
-}
-
-alias cd='cdd'
 alias ls='eza -A --icons=auto'
 alias ll='eza -AhlF --icons=auto'
 alias e='$EDITOR'
-alias mv='mv -i'
-alias cp='cp -i'
+alias mv="mv -i"
+alias cp="cp -i"
 alias lg="lazygit"
 alias .f="cd ~/dotfiles"
-
-ealias py='python'
-ealias mime="xdg-mime query filetype"
-ealias ga="git add"
-ealias gs="git status"
-ealias gc="git commit -m"
-ealias gp="git pull"
-ealias gP="git push"
+alias py='python'
+alias mime="xdg-mime query filetype"
+alias ga="git add"
+alias gs="git status"
+alias gc="git commit -m"
+alias gp="git pull"
+alias gP="git push"
 
 gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff

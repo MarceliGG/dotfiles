@@ -1,35 +1,31 @@
 [window]
-opacity = 0.5
+opacity = 0.8
 dynamic_title = true
 dynamic_padding = true
 # padding = { x = 2, y = 1 }
 
 [font]
 normal = { family = "JetBrains Mono Nerd Font" }
-italic = { family = "Liberation Mono", style = "Italic" }
-bold_italic = { family = "Liberation Mono", style = "Bold Italic" }
-size = 11.5
+size = 11.75
 
 [colors.primary]
-# background = "#141B29"
-# background = "#000000"
 background = "#050e15"
-# background = "#334455"
 
 [colors.normal]
-yellow = "#ffcb6b"
+red     = "#ff5555"
+green   = "#239c2b"
+yellow  = "#f1fa8c"
+blue    = "#1d83dc"
 magenta = "#c792ea"
-cyan = "#89ddff"
-white = "#d0d0d0"
-blue = "#0D73CC"
-green = "#239C2B"
+cyan    = "#89ddff"
+white   = "#ffffff"
 
 [colors.bright]
-yellow = "#ffe585"
-magenta = "#e1acff"
-cyan = "#a3f7ff"
-white = "#fefefe"
-green = "#23bC3B"
+# yellow = "#ffe585"
+# magenta = "#e1acff"
+# cyan = "#a3f7ff"
+# white = "#fefefe"
+# green = "#23bC3B"
 
 [keyboard]
 bindings = [
@@ -38,6 +34,5 @@ bindings = [
 
 [cursor]
 style = {shape = "Beam"}
-vi_mode_style = {shape = "Block"}
 thickness = 0.20
 

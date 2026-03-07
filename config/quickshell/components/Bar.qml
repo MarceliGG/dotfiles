@@ -1,7 +1,10 @@
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
+
 import QtQuick
 import QtQuick.Layouts
+
 import qs.components.bar
 
 PanelWindow {
@@ -14,7 +17,7 @@ PanelWindow {
     bottom: true
   }
 
-  property var tags: {"1": null, "2": null, "3": null, "4": null, "5": null, "6": null, "7": null, "8": null, "9": null}
+  // property var tags: {"1": null, "2": null, "3": null, "4": null, "5": null, "6": null, "7": null, "8": null, "9": null}
   
   implicitWidth: 22
 
@@ -31,39 +34,22 @@ PanelWindow {
       spacing: 0
       
       Repeater {
-        model: 9
+        model: Hyprland.workspaces
         delegate: Rectangle {
-          Component.onCompleted: {
-            bar.tags[`${index+1}`] = this
-          }
-          Component.onDestruction: {
-            bar.tags[`${index+1}`] = null
-          }
-
           implicitWidth: bar.implicitWidth
           implicitHeight: implicitWidth
-          color: "black"
-
+          color: modelData.active ? "#333" : "black"
 
           MouseArea {
             anchors.fill: parent
-            acceptedButtons: Qt.LeftButton | Qt.RightButton
-            onClicked: (m) => {
-              if (m.button === Qt.RightButton) {
-                mmsgToggle.idx = `${index+1}`
-                print(mmsgToggle.idx, mmsgToggle.command)
-                mmsgToggle.running = true
-              } else {
-                mmsgSwitch.idx = `${index+1}`
-                mmsgSwitch.running = true
-              }
-            }
+            acceptedButtons: Qt.LeftButton
+            onClicked: () => modelData.activate()
             Text {
               anchors.centerIn: parent
               color: "#ddd"
               font.pixelSize: 14
               font.family: fontF
-              text: `${index+1}`
+              text: modelData.id
             }
           }
         }
@@ -105,32 +91,32 @@ PanelWindow {
     }
   }
 
-  Process {
-    id: mmsgSwitch
-    property string idx: "1"
-    command: ["mmsg", "-t", mmsgSwitch.idx]
-  }
+  // Process {
+  //   id: mmsgSwitch
+  //   property string idx: "1"
+  //   command: ["mmsg", "-t", mmsgSwitch.idx]
+  // }
 
-  Process {
-    id: mmsgToggle
-    property string idx: "1"
-    command: ["mmsg", "-s", "-t", mmsgToggle.idx + "^"]
-  }
+  // Process {
+  //   id: mmsgToggle
+  //   property string idx: "1"
+  //   command: ["mmsg", "-s", "-t", mmsgToggle.idx + "^"]
+  // }
 
-  Process {
-    id: mmsg
+  // Process {
+  //   id: mmsg
 
-    running: true
-    command: ["mmsg", "-w", "-t"]
+  //   running: true
+  //   command: ["mmsg", "-w", "-t"]
    
-    stdout: SplitParser {
-      onRead: (data) => {
-        if (!data.includes(" tag ")) return
-        const d = data.split(" ")
-        bar.tags[d[2]].color = d[3] !== "0" ? "#3f3f4a" : d[4] !== "0" ? "#1b1b22" : "black"
-      }
-    }
-  }
+  //   stdout: SplitParser {
+  //     onRead: (data) => {
+  //       if (!data.includes(" tag ")) return
+  //       const d = data.split(" ")
+  //       bar.tags[d[2]].color = d[3] !== "0" ? "#3f3f4a" : d[4] !== "0" ? "#1b1b22" : "black"
+  //     }
+  //   }
+  // }
 
   SystemClock {
     id: sys_clock

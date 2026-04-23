@@ -7,11 +7,12 @@ import QtQuick
 
 Rectangle {
   id: root
-  color: "black"
+  border.color: "#223399"
+  border.width: 2
+  color: "#121522"
   height: mArea.implicitHeight + nActions.implicitHeight
   width: notifications.width
   clip: true
-  radius: 8
   
   MouseArea {
     id: mArea
@@ -109,7 +110,7 @@ Rectangle {
 
     target: root
     property: "x"
-    to: 300
+    to: -notifications.width
     duration: 300
     easing.type: Easing.OutCubic
 
@@ -131,7 +132,7 @@ Rectangle {
     NumberAnimation {
       target: root
       property: "x"
-      from: notifications.width / 2
+      from: -notifications.width / 2
       to: 0
       duration: enterAnim.duration
       easing.type: enterAnim.easing

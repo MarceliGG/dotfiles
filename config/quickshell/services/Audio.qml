@@ -26,6 +26,7 @@ Singleton {
   }
 
   readonly property real volume: Math.round(sink?.audio?.volume*100) ?? 0
+  readonly property bool muted: sink?.audio?.muted
 
   PwObjectTracker {
     objects: [sink]

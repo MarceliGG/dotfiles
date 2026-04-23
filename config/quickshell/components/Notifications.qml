@@ -21,12 +21,13 @@ PanelWindow {
   anchors {
     bottom: true
     top: true
-    right: true
+    // right: true
+    left: true
   }
 
   margins {
     top: 2
-    right: 2
+    left: 24
   }
 
   exclusionMode: ExclusionMode.Ignore

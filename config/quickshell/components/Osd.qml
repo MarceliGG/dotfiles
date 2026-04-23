@@ -6,6 +6,7 @@ import Quickshell
 import qs.services
 
 import QtQuick.Controls
+import QtQuick.Shapes
 import QtQuick
 
 PanelWindow {
@@ -13,83 +14,181 @@ PanelWindow {
   id: osd
   color: "transparent"
 
+  anchors {
+    bottom: true
+    // top: true
+    // right: true
+    left: true
+  }
+
+  margins {
+    // bottom: 12
+    left: 34
+  }
+
   WlrLayershell.layer: WlrLayer.Overlay
   exclusionMode: ExclusionMode.Ignore
-  implicitWidth: 200
-  implicitHeight: 216
+  implicitWidth: 500
+  implicitHeight: 105
   mask: Region {}
-  
-  ClippingRectangle {
-    color: "black"
-    anchors.fill: parent
-    radius: 16
 
-    Rectangle {
-      visible: false
-      id: progress
-      anchors.bottom: parent.bottom
-      property int value: 0
-      height: parent.height * (value / 100)
-      color: "#112"
-      width: parent.width
+  Item {
+    id: item
+    width: parent.width
+    // anchors.bottomMargin: 12
+    anchors.bottom: osd.bottom
+
+    NumberAnimation {
+      id: exitAnim
+
+      target: item
+      property: "y"
+      to: 105
+      duration: 600
+      easing.type: Easing.OutCubic
+
+      onFinished: {
+        osd.visible = false
+      }
     }
-  }
-  
-  IconImage {
-    id: image
-    anchors.topMargin: 16
-    anchors.top: parent.top
-    anchors.horizontalCenter: parent.horizontalCenter
-    implicitSize: 160
-  }
 
-  Text {
-    id: text
-    anchors.horizontalCenter: parent.horizontalCenter
-    font.pixelSize: 16
-    font.family: fontF
-    text: "tmp"    
-    color: "white"
-    anchors.bottom: parent.bottom
-    anchors.bottomMargin: 8
+    NumberAnimation {
+      id: enterAnim
+
+      target: item
+      property: "y"
+      from: 105
+      to: 0
+      duration: 200
+      easing.type: Easing.OutCubic
+    }
+
+    Shape {
+      id: progress
+      anchors.left: circle.right
+      anchors.top: circle.top
+      anchors.topMargin: 50
+      anchors.leftMargin: -12
+      width: 350
+      height: 32
+
+      property int value: 0
+
+      Behavior on value {
+        NumberAnimation {
+          duration: 50
+          easing.type: Easing.Linear
+        }
+      }
+
+      ShapePath {
+        fillColor: "#121522"
+        strokeColor: "#223399"
+        strokeWidth: 3
+
+        PathLine { x: progress.width; y: 0 }
+        PathLine { x: progress.width-20; y: progress.height }
+        PathLine { x: 0; y: progress.height }
+        PathLine { x: 0; y: 0 }
+      }
+
+      ShapePath {
+        fillColor: "#00dfff"
+        strokeWidth: 0
+
+        startY: 1
+
+        PathLine { x: progress.width * (progress.value/100)-2; y: 1 }
+        PathLine { x: progress.width * (progress.value/100)-20; y: progress.height - 2 }
+        PathLine { x: 0; y: progress.height - 2 }
+        PathLine { x: 0; y: 1 }
+      }
+    }
+
+    Shape {
+      id: labelBg
+      anchors.left: circle.right
+      anchors.leftMargin: -13
+      anchors.bottom: circle.bottom
+      anchors.bottomMargin: 50
+      width: 150
+      height: 32
+
+      ShapePath {
+        strokeColor: "#223399"
+        fillColor: "#121522"
+        strokeWidth: 3
+
+        PathLine { x: labelBg.width-20; y: 0 }
+        PathLine { x: labelBg.width; y: labelBg.height }
+        PathLine { x: 0; y: labelBg.height }
+        PathLine { x: 0; y: 0 }
+      }
+    
+      Text {
+        font.pixelSize: 20
+        font.family: fontF
+        color: "white"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        text: "Volume"
+      }
+    }
+  
+    Rectangle {
+      id: circle
+      width: 100
+      height: width
+      radius: width / 2
+      color: "#121522"
+      border.color: "#223399"
+      border.width: 5
+
+      Text {
+        id: perc
+        font.pixelSize: 32
+        font.family: fontF
+        color: "white"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+      }
+    }
   }
 
   Timer {
-    id: hide
+    id: hideTimer
     interval: 1000
     repeat: false
     running: false
-    onTriggered: { osd.visible = false }
+    onTriggered: {
+      exitAnim.start()
+    }
   }
 
-  function display(icon, label, prog) {
-    hide.restart()
-
-    if (prog !== undefined) {
-      progress.value = prog
-      progress.visible = true
-    } else progress.visible = false
-
-    text.text = label
-    image.source = Quickshell.iconPath(icon)
-
-    osd.visible = true
+  function displayVolume(isMuted, vol) {
+    hideTimer.restart()
+    progress.value = vol
+    perc.text = isMuted ? "Mute" : `${vol}%`
+    if (!osd.visible) {
+      osd.visible = true
+      enterAnim.start()
+    }
   }
 
   IpcHandler {
     target: "osd"
     function volUp() {
       Audio.incUp()
-      display(Audio.getIcon(), `Volume: ${Audio.volume}%`, Audio.volume)
+      displayVolume(Audio.muted, Audio.volume)
     }
     function volDown() {
       Audio.incDown()
-      display(Audio.getIcon(), `Volume: ${Audio.volume}%`, Audio.volume)
+      displayVolume(Audio.muted, Audio.volume)
     }
 
     function toggleMute() {
       const m = Audio.toggleMute()
-      display(Audio.getIcon(), m ? "Audio Muted" : `Volume: ${Audio.volume}%`, m ? undefined : Audio.volume)
+      displayVolume(m, Audio.volume)
     }
   }
 }

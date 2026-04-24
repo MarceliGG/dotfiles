@@ -9,6 +9,10 @@
   background: rgba(5, 14, 21, 0.8) !important;
 }
 
+body {
+  background: transparent !important;
+}
+
 #navigator-toolbox>* {
   background: none !important;
 }

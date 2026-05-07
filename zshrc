@@ -1,12 +1,15 @@
 # source "$HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh" # commit adfade3
+FPATH="$HOME/.config/zsh-completions:$FPATH"
 
 setopt interactive_comments
 setopt globdots
 setopt autocd
 
 autoload -U compinit; compinit
+source "$HOME/.config/zsh/fzf-tab/fzf-tab.zsh"
 
-FPATH="$HOME/.config/zsh-completions:$FPATH"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -w $FZF_PREVIEW_COLUMNS --color=always --icons=auto -A $realpath'
+zstyle ':fzf-tab:*' fzf-flags --height=60%
 
 # HISTORY
 HISTFILE=~/.zshhist
@@ -73,43 +76,40 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT='-c'
 
 # FZF
-fzf_cd() {
-  echo -n "Cd to: "
+fzf-cd() {
   local dir
-  dir=$(find . -type d -maxdepth 6 2> /dev/null | fzf --preview 'eza -A --icons=auto {}' --height 40%)
+  dir=$(find . -type d -maxdepth 6 2> /dev/null | fzf --reverse --prompt "cd: " --preview 'eza -w $FZF_PREVIEW_COLUMNS --color=always -A --icons=auto {}' --height 60%)
   if [[ -n $dir ]]; then
     cd "$dir" || return
   fi
   zle reset-prompt
 }
-zle -N fzf_cd
-bindkey '^G' fzf_cd
+zle -N fzf-cd
+bindkey '^G' fzf-cd
 
-fzf_hist() {
-  echo -n "Search history:"
+fzf-hist() {
   local selected
-  selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --height 40%)
+  selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --reverse --prompt "History: " --height 60%)
   if [[ -n $selected ]]; then
     BUFFER="$selected"
     CURSOR=${#LBUFFER}
   fi
   zle reset-prompt
 }
-zle -N fzf_hist
-bindkey '^R' fzf_hist
+zle -N fzf-hist
+bindkey '^R' fzf-hist
 
-fzf_file() {
-  echo -n "↰"
+fzf-file() {
   local selected
-  selected=$(find . -type f -maxdepth 6 2> /dev/null | fzf --preview 'previewer {}' --height 40%)
+  selected=$(find . -type f -maxdepth 6 2> /dev/null | fzf --reverse --preview 'previewer {}' --height 60%)
   if [[ -n $selected ]]; then
     LBUFFER="$LBUFFER$selected"
     CURSOR=${#LBUFFER}
   fi
   zle reset-prompt
 }
-zle -N fzf_file
-bindkey '^F' fzf_file
+zle -N fzf-file
+bindkey '^F' fzf-file
 
 # make tab complete with zsh-autocomplete
 # bindkey '\t' menu-select "$terminfo[kcbt]" menu-select

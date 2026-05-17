@@ -1,10 +1,15 @@
 @theme "dmenu"
 
 configuration {
-    modes: [drun,run,window];
-    display-drun:               "app";
-    display-run:                "cli";
-    display-window:             "win";
+    modes: [combi];
+    combi-modes: [drun,run];
+
+    display-drun: "app";
+    display-run: "cli";
+    display-window: "win";
+    display-combi: "exec";
+
+    combi-display-format: "<span foreground="gray" size="small">{mode}</span> {text}";
 }
 
 * {
@@ -17,4 +22,8 @@ window {
 
 prompt {
     text-color: gray;
+}
+
+element selected {
+    background-color: #157;
 }

@@ -15,29 +15,35 @@
   },
   "modules": [
     "title",
-    { "type": "separator", "string": "=" },
+    {
+      "type": "separator",
+      "string": "="
+    },
     "host",
     "os",
     "kernel",
     "uptime",
     "packages",
     "version",
-    { "type": "separator", "string": "-" },
+    {
+      "type": "separator",
+      "string": "-"
+    },
     "de",
     "wm",
     "theme",
     "cursor",
     "terminal",
     "shell",
-    { "type": "separator", "string": "-" },
+    {
+      "type": "separator",
+      "string": "-"
+    },
     "display",
     "cpu",
     "gpu",
     "disk",
     "swap",
-    {
-      "type": "memory",
-      "format": "{2}"
-    }
+    "memory"
   ]
 }

@@ -146,13 +146,20 @@ bindkey "^b" prefix_sudo
 bindkey "^e" prefix_edit
 
 # PROMPT
+function hx_mode() {
+  case $KEYMAP in
+    hxcmd) echo -ne '%F{cyan}%f\e[1 q' ;;
+    hxvis) echo -n '%F{magenta}%f\e[3 q' ;;
+    *) echo -ne '%F{green}%f\e[5 q' ;;
+  esac
+}
+
 function git_branch_name() {
   branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
   if [[ $branch == "" ]];
   then
-    echo '%F{blue}%k'
   else
-    echo '%F{blue}%K{red} %F{black} '$branch' %F{red}%k'
+    echo '───(%F{red} %B'$branch'%b%f)'
   fi
 }
 
@@ -169,20 +176,22 @@ function precmd() {
   fi
 }
 
+function zle-keymap-select {
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
+# ╚╔─═
 setopt prompt_subst
 PROMPT='
-%F{yellow}%K{yellow}%F{black}󰘦 %? %F{yellow}%K{green} %F{black}󰄉 ${timer_show}ms %F{green}%K{blue} %F{black} %d $(git_branch_name)%f%k '
-
-title-change() {
-  print -Pn "\e]0;$PWD\a" 
-}
-
-[[ "$TERM" = "alacritty" || "$TERM" = "foot" ]] && PROMPT="\$(title-change)$PROMPT"
+┌──(%f%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}ms%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
+└─$(hx_mode) '
 
 chpwd() {
   ls
 }
 
+# tell foot current directory
 if [[ "$TERM" = "foot" ]]; then
   function osc7-pwd() {
       emulate -L zsh # also sets localoptions for us
@@ -205,4 +214,3 @@ ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=magenta'
 ZSH_HIGHLIGHT_STYLES[comment]='fg=yellow'
 
-# fastfetch

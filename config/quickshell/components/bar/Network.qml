@@ -1,43 +1,70 @@
 import QtQuick
-import QtNetwork
 import Quickshell.Io
+import Quickshell.Networking
 
 Text {
-  function formatNetwork(medium) {
-    switch (medium) {
-      case NetworkInformation.TransportMedium.Ethernet:
-        return "󰈀 Ethernet"
-      case NetworkInformation.TransportMedium.WiFi:
-        nmcli.running = true
-        return `󰖩 ${nmcli.ssid}`
-      case NetworkInformation.TransportMedium.Unknown:
-        return " Disconnected"
+  function formatWifiIcon(strength, connectivity) {
+    switch (connectivity) {
+      case NetworkConnectivity.Potal:
+        switch (strength) {
+          case 0:
+            return "󰤬 "
+          case 1:
+            return "󰤡 "
+          case 2:
+            return "󰤤 "
+          case 3:
+            return "󰤧 "
+          default:
+            return "󰤪 "
+        }
+      case NetworkConnectivity.Full:
+        switch (strength) {
+          case 0:
+            return "󰤯 "
+          case 1:
+            return "󰤟 "
+          case 2:
+            return "󰤢 "
+          case 3:
+            return "󰤥 "
+          default:
+            return "󰤨 "
+        }
+      case NetworkConnectivity.Limited:
+        switch (strength) {
+          case 0:
+            return "󰤫 "
+          case 1:
+            return "󰤠 "
+          case 2:
+            return "󰤣 "
+          case 3:
+            return "󰤦 "
+          default:
+            return "󰤩 "
+        }
+      case NetworkConnectivity.Unknown:
+        return " "
       default:
-        return "network: (switch)default reached!"
+        return "󰤮 "
     }
   }
 
   color: "#ddd"
   font.pixelSize: 14
   font.family: fontF
-  text: formatNetwork(NetworkInformation.transportMedium)
-
-  Process {
-    id: nmcli
-
-    property string ssid: "[wait..]"
-
-    command: ["nmcli", "-t", "-f", "active,ssid", "dev", "wifi"]
-
-    stdout: StdioCollector {
-      onStreamFinished: {
-        for (const line of text.split("\n")) {
-          if (line.startsWith("yes:")) {
-            nmcli.ssid = line.substring(4, line.length)
-            break
-          }
-        }
-      }
+  text: {
+    const dev = Networking.devices.values.find(d=>d.connected)
+    switch (dev?.deviceType) {
+      case DeviceType.WiFi:
+        const net = dev?.networks.values.find(n=>n.connected)
+        if (!net)
+          return "󰤮 Disconnected"
+        return `${formatWifiIcon(Math.floor(net.signalStrength * 4), Networking.connectivity)}${net.name} [${Math.floor(net.signalStrength * 100)}%]`
+      case DeviceType.Wired:
+        return "󰈀 Wired"
     }
+    return "󱘖 Disconnected"
   }
 }

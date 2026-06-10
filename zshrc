@@ -164,15 +164,14 @@ function git_branch_name() {
 }
 
 function preexec() {
-  timer=${timer:-$(date +%s.%3N)}
+  timer=$(date +%s.%3N)
 }
 
 timer_show=0
 
 function precmd() {
   if [ $timer ]; then
-    timer_show=$(printf "%.0f" "$((($(date +%s.%3N) - $timer) * 1000))")
-    unset timer
+    timer_show=$(printf "%.3f" "$(($(date +%s.%3N) - $timer))")
   fi
 }
 
@@ -186,10 +185,9 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 
-# ╚╔─═
 setopt prompt_subst
 PROMPT='
-┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}ms%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
+┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}s%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
 └─$(hx_mode) '
 
 chpwd() {

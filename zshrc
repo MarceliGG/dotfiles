@@ -148,9 +148,9 @@ bindkey "^e" prefix_edit
 # PROMPT
 function hx_mode() {
   case $KEYMAP in
-    hxcmd) echo -ne '%F{cyan}%f\e[1 q' ;;
-    hxvis) echo -n '%F{magenta}%f\e[3 q' ;;
-    *) echo -ne '%F{green}%f\e[5 q' ;;
+    hxcmd) echo -ne '%F{cyan}%f' ;;
+    hxvis) echo -ne '%F{magenta}%f' ;;
+    *) echo -ne '%F{green}%f' ;;
   esac
 }
 
@@ -178,13 +178,18 @@ function precmd() {
 
 function zle-keymap-select {
   zle reset-prompt
+  case $KEYMAP in
+    hxcmd) echo -ne '\e[1 q' ;;
+    hxvis) echo -ne '\e[3 q' ;;
+    *) echo -ne '\e[5 q' ;;
+  esac
 }
 zle -N zle-keymap-select
 
 # ╚╔─═
 setopt prompt_subst
 PROMPT='
-┌──(%f%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}ms%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
+┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}ms%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
 └─$(hx_mode) '
 
 chpwd() {

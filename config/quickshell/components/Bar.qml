@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Io
+import Quickshell.Widgets
 import Quickshell.Hyprland
 
 import QtQuick
@@ -12,13 +13,10 @@ PanelWindow {
   color: "black"
   anchors {
     top: true
-    // right: true
     left: true
     bottom: true
   }
-
-  // property var tags: {"1": null, "2": null, "3": null, "4": null, "5": null, "6": null, "7": null, "8": null, "9": null}
-  
+ 
   implicitWidth: 22
 
   Item {
@@ -34,7 +32,7 @@ PanelWindow {
       spacing: 0
       
       Repeater {
-        model: Hyprland.workspaces
+        model: Hyprland.workspaces.values.filter(ws => ws.id > 0)
         delegate: Rectangle {
           implicitWidth: bar.implicitWidth
           implicitHeight: implicitWidth
@@ -51,6 +49,27 @@ PanelWindow {
               font.family: fontF
               text: modelData.id
             }
+          }
+        }
+      }
+
+      Repeater {
+        model: Hyprland.workspaces.values.find(ws => ws.name === "special:minimize")?.toplevels
+
+        delegate: MouseArea {
+          implicitWidth: bar.implicitWidth
+          implicitHeight: implicitWidth
+          acceptedButtons: Qt.LeftButton
+
+          onClicked: () => Hyprland.dispatch(
+            `hl.dsp.window.move({workspace = "${Hyprland.focusedWorkspace.id}", window = "address:0x${modelData.address}"})`
+          )
+
+          IconImage {
+            id: image
+            implicitSize: 18
+            anchors.centerIn: parent
+            source: Quickshell.iconPath(modelData.wayland.appId)
           }
         }
       }
@@ -90,33 +109,6 @@ PanelWindow {
       }
     }
   }
-
-  // Process {
-  //   id: mmsgSwitch
-  //   property string idx: "1"
-  //   command: ["mmsg", "-t", mmsgSwitch.idx]
-  // }
-
-  // Process {
-  //   id: mmsgToggle
-  //   property string idx: "1"
-  //   command: ["mmsg", "-s", "-t", mmsgToggle.idx + "^"]
-  // }
-
-  // Process {
-  //   id: mmsg
-
-  //   running: true
-  //   command: ["mmsg", "-w", "-t"]
-   
-  //   stdout: SplitParser {
-  //     onRead: (data) => {
-  //       if (!data.includes(" tag ")) return
-  //       const d = data.split(" ")
-  //       bar.tags[d[2]].color = d[3] !== "0" ? "#3f3f4a" : d[4] !== "0" ? "#1b1b22" : "black"
-  //     }
-  //   }
-  // }
 
   SystemClock {
     id: sys_clock

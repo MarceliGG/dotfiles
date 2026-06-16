@@ -60,10 +60,4 @@ hl.monitor({
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
 
 
-hl.bind("SUPER + M", function ()
-    hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
-    hl.dispatch(hl.dsp.window.move({workspace = "+0"}))
-    hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
-    hl.dispatch(hl.dsp.window.move({workspace = "special:minimize"}))
-    hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
-end)
+hl.bind("SUPER + M", hl.dsp.window.move({ workspace = "special:minimize", follow = false }))

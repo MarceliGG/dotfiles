@@ -1,6 +1,6 @@
 require("keybinds")
 require("animations")
-require("startup")
+require("autostart")
 require("rules")
 require("layouts")
 
@@ -47,8 +47,22 @@ hl.config({
     }
   },
 
+  binds = {
+    movefocus_cycles_fullscreen = true
+  },
+
   master = {
     mfact = 0.5
+  },
+
+  misc = {
+    disable_hyprland_logo = true,
+    disable_splash_rendering = true,
+  },
+
+  ecosystem = {
+    no_update_news = true,
+    no_donation_nag = true,
   }
 })
 

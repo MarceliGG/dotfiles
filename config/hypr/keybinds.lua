@@ -61,4 +61,3 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("qs ipc call osd volDown"))
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("qs ipc call osd volUp"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("qs ipc call osd toggleMute"))
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ toggle"))
-

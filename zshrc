@@ -170,6 +170,7 @@ function preexec() {
 timer_show=0
 
 function precmd() {
+  print -Pn "\e]133;A\e\\"
   if [ $timer ]; then
     timer_show=$(printf "%.3f" "$(($(date +%s.%3N) - $timer))")
   fi
@@ -190,23 +191,15 @@ PROMPT='
 ┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}s%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
 └─$(hx_mode) '
 
+if [[ "$TERM" = "foot" ]]; then
+chpwd() {
+  ls
+  printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
+}
+else
 chpwd() {
   ls
 }
-
-# tell foot current directory
-if [[ "$TERM" = "foot" ]]; then
-  function osc7-pwd() {
-      emulate -L zsh # also sets localoptions for us
-      setopt extendedglob
-      local LC_ALL=C
-      printf '\e]7;file://%s%s\e\' $HOST ${PWD//(#m)([^@-Za-z&-;_~])/%${(l:2::0:)$(([##16]#MATCH))}}
-  }
-
-  function chpwd-osc7-pwd() {
-      (( ZSH_SUBSHELL )) || osc7-pwd
-  }
-  add-zsh-hook -Uz chpwd chpwd-osc7-pwd
 fi
 
 # Syntax highlighting

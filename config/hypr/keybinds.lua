@@ -1,7 +1,7 @@
 -- Apps
 hl.bind("SUPER + R", hl.dsp.exec_cmd("rofi -show-icons -show combi"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("librewolf"))
-hl.bind("SUPER + X", hl.dsp.exec_cmd("alacritty"))
+hl.bind("SUPER + X", hl.dsp.exec_cmd("foot"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("pcmanfm-qt -style kvantum"))
 
 -- Move around

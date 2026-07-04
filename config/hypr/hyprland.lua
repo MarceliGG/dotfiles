@@ -71,7 +71,18 @@ hl.monitor({
   mode = "1920x1080@60",
 })
 
+hl.monitor({
+  output = "DP-1",
+  mode = "3440x1440@240",
+})
+
+hl.monitor({
+  output = "DP-2",
+  mode = "3440x1440@240",
+})
+
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
+
 
 
 hl.bind("SUPER + M", hl.dsp.window.move({ workspace = "special:minimize", follow = false }))

@@ -77,7 +77,3 @@ hl.monitor({
 })
 
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
-
-
-
-hl.bind("SUPER + M", hl.dsp.window.move({ workspace = "special:minimize", follow = false }))

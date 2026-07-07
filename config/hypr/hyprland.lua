@@ -72,12 +72,7 @@ hl.monitor({
 })
 
 hl.monitor({
-  output = "DP-1",
-  mode = "3440x1440@240",
-})
-
-hl.monitor({
-  output = "DP-2",
+  output = "desc:Dell Inc. AW3425DW 86JF274",
   mode = "3440x1440@240",
 })
 

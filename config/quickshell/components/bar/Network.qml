@@ -53,7 +53,6 @@ Text {
 
   color: "#ddd"
   font.pixelSize: 14
-  font.family: fontF
   text: {
     const dev = Networking.devices.values.find(d=>d.connected)
     switch (dev?.deviceType) {

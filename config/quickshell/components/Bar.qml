@@ -46,7 +46,6 @@ PanelWindow {
               anchors.centerIn: parent
               color: "#ddd"
               font.pixelSize: 14
-              font.family: fontF
               text: modelData.id
             }
           }
@@ -98,7 +97,6 @@ PanelWindow {
       Text {
         color: "#ddd"
         font.pixelSize: 14
-        font.family: fontF
         text: Qt.formatDateTime(sys_clock.date, "d MMM yyyy | hh:mm");
       }
 

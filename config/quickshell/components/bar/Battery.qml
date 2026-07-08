@@ -20,6 +20,5 @@ Text {
   visible: UPower.displayDevice.isLaptopBattery
   color: UPower.displayDevice.state === UPowerDeviceState.Charging ? "lime" : "#ddd"
   font.pixelSize: 14
-  font.family: fontF
   text: formatBattery(UPower.displayDevice.percentage, UPower.displayDevice.state)
 }

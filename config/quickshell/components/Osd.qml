@@ -127,7 +127,6 @@ PanelWindow {
     
       Text {
         font.pixelSize: 20
-        font.family: fontF
         color: "white"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -147,7 +146,6 @@ PanelWindow {
       Text {
         id: perc
         font.pixelSize: 32
-        font.family: fontF
         color: "white"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter

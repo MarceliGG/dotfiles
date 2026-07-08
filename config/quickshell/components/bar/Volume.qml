@@ -25,7 +25,6 @@ Item {
   
     color: "#ddd"
     font.pixelSize: 14
-    font.family: fontF
     text: `${Audio.volume}%`
   }
 }

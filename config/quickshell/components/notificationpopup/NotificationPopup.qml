@@ -42,7 +42,6 @@ Rectangle {
       id: nTitle
       text: modelData.summary
       font.pixelSize: 16
-      font.family: fontF
       font.bold: true
       color: "white"
     }
@@ -57,7 +56,6 @@ Rectangle {
       text: modelData.body
       wrapMode: Text.WrapAtWordBoundaryOrAnywhere
       font.pixelSize: 14
-      font.family: fontF
       color: "white"
     }
   }
@@ -81,7 +79,6 @@ Rectangle {
         anchors.centerIn: parent
         text: modelData.text
         font.pixelSize: 14
-        font.family: fontF
         color: "white"
       }
 

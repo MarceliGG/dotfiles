@@ -7,4 +7,5 @@ ShellRoot {
   Bar {}
   Notifications {}
   Osd {}
+  Polkit {}
 }

@@ -9,7 +9,7 @@ Rectangle {
   id: root
   border.color: "#223399"
   border.width: 2
-  color: "#121522"
+  color: "#050e15"
   height: mArea.implicitHeight + nActions.implicitHeight
   width: notifications.width
   clip: true

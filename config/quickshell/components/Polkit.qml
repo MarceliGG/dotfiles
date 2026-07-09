@@ -22,7 +22,7 @@ Item {
 
         FloatingWindow {
             id: win
-            color: "black"
+            color: "#CC050e15"
             maximumSize: "520x200"
             minimumSize: maximumSize
 

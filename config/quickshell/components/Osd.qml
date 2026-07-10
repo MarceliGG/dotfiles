@@ -1,11 +1,9 @@
 import Quickshell.Wayland
-import Quickshell.Widgets
 import Quickshell.Io
 import Quickshell
 
 import qs.services
 
-import QtQuick.Controls
 import QtQuick.Shapes
 import QtQuick
 

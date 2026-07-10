@@ -1,10 +1,8 @@
-import Quickshell
-import Quickshell.Io
-import Quickshell.Widgets
 import Quickshell.Hyprland
+import Quickshell
 
-import QtQuick
 import QtQuick.Layouts
+import QtQuick
 
 import qs.components.bar
 
@@ -32,7 +30,7 @@ PanelWindow {
       spacing: 0
       
       Repeater {
-        model: Hyprland.workspaces.values.filter(ws => ws.id > 0)
+        model: Hyprland.workspaces
         delegate: Rectangle {
           implicitWidth: bar.implicitWidth
           implicitHeight: implicitWidth
@@ -48,27 +46,6 @@ PanelWindow {
               font.pixelSize: 14
               text: modelData.id
             }
-          }
-        }
-      }
-
-      Repeater {
-        model: Hyprland.workspaces.values.find(ws => ws.name === "special:minimize")?.toplevels
-
-        delegate: MouseArea {
-          implicitWidth: bar.implicitWidth
-          implicitHeight: implicitWidth
-          acceptedButtons: Qt.LeftButton
-
-          onClicked: () => Hyprland.dispatch(
-            `hl.dsp.window.move({workspace = "${Hyprland.focusedWorkspace.id}", window = "address:0x${modelData.address}"})`
-          )
-
-          IconImage {
-            id: image
-            implicitSize: 18
-            anchors.centerIn: parent
-            source: Quickshell.iconPath(modelData.wayland.appId)
           }
         }
       }

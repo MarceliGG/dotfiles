@@ -28,9 +28,9 @@ hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Window controls
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close())
-hl.bind("SUPER + M", hl.dsp.window.move({ workspace = "special:minimize", follow = false }))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 hl.bind("SUPER + T", hl.dsp.window.float())
+-- hl.bind("SUPER + M", hl.dsp.window.move({ workspace = "special:minimize", follow = false }))
 
 -- Workspaces
 hl.bind("SUPER + 1", hl.dsp.focus({ workspace = 1 }))

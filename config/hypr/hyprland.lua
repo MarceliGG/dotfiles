@@ -67,13 +67,8 @@ hl.config({
 })
 
 hl.monitor({
-  output = "eDP-1",
-  mode = "1920x1080@60",
-})
-
-hl.monitor({
-  output = "desc:Dell Inc. AW3425DW 86JF274",
-  mode = "3440x1440@240",
+  output = "",
+  mode = "highres",
 })
 
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })

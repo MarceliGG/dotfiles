@@ -3,53 +3,11 @@ command = "pyright-langserver"
 args = ["--stdio"]
 documentFormatting = false
 
-# [language-server.jdtls]
-# args = ["-Djava.import.generatesMetadataFilesAtProjectRoot=false"]
-# command = "jdtls"
-
-# [[language]]
-# name = "java"
-
-[language-server.hx-lsp]
-command = "hx-lsp"
-
 [[language]]
 name = "python"
 language-servers = ["pyright"]
 formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 
-# [[language]]
-# name = "jsonc"
-# formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
-
-# [[language]]
-# name = "json"
-# formatter = { command = "biome", args = ["format", "--indent-style=space", "--stdin-file-path", "json.jsonc"] }
-
-# [[language]]
-# name = "html"
-# language-servers = [ "vscode-html-language-server", "hx-lsp" ]
-
-# [[language]]
-# name = "cpp"
-# language-servers = [ "clangd", "hx-lsp" ]
-
-# [[language]]
-# name = "c"
-# language-servers = [ "clangd", "hx-lsp" ]
-#
-# [[language]]
-# name = "php"
-# language-servers = ["vscode-html-language-server"]
-
-[[language]]
-name = "markdown"
-file-types = ["md", "MD", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "mdown", "markdn", "mdtxt", "mdtext", "workbook", { glob = "PULLREQ_EDITMSG" }]
-
 [language-server.tailwind]
 command = "tailwindcss-language-server"
 args = ["-vvv", "--stdio"] 
-
-# [[language]]
-# name = "tsx"
-# language-servers = [ "tailwindcss-ls", "typescript-language-server" ]

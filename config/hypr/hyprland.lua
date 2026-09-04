@@ -67,6 +67,12 @@ hl.config({
 })
 
 hl.monitor({
+  output = "eDP-1",
+  mode = "1920x1080@60",
+  scale = 1
+})
+
+hl.monitor({
   output = "",
   mode = "highres",
 })

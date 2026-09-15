@@ -72,6 +72,20 @@ gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff
 }
 
+mkcd() {
+  mkdir "$1" && cd "$1"
+}
+
+# Add colors to pacman
+pacman() {
+  command pacman "$@" | sed -E '
+    /core\//        s/core\//\x1b[1;32m&\x1b[0m/g
+    /extra\//       s/extra\//\x1b[1;33m&\x1b[0m/g
+    /multilib\//    s/multilib\//\x1b[1;34m&\x1b[0m/g
+    /chaotic-aur\// s/chaotic-aur\//\x1b[1;35m&\x1b[0m/g
+  '
+}
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT='-c'
 
@@ -191,6 +205,7 @@ PROMPT='
 ┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}s%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
 └─$(hx_mode) '
 
+# Run after cd
 if [[ "$TERM" = "foot" ]]; then
 chpwd() {
   ls
@@ -201,6 +216,11 @@ chpwd() {
   ls
 }
 fi
+
+# Set title
+precmd() {
+  print -Pn "\e]0;%~\a"
+}
 
 # Syntax highlighting
 source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"

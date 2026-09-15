@@ -21,12 +21,7 @@ S-tab = "extend_parent_node_start"
 [keys.normal.space]
 "space" = "hover"
 "q" = ":q"
-"f" = ":format"
-"F" = "no_op"
-"e" = "file_picker"
-"E" = "file_picker_in_current_directory"
-"k" = "file_explorer"
-"K" = "file_explorer_in_current_buffer_directory"
+"k" = ":format"
 
 [keys.select.space]
 "space" = "hover"

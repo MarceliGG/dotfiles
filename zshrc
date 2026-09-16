@@ -130,7 +130,7 @@ function git_branch_name() {
   if [[ $branch == "" ]];
   then
   else
-    echo '───(%F{red} %B'$branch'%b%f)'
+    echo ' on %F{red} %B'$branch'%b%f'
   fi
 }
 
@@ -150,8 +150,9 @@ function precmd() {
 
 setopt prompt_subst
 PROMPT='
-┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}s%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
-└─%F{magenta}%f '
+returned %F{yellow}󰘦 %B%?%b%f after %F{green}󰄉 %B${timer_show}s%b%f
+in %F{blue} %B%~%b%f$(git_branch_name)
+%F{magenta}%f '
 
 # Run after cd
 if [[ "$TERM" = "foot" ]]; then

@@ -26,19 +26,19 @@ setopt hist_find_no_dups
 source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
 
 # ALIASES
-function expand-alias() {
+expand_alias() {
   zle _expand_alias
   zle self-insert
 }
-zle -N expand-alias
-bindkey -M main ' ' expand-alias
+zle -N expand_alias
+bindkey -M main ' ' expand_alias
 
-expand-alias-and-accept() {
+expand_alias_and_accept() {
   zle _expand_alias
   zle accept-line
 }
-zle -N expand-alias-and-accept
-bindkey '^M' expand-alias-and-accept
+zle -N expand_alias_and_accept
+bindkey '^M' expand_alias_and_accept
 
 alias e="$EDITOR"
 alias lg="lazygit"
@@ -90,7 +90,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT='-c'
 
 # FZF
-fzf-cd() {
+fzf_cd() {
   local dir
   dir=$(find . -type d -maxdepth 6 2> /dev/null | fzf --reverse --prompt "cd: " --preview 'eza -w $FZF_PREVIEW_COLUMNS --color=always -A --icons=auto {}' --height 60%)
   if [[ -n $dir ]]; then
@@ -98,10 +98,10 @@ fzf-cd() {
   fi
   zle reset-prompt
 }
-zle -N fzf-cd
-bindkey '^G' fzf-cd
+zle -N fzf_cd
+bindkey '^G' fzf_cd
 
-fzf-hist() {
+fzf_hist() {
   local selected
   selected=$(fc -l -n 1 | sed 's/[[:space:]]\+$//' | awk '!seen[$0]++' | fzf --reverse --prompt "History: " --height 60%)
   if [[ -n $selected ]]; then
@@ -110,10 +110,10 @@ fzf-hist() {
   fi
   zle reset-prompt
 }
-zle -N fzf-hist
-bindkey '^R' fzf-hist
+zle -N fzf_hist
+bindkey '^R' fzf_hist
 
-fzf-file() {
+fzf_file() {
   local selected
   selected=$(find . -type f -maxdepth 6 2> /dev/null | fzf --reverse --preview 'previewer {}' --height 60%)
   if [[ -n $selected ]]; then
@@ -122,22 +122,8 @@ fzf-file() {
   fi
   zle reset-prompt
 }
-zle -N fzf-file
-bindkey '^F' fzf-file
-
-# make tab complete with zsh-autocomplete
-# bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
-# bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
-
-# # h,j,k,l zsh-autocomplete binds
-# bindkey '^[l' menu-select
-# bindkey '^[h' menu-select
-# bindkey '^[j' menu-select
-# bindkey '^[k' history-search-backward
-# bindkey -M menuselect '^[l' forward-char
-# bindkey -M menuselect '^[h' backward-char
-# bindkey -M menuselect '^[j' down-history
-# bindkey -M menuselect '^[k' up-history
+zle -N fzf_file
+bindkey '^F' fzf_file
 
 # add or remove $1 in front of command buffer
 toggle_prefix() {
@@ -184,6 +170,7 @@ function preexec() {
 timer_show=0
 
 function precmd() {
+  print -Pn "\e]0;%~\a" # Set title
   print -Pn "\e]133;A\e\\"
   if [ $timer ]; then
     timer_show=$(printf "%.3f" "$(($(date +%s.%3N) - $timer))")
@@ -216,11 +203,6 @@ chpwd() {
   ls
 }
 fi
-
-# Set title
-precmd() {
-  print -Pn "\e]0;%~\a"
-}
 
 # Syntax highlighting
 source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"

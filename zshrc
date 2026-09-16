@@ -40,7 +40,7 @@ expand-alias-and-accept() {
 zle -N expand-alias-and-accept
 bindkey '^M' expand-alias-and-accept
 
-alias e='$EDITOR'
+alias e="$EDITOR"
 alias lg="lazygit"
 alias .f="cd ~/dotfiles"
 alias py='python'

@@ -1,6 +1,3 @@
-# source "$HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh" # commit adfade3
-FPATH="$HOME/.config/zsh-completions:$FPATH"
-
 setopt interactive_comments
 setopt globdots
 setopt autocd

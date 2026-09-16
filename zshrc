@@ -5,11 +5,16 @@ setopt interactive_comments
 setopt globdots
 setopt autocd
 
+source "$HOME/.config/zsh/zsh-helix-mode/zsh-helix-mode.zsh"
+
 autoload -U compinit; compinit
 source "$HOME/.config/zsh/fzf-tab/fzf-tab.zsh"
 
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -w $FZF_PREVIEW_COLUMNS --color=always --icons=auto -A $realpath'
 zstyle ':fzf-tab:*' fzf-flags --height=60%
+
+zhm_wrap_widget fzf-tab-complete zhm_fzf_tab_complete
+bindkey '^I' zhm_fzf_tab_complete
 
 # HISTORY
 HISTFILE=~/.zshhist
@@ -23,23 +28,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-source "$HOME/.config/zsh/zsh-helix-mode/helix-mode.zsh"
-
 # ALIASES
-expand_alias() {
-  zle _expand_alias
-  zle self-insert
-}
-zle -N expand_alias
-bindkey -M main ' ' expand_alias
-
-expand_alias_and_accept() {
-  zle _expand_alias
-  zle accept-line
-}
-zle -N expand_alias_and_accept
-bindkey '^M' expand_alias_and_accept
-
 alias e="$EDITOR"
 alias lg="lazygit"
 alias .f="cd ~/dotfiles"
@@ -50,23 +39,9 @@ alias gc="git commit -m"
 alias gp="git pull"
 alias gP="git push"
 alias t="trash"
-
-# non-expandable
-ls() {
-  eza -A --icons=auto "$@"
-}
-
-ll() {
-  eza -AhlF --icons=auto "$@"
-}
-
-cp() {
-  command cp -i "$@"
-}
-
-mv() {
-  command mv -i "$@"
-}
+alias ls="eza -A --icons=auto"
+alias cp="cp -i"
+alias mv="mv -i"
 
 gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff
@@ -86,8 +61,12 @@ pacman() {
   '
 }
 
+# color docs with bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT='-c'
+help () {
+  "$1" --help | bat -l help
+}
 
 # FZF
 fzf_cd() {
@@ -146,14 +125,6 @@ bindkey "^b" prefix_sudo
 bindkey "^e" prefix_edit
 
 # PROMPT
-function hx_mode() {
-  case $KEYMAP in
-    hxcmd) echo -ne '%F{cyan}%f' ;;
-    hxvis) echo -ne '%F{magenta}%f' ;;
-    *) echo -ne '%F{green}%f' ;;
-  esac
-}
-
 function git_branch_name() {
   branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
   if [[ $branch == "" ]];
@@ -177,20 +148,10 @@ function precmd() {
   fi
 }
 
-function zle-keymap-select {
-  zle reset-prompt
-  case $KEYMAP in
-    hxcmd) echo -ne '\e[1 q' ;;
-    hxvis) echo -ne '\e[3 q' ;;
-    *) echo -ne '\e[5 q' ;;
-  esac
-}
-zle -N zle-keymap-select
-
 setopt prompt_subst
 PROMPT='
 ┌──(%F{yellow}󰘦 %B%?%b%f)───(%F{green}󰄉 %B${timer_show}s%b%f)───(%F{blue} %B%d%b%f)$(git_branch_name)───>
-└─$(hx_mode) '
+└─%F{magenta}%f '
 
 # Run after cd
 if [[ "$TERM" = "foot" ]]; then
@@ -206,6 +167,7 @@ fi
 
 # Syntax highlighting
 source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+zhm-add-update-region-highlight-hook
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=cyan'

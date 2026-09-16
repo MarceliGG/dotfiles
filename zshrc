@@ -152,7 +152,7 @@ setopt prompt_subst
 PROMPT='
 returned %F{yellow}󰘦 %B%?%b%f after %F{green}󰄉 %B${timer_show}s%b%f
 in %F{blue} %B%~%b%f$(git_branch_name)
-%F{magenta}%f '
+%F{magenta}%f '
 
 # Run after cd
 if [[ "$TERM" = "foot" ]]; then

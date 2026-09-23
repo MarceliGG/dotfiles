@@ -26,7 +26,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # ALIASES
-alias e="$EDITOR"
 alias lg="lazygit"
 alias .f="cd ~/dotfiles"
 alias py='python'
@@ -39,6 +38,11 @@ alias t="trash"
 alias ls="eza -A --icons=auto"
 alias cp="cp -i"
 alias mv="mv -i"
+
+e() {
+  print -Pn "\e]0;$EDITOR $1\a"
+  $EDITOR "$1"
+}
 
 gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff

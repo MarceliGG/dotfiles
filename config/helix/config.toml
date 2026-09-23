@@ -2,10 +2,6 @@ theme = "custom-simple"
 
 [keys.normal]
 "C-s" = ":write"
-"C-h" = "jump_view_left"
-"C-j" = "jump_view_down"
-"C-k" = "jump_view_up"
-"C-l" = "jump_view_right"
 "x" = ["goto_line_start", "select_mode", "goto_line_end_newline"]
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
@@ -19,19 +15,12 @@ S-tab = "extend_parent_node_start"
 "C-s" = ":write"
 
 [keys.normal.space]
-"space" = "hover"
-"q" = ":q"
-"k" = ":format"
+"space" = ":format"
+"q" = ":buffer-close"
 
 [keys.select.space]
-"space" = "hover"
-"q" = ":q"
-"f" = ":format"
-"F" = "no_op"
-"e" = "file_picker"
-"E" = "file_picker_in_current_directory"
-"k" = "file_explorer"
-"K" = "file_explorer_in_current_buffer_directory"
+"space" = ":format"
+"q" = ":buffer-close"
 
 [editor.statusline]
 left = ["mode", "file-name", "file-modification-indicator", "read-only-indicator", "spinner"]
@@ -66,4 +55,3 @@ cursorline = true
 [editor.inline-diagnostics]
 cursor-line = "hint"
 max-diagnostics = 3
-

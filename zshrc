@@ -66,7 +66,7 @@ pacman() {
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT='-c'
 help () {
-  "$1" --help | bat -l help
+  "$@" --help | bat -l help
 }
 
 # FZF

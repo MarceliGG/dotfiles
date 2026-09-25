@@ -1,7 +1,6 @@
-"ui.selection" = { bg = "#555577" }
-# "ui.selection.primary" = { bg = "#444444" }
+"ui.selection" = { bg = "#404060" }
 "ui.cursor" = { fg = "black", bg = "blue" }
-"ui.cursor.select" = { fg = "black", bg = "blue", underline = { color = "magenta", style = "curl"} }
+"ui.cursor.select" = { fg = "black", bg = "blue", underline = { color = "magenta", style = "line"} }
 "ui.cursor.insert" = { fg = "black", bg = "green" }
 "ui.cursor.match" = { fg = "black", bg = "guides" }
 "ui.cursor.primary.normal" = { fg = "black", bg = "cyan" }
@@ -67,13 +66,6 @@
 
 [palette]
 background        = "#262626"
-# values            = "#ffb86c" 
-# string            = "#33aa33"
-# black             = "#191A21"
 punctuation       = "#AAAAAA"
 guides            = "#6272A4"
 cursorline        = "#323232"
-# cyan              = "#8be9fd"
-# green             = "#50fa7b" 
-# magenta            = "#BD93F9" 
-selection         = "#363848"

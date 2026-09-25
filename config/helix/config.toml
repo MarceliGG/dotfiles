@@ -17,6 +17,7 @@ S-tab = "extend_parent_node_start"
 [keys.normal.space]
 "space" = ":format"
 "q" = ":buffer-close"
+"\\" = ":config-reload"
 
 [keys.select.space]
 "space" = ":format"

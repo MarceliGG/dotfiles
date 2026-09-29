@@ -29,11 +29,7 @@ setopt hist_find_no_dups
 alias lg="lazygit"
 alias .f="cd ~/dotfiles"
 alias py='python'
-alias ga="git add"
 alias gs="git status"
-alias gc="git commit -m"
-alias gp="git pull"
-alias gP="git push"
 alias t="trash"
 alias ls="eza -A --icons=auto"
 alias cp="cp -i"

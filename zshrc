@@ -115,7 +115,6 @@ timer_show=0
 
 function precmd() {
   print -Pn "\e]0;%~\a" # Set title
-  print -Pn "\e]133;A\e\\"
   if [ $timer ]; then
     timer_show=$(printf "%.3f" "$(($(date +%s.%3N) - $timer))")
   fi

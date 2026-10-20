@@ -101,26 +101,6 @@ fzf_file() {
 zle -N fzf_file
 bindkey '^F' fzf_file
 
-# add or remove $1 in front of command buffer
-toggle_prefix() {
-  [[ ! $BUFFER =~ "$1 .*" ]] && BUFFER="$1 $BUFFER" || BUFFER="${BUFFER:((${#1}+1))}"
-  zle end-of-line
-}
-
-prefix_sudo() {
-  toggle_prefix sudo
-}
-
-prefix_edit() {
-  toggle_prefix e
-}
-
-zle -N prefix_sudo
-zle -N prefix_edit
-
-bindkey "^b" prefix_sudo
-bindkey "^e" prefix_edit
-
 # PROMPT
 function git_branch_name() {
   branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')

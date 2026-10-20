@@ -1,7 +1,7 @@
 "ui.selection" = { bg = "#404060" }
 "ui.cursor" = { fg = "black", bg = "blue" }
 "ui.cursor.select" = { fg = "black", bg = "blue", underline = { color = "magenta", style = "line"} }
-"ui.cursor.insert" = { fg = "black", bg = "green" }
+"ui.cursor.insert" = { fg = "black", bg = "light-green" }
 "ui.cursor.match" = { fg = "black", bg = "guides" }
 "ui.cursor.primary.normal" = { fg = "black", bg = "cyan" }
 "ui.cursor.primary.select" = { fg = "black", bg = "magenta" }

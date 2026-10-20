@@ -34,11 +34,7 @@ alias t="trash"
 alias ls="eza -A --icons=auto"
 alias cp="cp -i"
 alias mv="mv -i"
-
-e() {
-  print -Pn "\e]0;$EDITOR $1\a"
-  $EDITOR "$1"
-}
+alias e="$EDITOR"
 
 gd() {
   git diff --name-only --relative --diff-filter=d -z $@ | xargs -0 bat --diff

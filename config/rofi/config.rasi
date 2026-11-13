@@ -13,11 +13,11 @@ configuration {
 }
 
 * {
-    font: "JetBrains Mono Nerd Font 12";
+    font: "JetBrains Mono Nerd Font 11";
 }
 
 window {
-    location: south;
+    location: north;
 }
 
 prompt {

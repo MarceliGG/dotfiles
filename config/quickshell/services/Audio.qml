@@ -4,31 +4,41 @@ import Quickshell.Services.Pipewire
 import Quickshell
 
 Singleton {
-  id: root
+    id: root
 
-  readonly property PwNode sink: Pipewire.defaultAudioSink
+    readonly property PwNode sink: Pipewire.defaultAudioSink
 
+    function getIcon() {
+        if (muted)
+            return " ";
+        if (volume > 75)
+            return " ";
+        if (volume > 50)
+            return " ";
+        if (volume > 25)
+            return " ";
+        return " ";
+    }
 
-  function getIcon() {
-    return sink.audio.muted ? "audio-volume-muted-symbolic" : volume > 66 ? "audio-volume-high-symbolic" : volume > 33 ? "audio-volume-medium-symbolic" : "audio-volume-low-symbolic"
-  }
+    function incUp() {
+        if (!sink?.audio) return;
+        sink.audio.volume = Math.min(sink.audio.volume + 0.02, 1);
+    }
 
-  function incUp() {
-    sink.audio.volume = Math.min(sink.audio.volume + 0.02, 1)
-  }
+    function incDown() {
+        if (!sink?.audio) return;
+        sink.audio.volume -= 0.02;
+    }
 
-  function incDown() {
-    sink.audio.volume -= 0.02
-  }
+    function toggleMute() {
+        if (!sink?.audio) return;
+        return sink.audio.muted = !sink.audio.muted;
+    }
 
-  function toggleMute() {
-    return sink.audio.muted = !sink.audio.muted
-  }
+    readonly property real volume: Math.round(sink?.audio?.volume * 100)
+    readonly property bool muted: sink?.audio?.muted ?? false
 
-  readonly property real volume: Math.round(sink?.audio?.volume*100) ?? 0
-  readonly property bool muted: sink?.audio?.muted
-
-  PwObjectTracker {
-    objects: [sink]
-  }
+    PwObjectTracker {
+        objects: [sink]
+    }
 }

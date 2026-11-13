@@ -1,4 +1,3 @@
-
 hl.bind("SUPER + tab", function()
   local layouts   = { "master", "dwindle", "scrolling", "lua:grid" }
   local workspace = hl.get_active_workspace()
@@ -28,16 +27,34 @@ hl.bind("SUPER + tab", function()
 end)
 
 hl.layout.register("grid", {
-    recalculate = function(ctx)
-        local n = #ctx.targets
-        if n == 0 then
-            return
-        end
+  recalculate = function(ctx)
+    local n = #ctx.targets
+    if n == 0 then
+      return
+    end
 
-        local cols = math.ceil(math.sqrt(n))
+    local cols = math.ceil(math.sqrt(n))
+    local rows = math.ceil(n / cols)
 
-        for i, target in ipairs(ctx.targets) do
-            target:place(ctx:grid_cell(i, cols))
-        end
-    end,
+    local last = n % cols
+
+    if (last == 0) then
+      for i, target in ipairs(ctx.targets) do
+        target:place(ctx:grid_cell(i, cols))
+      end
+    else
+      for i = 1, #ctx.targets - last do
+        ctx.targets[i]:place(ctx:grid_cell(i, cols))
+      end
+
+      local row = ctx:row(rows, rows)
+
+      for i = 1, last do
+        local box = ctx:column(i, last)
+        box.h = row.h
+        box.y = row.y
+        ctx.targets[n - last + i]:place(box)
+      end
+    end
+  end,
 })

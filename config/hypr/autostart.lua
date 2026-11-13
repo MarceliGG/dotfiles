@@ -1,6 +1,7 @@
-hl.on("hyprland.start", function () 
+hl.on("hyprland.start", function ()
   hl.exec_cmd("qs")
   hl.exec_cmd("awww-daemon")
   hl.exec_cmd("hypridle")
   hl.exec_cmd("wl-clip-persist --clipboard both")
+  hl.exec_cmd("hyprctl setcursor Oxygen_Zion 24")
 end)

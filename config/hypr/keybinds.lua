@@ -1,8 +1,8 @@
 -- Apps
-hl.bind("SUPER + R", hl.dsp.exec_cmd("rofi -show-icons -show combi"))
-hl.bind("SUPER + B", hl.dsp.exec_cmd("librewolf"))
-hl.bind("SUPER + X", hl.dsp.exec_cmd("foot"))
-hl.bind("SUPER + E", hl.dsp.exec_cmd("pcmanfm-qt -style kvantum"))
+hl.bind("SUPER + R", hl.dsp.exec_cmd("rofi -show-icons -show combi -run-command 'uwsm app -- {cmd}'"))
+hl.bind("SUPER + B", hl.dsp.exec_cmd("uwsm app -- librewolf"))
+hl.bind("SUPER + X", hl.dsp.exec_cmd("uwsm app -- foot"))
+hl.bind("SUPER + E", hl.dsp.exec_cmd("uwsm app -- pcmanfm-qt"))
 
 -- Move around
 hl.bind("SUPER + H", hl.dsp.focus({ direction = "l" }))
@@ -10,10 +10,28 @@ hl.bind("SUPER + J", hl.dsp.focus({ direction = "d" }))
 hl.bind("SUPER + K", hl.dsp.focus({ direction = "u" }))
 hl.bind("SUPER + L", hl.dsp.focus({ direction = "r" }))
 
-hl.bind("SUPER + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
+hl.bind("SUPER + SHIFT + H", function()
+  local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
+  if (ws ~= nil and ws.tiled_layout == "scrolling") then
+    hl.dispatch(hl.dsp.layout("swapcol l"))
+  else
+    hl.dispatch(hl.dsp.window.move({ direction = "l" }))
+  end
+end)
 hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
-hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
+hl.bind("SUPER + SHIFT + L", function()
+  local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
+  if (ws and ws.tiled_layout == "scrolling") then
+    hl.dispatch(hl.dsp.layout("swapcol r"))
+  else
+    hl.dispatch(hl.dsp.window.move({ direction = "r" }))
+  end
+end)
+
+hl.bind("SUPER + U", hl.dsp.layout("consume_or_expel prev"))
+hl.bind("SUPER + I", hl.dsp.layout("consume_or_expel next"))
+hl.bind("SUPER + O", hl.dsp.layout("colresize +conf"))
 
 -- Resize
 hl.bind("SUPER + CTRL + H", hl.dsp.window.resize({ x = -10, y = 0, relative = true }))
@@ -24,7 +42,6 @@ hl.bind("SUPER + CTRL + L", hl.dsp.window.resize({ x = 10, y = 0, relative = tru
 -- Mouse
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
--- hl.bind("SUPER + SHIFT + mouse:273", hl.dsp.window.resize({ keep_aspect_ratio = true }), { mouse = true })
 
 -- Window controls
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.close())

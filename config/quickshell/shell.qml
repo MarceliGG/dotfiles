@@ -3,29 +3,11 @@
 import Quickshell
 import QtQuick
 
-import qs.components
+import qs.modules
 
 ShellRoot {
-  Connections {
-    target: Quickshell
-    function onScreensChanged() {
-      if (Quickshell.screens[0].name === "")
-        t.stop()
-      else
-        t.restart()
-    }
-  }
-
-  Timer {
-    id: t
-    interval: 1000
-    running: false
-    repeat: false
-    onTriggered: Quickshell.reload(false)
-  }
-
-  Bar {}
-  Notifications {}
-  Osd {}
-  Polkit {}
+    Bar {}
+    Notifications {}
+    Osd {}
+    // Polkit {}
 }

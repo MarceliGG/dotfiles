@@ -63,6 +63,10 @@ hl.config({
   ecosystem = {
     no_update_news = true,
     no_donation_nag = true,
+  },
+
+  scrolling = {
+    explicit_column_widths = "0.3, 0.5, 0.7, 1"
   }
 })
 

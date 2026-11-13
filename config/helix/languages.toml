@@ -5,3 +5,6 @@ formatter = { command = "autopep8", args = ["--max-line-length", "200", "-"]}
 [language-server.tailwind]
 command = "tailwindcss-language-server"
 args = ["-vvv", "--stdio"] 
+
+[language-server.qmlls]
+command = "qmlls6"

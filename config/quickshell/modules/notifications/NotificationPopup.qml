@@ -9,6 +9,23 @@ Rectangle {
     id: root
     color: "#000"
 
+    property string summary: ""
+    property string body: ""
+    property string appIcon: ""
+    property var actions: []
+    property real fixedWidth: 0
+
+    Component.onCompleted: {
+        summary = modelData.summary;
+        body = modelData.body;
+        appIcon = modelData.appIcon;
+        actions = modelData.actions.map(a => ({
+                    text: a.text,
+                    action: a
+                }));
+        fixedWidth = ListView.view.width;
+    }
+
     required property Notification modelData
 
     width: ListView.view.width - 4

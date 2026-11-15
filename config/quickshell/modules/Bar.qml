@@ -15,7 +15,7 @@ PanelWindow {
     color: "black"
     anchors {
         top: true
-        left: true
+        right: true
         bottom: true
     }
 

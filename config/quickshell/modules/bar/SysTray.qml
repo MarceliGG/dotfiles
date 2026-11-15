@@ -21,7 +21,7 @@ ColumnLayout {
                 anchor {
                     window: bar
                     item: trayItem
-                    edges: Edges.Top | Edges.Right
+                    gravity: Edges.Left | Edges.Bottom
                 }
                 menu: modelData.menu
             }
@@ -31,12 +31,12 @@ ColumnLayout {
 
             acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
             onClicked: m => {
-                if (m.button === Qt.RightButton) {
-                    modelData.activate();
+                if (modelData.onlyMenu || m.button === Qt.RightButton) {
+                    menuAnchor.open();
                 } else if (m.button === Qt.MiddleButton) {
                     modelData.secondaryActivate();
                 } else {
-                    menuAnchor.open();
+                    modelData.activate();
                 }
             }
 

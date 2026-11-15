@@ -16,7 +16,7 @@ Item {
         y: (root.height - height) / 2
 
         color: root.color
-        rotation: -90
+        rotation: 90
         font.pixelSize: 14
         font.family: "JetBrains Mono Nerd Font"
         text: root.text

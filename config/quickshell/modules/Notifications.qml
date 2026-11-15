@@ -20,21 +20,19 @@ PanelWindow {
     anchors {
         bottom: true
         top: true
-        left: true
     }
 
     margins {
         top: 4
-        left: 24
     }
 
     exclusionMode: ExclusionMode.Ignore
 
-    implicitWidth: 304
+    implicitWidth: 300
 
     ListView {
         id: notifsList
-        spacing: 2
+        spacing: 4
         height: contentHeight
         width: notifications.implicitWidth
         model: ns.trackedNotifications
@@ -43,28 +41,42 @@ PanelWindow {
 
         add: Transition {
             NumberAnimation {
-                property: "x"
-                from: -300
-                to: 4
+                property: "scale"
+                from: 0
+                to: 1
                 duration: 150
             }
         }
 
         remove: Transition {
             NumberAnimation {
-                property: "x"
-                to: -300
+                property: "scale"
+                from: 1
+                to: 0
                 duration: 150
             }
         }
 
-        displaced: Transition {
-            NumberAnimation {
-                property: "y"
-                duration: 200
-                easing.type: Easing.OutCubic
+        removeDisplaced: Transition {
+            SequentialAnimation {
+                PauseAnimation {
+                    duration: 150
+                }
+                NumberAnimation {
+                    property: "y"
+                    duration: 200
+                    easing.type: Easing.OutCubic
+                }
             }
         }
+
+        // displaced: Transition {
+        //     NumberAnimation {
+        //         property: "y"
+        //         duration: 200
+        //         easing.type: Easing.OutCubic
+        //     }
+        // }
     }
 
     NotificationServer {

@@ -9,5 +9,5 @@ ShellRoot {
     Bar {}
     Notifications {}
     Osd {}
-    // Polkit {}
+    Polkit {}
 }

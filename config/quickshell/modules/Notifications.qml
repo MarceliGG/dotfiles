@@ -48,35 +48,13 @@ PanelWindow {
             }
         }
 
-        remove: Transition {
+        displaced: Transition {
             NumberAnimation {
-                property: "scale"
-                from: 1
-                to: 0
-                duration: 150
+                property: "y"
+                duration: 200
+                easing.type: Easing.OutCubic
             }
         }
-
-        removeDisplaced: Transition {
-            SequentialAnimation {
-                PauseAnimation {
-                    duration: 150
-                }
-                NumberAnimation {
-                    property: "y"
-                    duration: 200
-                    easing.type: Easing.OutCubic
-                }
-            }
-        }
-
-        // displaced: Transition {
-        //     NumberAnimation {
-        //         property: "y"
-        //         duration: 200
-        //         easing.type: Easing.OutCubic
-        //     }
-        // }
     }
 
     NotificationServer {

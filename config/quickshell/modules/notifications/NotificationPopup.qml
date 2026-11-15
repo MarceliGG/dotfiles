@@ -7,24 +7,7 @@ import QtQuick
 
 Rectangle {
     id: root
-    color: "#000"
-
-    property string summary: ""
-    property string body: ""
-    property string appIcon: ""
-    property var actions: []
-    property real fixedWidth: 0
-
-    Component.onCompleted: {
-        summary = modelData.summary;
-        body = modelData.body;
-        appIcon = modelData.appIcon;
-        actions = modelData.actions.map(a => ({
-                    text: a.text,
-                    action: a
-                }));
-        fixedWidth = ListView.view.width;
-    }
+    color: "#141418"
 
     required property Notification modelData
 
@@ -112,12 +95,6 @@ Rectangle {
                     Layout.fillWidth: true
 
                     implicitHeight: label.implicitHeight + 8
-
-                    Behavior on color {
-                        ColorAnimation {
-                            duration: 100
-                        }
-                    }
 
                     MouseArea {
                         id: area

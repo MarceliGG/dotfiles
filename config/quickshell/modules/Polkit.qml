@@ -1,109 +1,175 @@
+import Quickshell.Services.Polkit
+import Quickshell.Wayland
 import Quickshell
-import Quickshell.Services.Polkit 
 
+import QtQuick.Layouts
 import QtQuick
-import QtQuick.Controls
 
-Item {
+PanelWindow {
+    id: root
+
     PolkitAgent {
-        property var win
         id: agent
-        onIsActiveChanged: {
-            if(isActive) {
-                win = comp.createObject()
-            } else {
-                win.destroy()
+        onIsActiveChanged: input.text = ""
+    }
+
+    visible: agent.isActive
+
+    anchors {
+        top: true
+        right: true
+        left: true
+        bottom: true
+    }
+
+    function submit() {
+        agent.flow?.submit(input.text);
+        input.text = "";
+    }
+
+    exclusionMode: ExclusionMode.Ignore
+    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+
+    color: "#88000000"
+
+    Rectangle {
+        color: "#141418"
+        radius: 8
+        anchors.centerIn: parent
+        implicitWidth: 400
+        implicitHeight: col.implicitHeight + 32
+
+        border {
+            width: 2
+            color: "#4698C0"
+        }
+
+        ColumnLayout {
+            id: col
+
+            anchors {
+                fill: parent
+                margins: 8
+            }
+
+            Text {
+                Layout.fillWidth: true
+                text: agent.flow?.message ?? ""
+                wrapMode: Text.Wrap
+                color: "#ddd"
+                font.family: "JetBrains Mono Nerd Font"
+                font.pixelSize: 16
+                font.bold: true
+            }
+
+            Text {
+                Layout.fillWidth: true
+                visible: text !== ""
+                text: agent.flow?.supplementaryMessage ?? ""
+                wrapMode: Text.Wrap
+                color: agent.flow?.supplementaryIsError ? "#e53935" : "#aaa"
+                font.family: "JetBrains Mono Nerd Font"
+                font.pixelSize: 14
+            }
+
+            Text {
+                Layout.fillWidth: true
+                visible: agent.flow?.failed === true
+                text: "Failed"
+                wrapMode: Text.Wrap
+                color: "#e53935"
+                font.family: "JetBrains Mono Nerd Font"
+                font.pixelSize: 14
+            }
+
+            Rectangle {
+                color: "#26262a"
+                Layout.fillWidth: true
+                implicitHeight: input.contentHeight + 8
+                radius: 2
+
+                TextInput {
+                    id: input
+                    verticalAlignment: TextInput.AlignVCenter
+                    x: 4
+                    y: 4
+                    color: "#ddd"
+                    font.pixelSize: 14
+                    font.family: "JetBrains Mono Nerd Font"
+                    selectionColor: "#4698C0"
+
+                    echoMode: agent.flow?.responseVisible ? TextInput.Normal : TextInput.Password
+
+                    clip: true
+                    focus: true
+
+                    onAccepted: root.submit()
+
+                    Keys.onEscapePressed: agent.flow.cancelAuthenticationRequest()
+                }
+            }
+
+            RowLayout {
+                Rectangle {
+                    color: cancelArea.pressed ? "#993344" : cancelArea.containsMouse ? "#892334" : "#993344"
+
+                    radius: 2
+
+                    Layout.fillWidth: true
+
+                    implicitHeight: cancelLabel.implicitHeight + 8
+
+                    MouseArea {
+                        id: cancelArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        acceptedButtons: Qt.LeftButton
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: agent.flow.cancelAuthenticationRequest()
+                    }
+
+                    Text {
+                        id: cancelLabel
+                        anchors.centerIn: parent
+                        color: "#ddd"
+                        font.pixelSize: 14
+                        font.family: "JetBrains Mono Nerd Font"
+                        text: "Cancel"
+                    }
+                }
+
+                Rectangle {
+                    color: submitArea.pressed ? "#4698C0" : submitArea.containsMouse ? "#367594" : "#4698C0"
+
+                    radius: 2
+
+                    Layout.fillWidth: true
+
+                    implicitHeight: submitLabel.implicitHeight + 8
+
+                    MouseArea {
+                        id: submitArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        acceptedButtons: Qt.LeftButton
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: root.submit()
+                    }
+
+                    Text {
+                        id: submitLabel
+                        anchors.centerIn: parent
+                        color: "#ddd"
+                        font.pixelSize: 14
+                        font.family: "JetBrains Mono Nerd Font"
+                        text: "Submit"
+                    }
+                }
             }
         }
     }
-
-    Component {
-        id: comp
-
-        FloatingWindow {
-            id: win
-            color: "#CC050e15"
-            maximumSize: "520x200"
-            minimumSize: maximumSize
-
-            onClosed: {
-                agent.flow.cancelAuthenticationRequest()
-            }
-
-
-            Text {
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.topMargin: 4
-                anchors.leftMargin: 8
-                anchors.rightMargin: 8
-                id: message
-                font.pixelSize: 20
-                width: 200
-                color: "white"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: agent.flow?.message ?? ""
-            }
-
-            Text {
-                id: prompt
-                anchors.top: message.bottom
-                anchors.left: message.left
-                anchors.right: message.right
-                anchors.topMargin: 8
-                color: "white"
-                text: `${agent.flow?.inputPrompt ?? ""} ${agent.flow?.failed ? "(failed)" : ""}`
-            }
-
-            TextField {
-                id: field
-                anchors.top: prompt.bottom
-                anchors.left: prompt.left
-                anchors.right: prompt.right
-                anchors.topMargin: 8
-                echoMode: agent.flow?.responseVisible ? TextInput.Normal : TextInput.Password
-                focus: true
-                color: "white"
-                onAccepted: {
-                    agent.flow.submit(text)
-                }
-                Keys.onEscapePressed: {
-                    agent.flow.cancelAuthenticationRequest()
-                }
-            }
-
-            Text {
-                anchors.top: field.bottom
-                anchors.left: field.left
-                anchors.right: field.right
-                anchors.topMargin: 8
-                color: "white"
-                wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: agent.flow?.supplementaryMessage ?? ""
-            }
-
-            Button {
-                anchors.left: parent.left
-                anchors.bottom: parent.bottom
-                anchors.leftMargin: 8
-                anchors.bottomMargin: 8
-                text: "Cancel"
-                onClicked: {
-                    agent.flow.cancelAuthenticationRequest()
-                }
-            }
-
-            Button {
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
-                anchors.rightMargin: 8
-                anchors.bottomMargin: 8
-                text: "Submit"
-                onClicked: {
-                    agent.flow.submit(field.text)
-                }
-            }
-        }
+    onClosed: {
+        agent.flow?.cancelAuthenticationRequest();
     }
 }

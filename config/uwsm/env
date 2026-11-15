@@ -1,2 +1,2 @@
 export EDITOR=helix
-export QT_QPA_PLATFORMTHEME=lxqt
+export QT_QPA_PLATFORMTHEME=qt6ct

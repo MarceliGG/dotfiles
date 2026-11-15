@@ -45,6 +45,7 @@ PanelWindow {
             text: `${Audio.getIcon()}${Audio.volume}%`
         }
         BarTextItem {
+            visible: UPower.displayDevice.isLaptopBattery
             color: UPower.displayDevice.state === UPowerDeviceState.Charging ? "#5f3" : "#ddd"
 
             function getIcon(pct) {

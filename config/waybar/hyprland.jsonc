@@ -1,6 +1,0 @@
-{
-  "modules-left": [
-    "hyprland/workspaces"
-  ],
-  "include": "~/.config/waybar/config.jsonc",
-}

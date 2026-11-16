@@ -19,11 +19,10 @@ ColumnLayout {
             QsMenuAnchor {
                 id: menuAnchor
                 anchor {
-                    window: bar
                     item: trayItem
                     gravity: Edges.Left | Edges.Bottom
                 }
-                menu: modelData.menu
+                menu: trayItem.modelData.menu
             }
 
             Layout.fillWidth: true

@@ -31,6 +31,10 @@ hl.config({
 
     shadow = {
       enabled = false,
+    },
+
+    wobble = {
+      enabled = true
     }
   },
 
@@ -47,6 +51,11 @@ hl.config({
     }
   },
 
+  gestures = {
+    workspace_swipe_distance = 200,
+    workspace_swipe_use_r = true,
+  },
+
   binds = {
     movefocus_cycles_fullscreen = true
   },
@@ -58,6 +67,7 @@ hl.config({
   misc = {
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
+    key_press_enables_dpms = true,
   },
 
   ecosystem = {
@@ -82,3 +92,5 @@ hl.monitor({
 })
 
 hl.gesture({ fingers = 3, direction = "vertical", action = "workspace" })
+hl.gesture({ fingers = 3, direction = "horizontal", scale = 2, action = "scroll_move" })
+hl.gesture({ fingers = 3, direction = "pinch", action = "cursor_zoom", mode = "live" })

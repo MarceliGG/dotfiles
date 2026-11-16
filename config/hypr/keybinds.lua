@@ -75,7 +75,9 @@ hl.bind("SUPER + SHIFT + 0", hl.dsp.window.move({ workspace = 10, follow = false
 -- Other
 hl.bind("SUPER + SHIFT + Escape", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind("PRINT", hl.dsp.exec_cmd("flameshot gui"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("qs ipc call osd volDown"), { repeating = true })
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("qs ipc call osd volUp"), { repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("qs ipc call osd toggleMute"), { locked = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.global("quickshell:volDown"), { repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.global("quickshell:volUp"), { repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.global("quickshell:volMute"), { locked = true })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_SOURCE@ toggle"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { repeating = true })

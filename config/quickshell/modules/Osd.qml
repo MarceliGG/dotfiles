@@ -1,3 +1,4 @@
+import Quickshell.Hyprland
 import Quickshell.Wayland
 import Quickshell.Io
 import Quickshell
@@ -9,6 +10,8 @@ import QtQuick
 
 PanelWindow {
     id: root
+    property bool shown: false
+
     visible: false
     color: "transparent"
 
@@ -16,30 +19,45 @@ PanelWindow {
     exclusionMode: ExclusionMode.Ignore
     mask: Region {}
 
+    anchors {
+        bottom: true
+    }
+
     implicitHeight: content.implicitHeight + 12
-    implicitWidth: content.implicitWidth + 24
+    implicitWidth: content.implicitWidth + 32
 
     Rectangle {
-        anchors {
-            fill: parent
-        }
+        y: root.shown ? 0 : root.height
 
-        radius: 8
-        color: "black"
+        Behavior on y {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.OutCubic
+                onStopped: {
+                    if (!root.shown)
+                        root.visible = false;
+                }
+            }
+        }
+        color: "#141418"
+        width: parent.width
+        height: parent.height
+        topLeftRadius: height / 2
+        topRightRadius: topLeftRadius
 
         RowLayout {
             id: content
             anchors {
                 fill: parent
                 margins: 6
-                leftMargin: 12
-                rightMargin: 12
+                leftMargin: 16
+                rightMargin: 16
             }
 
             Text {
                 id: icon
                 font.family: "JetBrains Mono Nerd Font"
-                font.pixelSize: 24
+                font.pixelSize: 20
                 color: "#ddd"
                 text: Audio.getIcon()
             }
@@ -50,10 +68,10 @@ PanelWindow {
 
                 color: "#333"
 
-                Layout.preferredWidth: 150
-                Layout.preferredHeight: 20
+                Layout.preferredWidth: 200
+                Layout.preferredHeight: 15
 
-                radius: 4
+                radius: height / 2
 
                 Rectangle {
                     color: "#4698C0"
@@ -84,28 +102,39 @@ PanelWindow {
         interval: 1000
         repeat: false
         running: false
-        onTriggered: root.visible = false
+        onTriggered: root.shown = false
     }
 
     function show() {
-        root.visible = true;
+        visible = true;
+        shown = true;
         hideTimer.restart();
     }
 
-    IpcHandler {
-        target: "osd"
-        function volUp() {
+    GlobalShortcut {
+        name: "volUp"
+        description: "Increace system volume"
+        onPressed: {
             Audio.incUp();
-            root.show()
+            root.show();
         }
-        function volDown() {
-            Audio.incDown();
-            root.show()
-        }
+    }
 
-        function toggleMute() {
-            const mute = Audio.toggleMute();
-            root.show()
+    GlobalShortcut {
+        name: "volDown"
+        description: "Decreace system volume"
+        onPressed: {
+            Audio.incDown();
+            root.show();
+        }
+    }
+
+    GlobalShortcut {
+        name: "volMute"
+        description: "Toggle system mute"
+        onPressed: {
+            Audio.toggleMute();
+            root.show();
         }
     }
 }

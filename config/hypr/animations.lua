@@ -1,7 +1,7 @@
 hl.animation({
   leaf = "windowsIn",
   enabled = true,
-  speed = 4,
+  speed = 2,
   bezier = "default",
   style = "gnomed"
 })
@@ -15,7 +15,7 @@ hl.animation({
 hl.animation({
   leaf = "windowsMove",
   enabled = true,
-  speed = 3,
+  speed = 1,
   bezier = "default"
 })
 hl.animation({

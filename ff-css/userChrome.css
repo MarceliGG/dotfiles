@@ -1,0 +1,8 @@
+.titlebar-buttonbox-container {
+  display: none !important;
+}
+
+#TabsToolbar-customization-target {
+  margin-top: -2px !important;
+  margin-bottom: -2px !important;
+}

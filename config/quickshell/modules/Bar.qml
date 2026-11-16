@@ -125,7 +125,7 @@ PanelWindow {
             }
         }
         BarTextItem {
-            text: Qt.formatDateTime(sys_clock.date, "ddd MMM d | hh:mm")
+            text: Qt.formatDateTime(sys_clock.date, "󰃭 ddd MMM d 󰥔 hh:mm")
         }
 
         MouseArea {

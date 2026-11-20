@@ -34,10 +34,10 @@ hl.bind("SUPER + I", hl.dsp.layout("consume_or_expel next"))
 hl.bind("SUPER + O", hl.dsp.layout("colresize +conf"))
 
 -- Resize
-hl.bind("SUPER + CTRL + H", hl.dsp.window.resize({ x = -10, y = 0, relative = true }))
-hl.bind("SUPER + CTRL + J", hl.dsp.window.resize({ x = 0, y = -10, relative = true }))
-hl.bind("SUPER + CTRL + K", hl.dsp.window.resize({ x = 0, y = 10, relative = true }))
-hl.bind("SUPER + CTRL + L", hl.dsp.window.resize({ x = 10, y = 0, relative = true }))
+hl.bind("SUPER + CTRL + H", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+hl.bind("SUPER + CTRL + J", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+hl.bind("SUPER + CTRL + K", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+hl.bind("SUPER + CTRL + L", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
 
 -- Mouse
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })

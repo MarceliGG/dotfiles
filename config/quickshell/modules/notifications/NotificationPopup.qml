@@ -117,11 +117,4 @@ Rectangle {
             }
         }
     }
-
-    Timer {
-        interval: root.modelData?.expireTimeout > 0 ? root.modelData?.expireTimeout : 5000
-        running: root.modelData?.urgency !== NotificationUrgency.Critical
-        repeat: false
-        onTriggered: root.modelData.expire()
-    }
 }

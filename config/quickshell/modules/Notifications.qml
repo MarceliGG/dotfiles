@@ -5,6 +5,7 @@ import Quickshell
 import QtQuick
 
 import qs.modules.notifications
+import qs.services
 
 PanelWindow {
     id: notifications
@@ -35,7 +36,7 @@ PanelWindow {
         spacing: 4
         height: contentHeight
         width: notifications.implicitWidth
-        model: ns.trackedNotifications
+        model: NotifServer.trackedNotifications
 
         delegate: NotificationPopup {}
 
@@ -55,14 +56,5 @@ PanelWindow {
                 easing.type: Easing.OutCubic
             }
         }
-    }
-
-    NotificationServer {
-        id: ns
-        onNotification: notif => {
-            notif.tracked = true;
-        }
-        actionsSupported: true
-        imageSupported: true
     }
 }

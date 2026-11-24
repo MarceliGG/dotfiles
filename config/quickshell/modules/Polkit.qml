@@ -1,19 +1,16 @@
-import Quickshell.Services.Polkit
+// import Quickshell.Services.Polkit
 import Quickshell.Wayland
 import Quickshell
 
 import QtQuick.Layouts
 import QtQuick
 
+import qs.services
+
 PanelWindow {
     id: root
 
-    PolkitAgent {
-        id: agent
-        onIsActiveChanged: input.text = ""
-    }
-
-    visible: agent.isActive
+    visible: PolkitAgent.isActive
 
     anchors {
         top: true
@@ -22,8 +19,13 @@ PanelWindow {
         bottom: true
     }
 
+    function cancel() {
+        PolkitAgent.flow?.cancelAuthenticationRequest();
+        input.text = "";
+    }
+
     function submit() {
-        agent.flow?.submit(input.text);
+        PolkitAgent.flow?.submit(input.text);
         input.text = "";
     }
 
@@ -55,7 +57,7 @@ PanelWindow {
 
             Text {
                 Layout.fillWidth: true
-                text: agent.flow?.message ?? ""
+                text: PolkitAgent.flow?.message ?? ""
                 wrapMode: Text.Wrap
                 color: "#ddd"
                 font.family: "JetBrains Mono Nerd Font"
@@ -66,16 +68,16 @@ PanelWindow {
             Text {
                 Layout.fillWidth: true
                 visible: text !== ""
-                text: agent.flow?.supplementaryMessage ?? ""
+                text: PolkitAgent.flow?.supplementaryMessage ?? ""
                 wrapMode: Text.Wrap
-                color: agent.flow?.supplementaryIsError ? "#e53935" : "#aaa"
+                color: PolkitAgent.flow?.supplementaryIsError ? "#e53935" : "#aaa"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
             }
 
             Text {
                 Layout.fillWidth: true
-                visible: agent.flow?.failed === true
+                visible: PolkitAgent.flow?.failed === true
                 text: "Failed"
                 wrapMode: Text.Wrap
                 color: "#e53935"
@@ -99,14 +101,14 @@ PanelWindow {
                     font.family: "JetBrains Mono Nerd Font"
                     selectionColor: "#4698C0"
 
-                    echoMode: agent.flow?.responseVisible ? TextInput.Normal : TextInput.Password
+                    echoMode: PolkitAgent.flow?.responseVisible ? TextInput.Normal : TextInput.Password
 
                     clip: true
                     focus: true
 
                     onAccepted: root.submit()
 
-                    Keys.onEscapePressed: agent.flow.cancelAuthenticationRequest()
+                    Keys.onEscapePressed: root.cancel()
                 }
             }
 
@@ -126,7 +128,7 @@ PanelWindow {
                         hoverEnabled: true
                         acceptedButtons: Qt.LeftButton
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: agent.flow.cancelAuthenticationRequest()
+                        onClicked: root.cancel()
                     }
 
                     Text {
@@ -168,8 +170,5 @@ PanelWindow {
                 }
             }
         }
-    }
-    onClosed: {
-        agent.flow?.cancelAuthenticationRequest();
     }
 }

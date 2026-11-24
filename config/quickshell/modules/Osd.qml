@@ -1,16 +1,13 @@
-import Quickshell.Hyprland
 import Quickshell.Wayland
-import Quickshell.Io
 import Quickshell
-
-import qs.services
 
 import QtQuick.Layouts
 import QtQuick
 
+import qs.services
+
 PanelWindow {
     id: root
-    property bool shown: false
 
     visible: false
     color: "transparent"
@@ -23,22 +20,31 @@ PanelWindow {
         bottom: true
     }
 
+    Connections {
+        target: OsdState
+        function onMakeVisible() {
+            root.visible = true;
+        }
+    }
+
     implicitHeight: content.implicitHeight + 12
     implicitWidth: content.implicitWidth + 32
 
     Rectangle {
-        y: root.shown ? 0 : root.height
+        id: bg
+        y: OsdState.shown ? 0 : root.height
 
         Behavior on y {
             NumberAnimation {
                 duration: 200
                 easing.type: Easing.OutCubic
                 onStopped: {
-                    if (!root.shown)
+                    if (!OsdState.shown)
                         root.visible = false;
                 }
             }
         }
+
         color: "#141418"
         width: parent.width
         height: parent.height
@@ -94,47 +100,6 @@ PanelWindow {
                 color: "#ddd"
                 text: `${Audio.volume}%`
             }
-        }
-    }
-
-    Timer {
-        id: hideTimer
-        interval: 1000
-        repeat: false
-        running: false
-        onTriggered: root.shown = false
-    }
-
-    function show() {
-        visible = true;
-        shown = true;
-        hideTimer.restart();
-    }
-
-    GlobalShortcut {
-        name: "volUp"
-        description: "Increace system volume"
-        onPressed: {
-            Audio.incUp();
-            root.show();
-        }
-    }
-
-    GlobalShortcut {
-        name: "volDown"
-        description: "Decreace system volume"
-        onPressed: {
-            Audio.incDown();
-            root.show();
-        }
-    }
-
-    GlobalShortcut {
-        name: "volMute"
-        description: "Toggle system mute"
-        onPressed: {
-            Audio.toggleMute();
-            root.show();
         }
     }
 }

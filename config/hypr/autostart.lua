@@ -1,7 +1,7 @@
 hl.on("hyprland.start", function ()
   hl.exec_cmd("qs")
   hl.exec_cmd("awww-daemon")
-  hl.exec_cmd("hypridle")
+  hl.exec_cmd("swayidle -w timeout 120  'qs ipc call lock engage' timeout 1200 'systemctl sleep' before-sleep 'qs ipc call lock engage' lock 'qs ipc call lock engage'")
   hl.exec_cmd("wl-clip-persist --clipboard both")
   hl.exec_cmd("hyprctl setcursor Oxygen_Zion 24")
 end)

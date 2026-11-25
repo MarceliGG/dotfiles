@@ -148,8 +148,4 @@ PanelWindow {
             }
         }
     }
-    SystemClock {
-        id: sys_clock
-        precision: SystemClock.Minutes
-    }
 }

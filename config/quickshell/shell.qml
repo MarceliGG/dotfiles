@@ -14,6 +14,8 @@ ShellRoot {
         PolkitAgent;
     }
 
+    Lockscreen {}
+
     Variants {
         model: Quickshell.screens.filter(s => s.model !== "").slice(0, 1)
         Scope {
@@ -33,5 +35,10 @@ ShellRoot {
                 screen: variantScope.modelData
             }
         }
+    }
+
+    SystemClock {
+        id: sys_clock
+        precision: SystemClock.Minutes
     }
 }

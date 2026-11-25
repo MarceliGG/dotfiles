@@ -3,22 +3,37 @@ import QtQuick
 
 Item {
     id: root
-    Layout.alignment: Qt.AlignHCenter
-    implicitHeight: label.implicitWidth
+    implicitWidth: parent.width
+    implicitHeight: row.implicitWidth
 
     property string text: "n/a"
+    property string icon: ""
     property color color: "#ddd"
 
-    Text {
-        id: label
+    Row {
+        id: row
 
-        x: (root.width - width) / 2
-        y: (root.height - height) / 2
-
-        color: root.color
+        transformOrigin: Item.TopLeft
+        x: (root.width + height) / 2
+        y: 0
         rotation: 90
-        font.pixelSize: 14
-        font.family: "JetBrains Mono Nerd Font"
-        text: root.text
+        spacing: 2
+
+        Text {
+            id: iconlabel
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: 18
+            color: root.color
+            font.family: "JetBrainsMono Nerd Font"
+            text: root.icon
+        }
+
+        Text {
+            id: label
+            anchors.verticalCenter: parent.verticalCenter
+            color: root.color
+            font.pixelSize: 14
+            text: root.text
+        }
     }
 }

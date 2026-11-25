@@ -63,7 +63,6 @@ Rectangle {
                 Text {
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 18
                     font.bold: true
                     color: "#ddd"
@@ -73,7 +72,6 @@ Rectangle {
                 Text {
                     Layout.fillWidth: true
                     wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                    font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 14
                     color: "#ddd"
                     text: root.modelData?.body || "No body"
@@ -110,7 +108,6 @@ Rectangle {
                         anchors.centerIn: parent
                         color: "#ddd"
                         font.pixelSize: 14
-                        font.family: "JetBrains Mono Nerd Font"
                         text: action.modelData.text
                     }
                 }

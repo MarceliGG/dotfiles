@@ -17,7 +17,6 @@ Repeater {
                 anchors.centerIn: parent
                 color: "#ddd"
                 font.pixelSize: 14
-                font.family: "JetBrains Mono Nerd Font"
                 text: modelData.id
             }
         }

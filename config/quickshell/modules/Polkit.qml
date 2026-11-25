@@ -60,7 +60,6 @@ PanelWindow {
                 text: PolkitAgent.flow?.message ?? ""
                 wrapMode: Text.Wrap
                 color: "#ddd"
-                font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 16
                 font.bold: true
             }
@@ -71,7 +70,6 @@ PanelWindow {
                 text: PolkitAgent.flow?.supplementaryMessage ?? ""
                 wrapMode: Text.Wrap
                 color: PolkitAgent.flow?.supplementaryIsError ? "#e53935" : "#aaa"
-                font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
             }
 
@@ -81,7 +79,6 @@ PanelWindow {
                 text: "Failed"
                 wrapMode: Text.Wrap
                 color: "#e53935"
-                font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
             }
 
@@ -98,7 +95,6 @@ PanelWindow {
                     y: 4
                     color: "#ddd"
                     font.pixelSize: 14
-                    font.family: "JetBrains Mono Nerd Font"
                     selectionColor: "#4698C0"
 
                     echoMode: PolkitAgent.flow?.responseVisible ? TextInput.Normal : TextInput.Password
@@ -136,7 +132,6 @@ PanelWindow {
                         anchors.centerIn: parent
                         color: "#ddd"
                         font.pixelSize: 14
-                        font.family: "JetBrains Mono Nerd Font"
                         text: "Cancel"
                     }
                 }
@@ -164,7 +159,6 @@ PanelWindow {
                         anchors.centerIn: parent
                         color: "#ddd"
                         font.pixelSize: 14
-                        font.family: "JetBrains Mono Nerd Font"
                         text: "Submit"
                     }
                 }

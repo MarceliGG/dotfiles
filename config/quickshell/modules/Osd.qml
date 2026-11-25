@@ -65,7 +65,7 @@ PanelWindow {
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 20
                 color: "#ddd"
-                text: Audio.getIcon()
+                text: Audio.getIcon() + " "
             }
 
             Rectangle {
@@ -95,8 +95,9 @@ PanelWindow {
 
             Text {
                 id: value
-                font.family: "JetBrains Mono Nerd Font"
+                Layout.preferredWidth: 45
                 font.pixelSize: 18
+                horizontalAlignment: Text.AlignRight
                 color: "#ddd"
                 text: `${Audio.volume}%`
             }

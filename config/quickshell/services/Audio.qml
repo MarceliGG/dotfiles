@@ -10,14 +10,14 @@ Singleton {
 
     function getIcon() {
         if (muted)
-            return " ";
+            return "";
         if (volume > 75)
-            return " ";
+            return "";
         if (volume > 50)
-            return " ";
+            return "";
         if (volume > 25)
-            return " ";
-        return " ";
+            return "";
+        return "";
     }
 
     function incUp() {

@@ -38,11 +38,12 @@ PanelWindow {
             left: parent.left
             right: parent.right
         }
-        spacing: 12
+        spacing: 8
 
         SysTray {}
         BarTextItem {
-            text: `${Audio.getIcon()}${Audio.volume}%`
+            icon: Audio.getIcon()
+            text: `${Audio.volume}%`
         }
         BarTextItem {
             visible: UPower.displayDevice.isLaptopBattery
@@ -50,17 +51,18 @@ PanelWindow {
 
             function getIcon(pct) {
                 if (pct > 0.8)
-                    return " ";
+                    return "";
                 if (pct > 0.6)
-                    return " ";
+                    return "";
                 if (pct > 0.4)
-                    return " ";
+                    return "";
                 if (pct > 0.2)
-                    return " ";
-                return " ";
+                    return "";
+                return "";
             }
 
-            text: `${getIcon(UPower.displayDevice.percentage)}${Math.round(UPower.displayDevice.percentage * 100)}${UPower.displayDevice.state === UPowerDeviceState.Charging ? "" : "%"}`
+            icon: getIcon(UPower.displayDevice.percentage)
+            text: `${Math.round(UPower.displayDevice.percentage * 100)}${UPower.displayDevice.state === UPowerDeviceState.Charging ? "" : "%"}`
         }
         BarTextItem {
             function formatWifiIcon(strength, connectivity) {
@@ -68,64 +70,76 @@ PanelWindow {
                 case NetworkConnectivity.Potal:
                     switch (strength) {
                     case 0:
-                        return "󰤬 ";
+                        return "󰤬";
                     case 1:
-                        return "󰤡 ";
+                        return "󰤡";
                     case 2:
-                        return "󰤤 ";
+                        return "󰤤";
                     case 3:
-                        return "󰤧 ";
+                        return "󰤧";
                     default:
-                        return "󰤪 ";
+                        return "󰤪";
                     }
                 case NetworkConnectivity.Full:
                     switch (strength) {
                     case 0:
-                        return "󰤯 ";
+                        return "󰤯";
                     case 1:
-                        return "󰤟 ";
+                        return "󰤟";
                     case 2:
-                        return "󰤢 ";
+                        return "󰤢";
                     case 3:
-                        return "󰤥 ";
+                        return "󰤥";
                     default:
-                        return "󰤨 ";
+                        return "󰤨";
                     }
                 case NetworkConnectivity.Limited:
                     switch (strength) {
                     case 0:
-                        return "󰤫 ";
+                        return "󰤫";
                     case 1:
-                        return "󰤠 ";
+                        return "󰤠";
                     case 2:
-                        return "󰤣 ";
+                        return "󰤣";
                     case 3:
-                        return "󰤦 ";
+                        return "󰤦";
                     default:
-                        return "󰤩 ";
+                        return "󰤩";
                     }
                 case NetworkConnectivity.Unknown:
-                    return " ";
+                    return "";
                 default:
-                    return "󰤮 ";
+                    return "󰤮";
                 }
             }
-            text: {
-                const dev = Networking.devices.values.find(d => d.connected);
+            readonly property var dev: Networking.devices.values.find(d => d.connected)
+            readonly property var net: dev?.deviceType === DeviceType.WiFi ? dev.networks.values.find(n => n.connected) : null
+
+            icon: {
                 switch (dev?.deviceType) {
                 case DeviceType.WiFi:
-                    const net = dev?.networks.values.find(n => n.connected);
                     if (!net)
-                        return "󰤮 Disconnected";
-                    return `${formatWifiIcon(Math.floor(net.signalStrength * 4), Networking.connectivity)}${net.name}`;
+                        return "󰤮";
+                    return formatWifiIcon(Math.floor(net.signalStrength * 4), Networking.connectivity).trim();
                 case DeviceType.Wired:
-                    return "󰈀 Wired";
+                    return "󰈀";
                 }
-                return "󱘖 Disconnected";
+                return "󱘖";
+            }
+
+            text: {
+                switch (dev?.deviceType) {
+                case DeviceType.WiFi:
+                    return net ? net.name : "Disconnected";
+                case DeviceType.Wired:
+                    return "Wired";
+                }
+                return "Disconnected";
             }
         }
         BarTextItem {
-            text: Qt.formatDateTime(sys_clock.date, "󰃭 ddd MMM d 󰥔 hh:mm")
+            icon: "󰥔"
+            text: Qt.formatDateTime(sys_clock.date, "hh:mm - ddd MMM d")
         }
 
         MouseArea {

@@ -1,9 +1,9 @@
-import Quickshell
-import Quickshell.Widgets
 import Quickshell.Services.SystemTray
+import Quickshell.Widgets
+import Quickshell
 
-import QtQuick
 import QtQuick.Layouts
+import QtQuick
 
 ColumnLayout {
     id: sysTray

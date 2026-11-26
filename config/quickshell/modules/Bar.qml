@@ -1,14 +1,12 @@
-import Quickshell.Io
-import Quickshell
-
 import Quickshell.Services.UPower
 import Quickshell.Networking
+import Quickshell
+
+import qs.modules.bar
 import qs.services
 
 import QtQuick.Layouts
 import QtQuick
-
-import qs.modules.bar
 
 PanelWindow {
     id: bar
@@ -50,20 +48,20 @@ PanelWindow {
             color: UPower.displayDevice.state === UPowerDeviceState.Charging ? "#5f3" : "#ddd"
 
             function getIcon(pct) {
-                if (pct > 0.8)
-                    return "";
-                if (pct > 0.6)
-                    return "";
-                if (pct > 0.4)
-                    return "";
-                if (pct > 0.2)
-                    return "";
-                return "";
+                if (pct > 0.75)
+                    return "󱊣";
+                if (pct > 0.50)
+                    return "󱊢";
+                if (pct > 0.25)
+                    return "󱊡";
+                return "󰂎";
             }
 
+            iconSize: 24
             icon: getIcon(UPower.displayDevice.percentage)
             text: `${Math.round(UPower.displayDevice.percentage * 100)}${UPower.displayDevice.state === UPowerDeviceState.Charging ? "" : "%"}`
         }
+
         BarTextItem {
             function formatWifiIcon(strength, connectivity) {
                 switch (connectivity) {
@@ -146,19 +144,13 @@ PanelWindow {
             Layout.fillWidth: true
             Layout.preferredHeight: width
             acceptedButtons: Qt.LeftButton
-            onClicked: () => wlogout.running = true
+            onClicked: () => Quickshell.execDetached("wlogout")
             Text {
                 anchors.centerIn: parent
                 color: "#d44"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
                 text: "⏻"
-            }
-
-            Process {
-                id: wlogout
-                running: false
-                command: ["wlogout"]
             }
         }
     }

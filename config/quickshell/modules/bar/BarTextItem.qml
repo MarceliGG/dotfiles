@@ -1,36 +1,33 @@
-import QtQuick.Layouts
 import QtQuick
 
-Item {
+Column {
     id: root
-    implicitWidth: parent.width
-    implicitHeight: row.implicitWidth
 
     property string text: "n/a"
     property string icon: ""
     property color color: "#ddd"
+    property int iconSize: 18
 
-    Row {
-        id: row
+    Text {
+        id: iconlabel
+        height: root.iconSize + 6
+        x: (root.width - width) / 2
+        font.pixelSize: root.iconSize
+        color: root.color
+        font.family: "JetBrainsMono Nerd Font"
+        text: root.icon
+    }
 
-        transformOrigin: Item.TopLeft
-        x: (root.width + height) / 2
-        y: 0
-        rotation: 90
-        spacing: 2
-
-        Text {
-            id: iconlabel
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 18
-            color: root.color
-            font.family: "JetBrainsMono Nerd Font"
-            text: root.icon
-        }
-
+    Item {
+        height: label.implicitWidth
+        anchors.horizontalCenter: parent.horizontalCenter
+        implicitWidth: bar.width
         Text {
             id: label
-            anchors.verticalCenter: parent.verticalCenter
+            transformOrigin: Item.TopLeft
+            x: (root.width + height) / 2
+            y: 0
+            rotation: 90
             color: root.color
             font.pixelSize: 14
             text: root.text

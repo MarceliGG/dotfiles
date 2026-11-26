@@ -33,32 +33,28 @@ Scope {
 
                 Text {
                     color: "#aaa"
-                    font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 24
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: Qt.formatDateTime(sys_clock.date, "󰥔 hh:mm")
+                    text: Qt.formatDateTime(sys_clock.date, "󰥔  hh:mm")
                 }
 
                 Text {
-                    font.family: "JetBrains Mono Nerd Font"
                     font.pixelSize: 20
                     anchors.horizontalCenter: parent.horizontalCenter
                     visible: UPower.displayDevice.isLaptopBattery
                     color: UPower.displayDevice.state === UPowerDeviceState.Charging ? "#5f3" : "#aaa"
 
                     function getIcon(pct) {
-                        if (pct > 0.8)
-                            return " ";
-                        if (pct > 0.6)
-                            return " ";
-                        if (pct > 0.4)
-                            return " ";
-                        if (pct > 0.2)
-                            return " ";
-                        return " ";
+                        if (pct > 0.75)
+                            return "󱊣";
+                        if (pct > 0.50)
+                            return "󱊢";
+                        if (pct > 0.25)
+                            return "󱊡";
+                        return "󰂎";
                     }
 
-                    text: `${getIcon(UPower.displayDevice.percentage)}${Math.round(UPower.displayDevice.percentage * 100)}${UPower.displayDevice.state === UPowerDeviceState.Charging ? "" : "%"}`
+                    text: `${getIcon(UPower.displayDevice.percentage)} ${Math.round(UPower.displayDevice.percentage * 100)}${UPower.displayDevice.state === UPowerDeviceState.Charging ? "" : "%"}`
                 }
             }
 

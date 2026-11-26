@@ -7,7 +7,7 @@ Repeater {
     delegate: Rectangle {
         Layout.fillWidth: true
         Layout.preferredHeight: width
-        color: modelData.active ? "#26262a" : "black"
+        color: modelData.active ? "#26262a" : modelData.urgent ? "#993344" : "black"
 
         MouseArea {
             anchors.fill: parent

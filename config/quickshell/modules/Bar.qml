@@ -147,7 +147,7 @@ PanelWindow {
             onClicked: () => Quickshell.execDetached("wlogout")
             Text {
                 anchors.centerIn: parent
-                color: "#d44"
+                color: "#a33"
                 font.family: "JetBrains Mono Nerd Font"
                 font.pixelSize: 14
                 text: "⏻"

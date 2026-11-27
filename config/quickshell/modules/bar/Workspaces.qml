@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick
 
 Repeater {
-    model: Hyprland.workspaces
+    model: Hyprland.workspaces.values.filter(w => w.id > 0)
     delegate: Rectangle {
         Layout.fillWidth: true
         Layout.preferredHeight: width
